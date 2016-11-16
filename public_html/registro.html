@@ -9,14 +9,16 @@ and open the template in the editor.
         <title>registro</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/css-reg.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
        <header>
             
         </header>
         
+        <div class="padre">
         <section id="formregistro">
-            <h3>NUEVO USUARIO</h3>
+            <h5>NUEVO USUARIO</h5>
             
             <form action="registro01.php" method="get">
             NOMBRE:<input name="nom" type="text" placeholder="Introduce tu nombre"  required/> <br />
@@ -26,13 +28,13 @@ and open the template in the editor.
             PASSWORD:<input name="pass" type="password" placeholder="Introduce tu password" required/> <br />        
             CONFIRMA EL PASSWORD:<input name="passconfirm" type="password" placeholder="Introduce tu password" required/><br />
 
-            <input type="submit" value="regístrate" /> 
-            <input type="reset" value="limpia el formulario">
+            <input type="submit" value="REGÍSTRATE" /> 
+            <input type="reset" value="LIMPIA EL FORMULARIO">
             </form>
         </section>
         
         <section id="inicio">
-            <h3>USUARIO REGISTRADO</h3>
+            <h5>USUARIO REGISTRADO</h5>
             <form action="login.php" method="get">          
             EMAIL:<input name="email" type="email" placeholder="Introduce tu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required/> <br />            
             PASSWORD:<input name="pass" type="password" placeholder="Introduce tu password" required/> <br />
@@ -40,6 +42,7 @@ and open the template in the editor.
             <input type="submit" value="INICIAR SESION" /> 
             <input type="reset" value="¿HAS OLVIDADO LA CONTRASEÑA?">
             </form>
-        </section>        
+        </section>
+        </div>
     </body>
 </html>

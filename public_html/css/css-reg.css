@@ -1,0 +1,23 @@
+.padre{
+    display: inline-block;
+    width: 100%;
+    border-width: 1px;
+    border-color: grey;
+    border-style:solid;
+}
+
+#formregistro{
+    padding-left: 5%;
+    display: inline-block;
+    text-align: left;
+    width: 45%;
+    float: left;    
+}
+
+#inicio{    
+    display: inline-block;
+    text-align: left;
+    width: 45%;
+    vertical-align: top;
+    float: right;
+}
