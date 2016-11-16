@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>registro 2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+       <header>
+            
+       </header>
+        
+        <section id="localreg">
+            <h3>LOCAL</h3>
+            
+            <form action="registro01.php" method="get">
+            NOMBRE DEL LOCAL:<input name="nom" type="text" placeholder="Introduce tu nombre"  required/> <br />
+            AFORO:<input type="number" name="aforo" min="1" required/> <br />
+            DIRECCIÓN:<input name="direccion" type="text" placeholder="Introduce la dirección del local" required/> <br />            
+            CÓDIGO POSTAL:<input name="cp" type="text" placeholder="Introduce tu código postal" required/><br />
+            CIUDAD:<input name="ciudad" type="text" placeholder="Introduce tu ciudad" required/> <br />            
+            TELÉFONO:<input name="tel" type="tel" placeholder="Introduce tu teléfono" required/> <br />        
+            IMAGEN DE PERFIL:<input name="img" type="alt"/><br />
+            PÁGINA WEB:<input name="web" type="text"/><br />
+
+            <input type="submit" value="Regístrate" /> 
+            <input type="reset" value="Limpia el formulario">
+            </form>
+        </section>
+        
+        <section id="artistareg">
+            <h3>ARTISTA</h3>
+            <form action="login.php" method="get">          
+            NOMBRE ARTÍSTICO:<input name="nom" type="text" placeholder="Introduce tu nombre artístico"  required/> <br />
+            NÚMERO INTEGRANTES:<input type="number" name="integrantes" min="1" required/> <br />
+            GÉNERO:<input type="text" name="genero" placeholder="Introduce el género" required/> <br />
+            DIRECCIÓN:<input name="direccion" type="text" placeholder="Introduce la dirección" required/> <br />            
+            CÓDIGO POSTAL:<input name="cp" type="text" placeholder="Introduce tu código postal" required/><br />
+            CIUDAD:<input name="ciudad" type="text" placeholder="Introduce tu ciudad" required/> <br />            
+            TELÉFONO:<input name="tel" type="tel" placeholder="Introduce tu teléfono" required/> <br />        
+            IMAGEN DE PERFIL:<input name="img" type="alt"/><br />
+            PÁGINA WEB:<input name="web" type="text"/><br />
+
+            <input type="submit" value="Regístrate" /> 
+            <input type="reset" value="Limpia el formulario">
+            </form>
+        </section>
+        
+        <section id="fanreg">
+            <h3>FAN</h3>
+            <form action="login.php" method="get">          
+            DIRECCIÓN:<input name="direccion" type="text" placeholder="Introduce la dirección" required/> <br />            
+            CÓDIGO POSTAL:<input name="cp" type="text" placeholder="Introduce tu código postal" required/><br />
+            CIUDAD:<input name="ciudad" type="text" placeholder="Introduce tu ciudad" required/> <br />            
+            TELÉFONO:<input name="tel" type="tel" placeholder="Introduce tu teléfono" required/> <br />        
+            IMAGEN DE PERFIL:<input name="img" type="alt"/><br />     
+
+            <input type="submit" value="Regístrate" /> 
+            <input type="reset" value="Limpia el formulario">
+            </form>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,125 @@
+#contenido {
+	width: 80%;
+	max-width: 1170px;
+	margin:0 auto;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+header{
+	width: 100%;
+	box-sizing: border-box;	
+}
+
+
+
+.logo{
+	width: 20%;
+	float:left;
+}
+
+.logo img{
+	width: 70%;
+	height: auto;
+	padding: 10px;
+}
+.opciones-menu{
+	width:80%;
+	float: left;
+}
+
+.css-menu{
+	width:100%;
+	float: left;
+	
+}
+.css-menu ul{
+    list-style-type: none;
+    padding-top: 50px;
+}
+
+.css-menu li{
+float:left;
+}
+
+.css-menu a{
+    display: block;
+    padding: 8px;
+}
+
+#carrusel img{
+	width: 100%;
+	height: auto;
+}
+
+.imgp{  
+   width: 50%; 
+   float: left;
+}
+
+
+#agenda-conciertos{
+	width:33%;
+	float:left;	
+	box-sizing: border-box;
+	padding: 20px;
+        
+}
+
+#musicos{
+	width:33%;
+	float:left;	
+	box-sizing: border-box;
+	padding: 20px;
+}
+
+#patrocinadores{
+	width:33%;
+	float:left;	
+	box-sizing: border-box;
+	padding: 20px;
+}
+
+#patrocinadores img{
+	width: 100%;
+	height: auto;
+}
+
+
+footer{	
+	clear: both;	
+	width: 100%;
+	background:#BBBCB9;
+	border-top: 2px solid;
+
+}
+
+footer ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.aviso-legal{
+	width:33%;
+	float:left;	
+	box-sizing: border-box;
+	padding: 20px;
+}
+
+.informacion{
+	width:33%;
+	float:left;	
+	box-sizing: border-box;
+	padding: 20px;
+}
+
+.contacto{
+	width:34%;
+	float:left;
+	box-sizing: border-box;
+	padding: 20px;
+}
+
+

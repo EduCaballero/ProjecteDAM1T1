@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Musicos</title>
+	<link rel="stylesheet" href="musicoseditarperfilcss.css">
+</head>
+<body id="body">
+	<header></header>
+	<div id="perfil">
+		<div class="centrado">
+			<img src="default.png" alt="" width="150"/>
+		</div>
+		<div class="centrado">
+			NOMBRE MUSICO
+		</div>
+		
+	</div>
+	<section id="editarperfil">
+		<div id="titleeditarperfil">EDITAR PERFIL</div>
+		<div id="inputs1">
+			<form action="musicoseditarperfil.html" method="POST">
+				<label for="nombre"> Nombre: </label>
+				<input type="text" id="nombre" name="nombre" class="marginput"/>
+				<br/>
+				<label for="apellidos"> Apellidos: </label>
+				<input type="text" id="apellidos" name="apellidos" class="marginput"/>
+				<br/>
+				<label for="nomart"> Nombre artistico: </label>
+				<input type="text" id="nomart" name="nomart" class="marginput"/>
+				<br/>
+				<label for="ninteg"> Numero de integrantes: </label>
+				<input type="text" id="ninteg" name="ninteg" class="marginput"/>
+				<br/>
+				<label for="genero"> Genero: </label>
+				<input type="text" id="genero" name="genero" class="marginput"/>
+				<br/>
+				<label for="tlf"> Telefono: </label>
+				<input type="text" id="tlf" name="tlf" class="marginput"/>
+				<br/>
+				<label for="web"> Pagina web: </label>
+				<input type="url" id="web" name="web" class="marginput"/>
+				<br/>
+				<label for="imgperfil"> Imagen de perfil: </label>
+				<input type="text" id="imgperfil" name="imgperfil"/>
+			</form>
+		</div>
+		<div class="verticalLine"></div>
+		<div id="inputs2">
+			<form action="musicoseditarperfil.html" method="POST">
+				<label for="mail1"> E-mail: </label>
+				<input type="email" id="mail1" name="mail1" class="marginput"/>
+				<br/>
+				<label for="mail2"> Confirma E-mail: </label>
+				<input type="email" id="mail2" name="mail2" class="marginput"/>
+				<br/>
+				<label for="nomart"> Nombre artistico: </label>
+				<input type="text" id="nomart" name="nomart" class="marginput"/>
+				<br/>
+				<label for="pass-actual"> Contraseña actual: </label>
+				<input type="password" id="pass-actual" name="pass-actual" class="marginput"/>
+				<br/>
+				<label for="nuevo-pass"> Nueva contraseña: </label>
+				<input type="password" id="nuevo-pass" name="nuevo-pass" class="marginput"/>
+				<br/>
+				<label for="confirma-pass"> Confirma contraseña: </label>
+				<input type="password" id="confirma-pass" name="confirma-pass" class="marginput"/>
+			</form>
+		</div>
+		<div id="submit">
+			<form action="musicoseditarperfil.html" method="POST">
+				<input type="submit" value="Modificar">
+			</form>
+		</div>
+	</section>
+
+</body>
+</html>

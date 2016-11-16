@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>registro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+       <header>
+            
+        </header>
+        
+        <section id="formregistro">
+            <h3>NUEVO USUARIO</h3>
+            
+            <form action="registro01.php" method="get">
+            NOMBRE:<input name="nom" type="text" placeholder="Introduce tu nombre"  required/> <br />
+            APELLIDOS<input name="ape" type="text" placeholder="Introduce tus apellidos" required/> <br />            
+            USUARIO:<input name="user" type="text" placeholder="Introduce tu nombre de usuario" pattern="[A-Za-z]{3-10}" required/><br />
+            EMAIL:<input name="email" type="email" placeholder="Introduce tu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required/> <br />            
+            PASSWORD:<input name="pass" type="password" placeholder="Introduce tu password" required/> <br />        
+            CONFIRMA EL PASSWORD:<input name="passconfirm" type="password" placeholder="Introduce tu password" required/><br />
+
+            <input type="submit" value="regístrate" /> 
+            <input type="reset" value="limpia el formulario">
+            </form>
+        </section>
+        
+        <section id="inicio">
+            <h3>USUARIO REGISTRADO</h3>
+            <form action="login.php" method="get">          
+            EMAIL:<input name="email" type="email" placeholder="Introduce tu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required/> <br />            
+            PASSWORD:<input name="pass" type="password" placeholder="Introduce tu password" required/> <br />
+
+            <input type="submit" value="INICIAR SESION" /> 
+            <input type="reset" value="¿HAS OLVIDADO LA CONTRASEÑA?">
+            </form>
+        </section>        
+    </body>
+</html>
