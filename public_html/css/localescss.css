@@ -3,7 +3,11 @@
 	text-align: center;
 }
 
+hr {
+	color:#f5f8fa;
+}
 header {
+	text-align: left;
 	background-color: white;
 	border-color: darkblue;
 	border-width: 1px;
@@ -13,28 +17,36 @@ header {
 
 #logo {
 	display: inline-block;
-	width: 150px;
+	
+	margin-left: 232px;
+	margin-right: 35px; 
 }
 
 #buscador {
 	display: inline-block;
-	width: 200px;
 	margin-top: 15px;
-	margin-left: 40px;
+	margin-right: 385px;
 	vertical-align: top;
 }
 
 #buscador>div {
 	display: inline-block;
-	padding: 2px;
+	vertical-align: top;
+	margin-top: 7px;
+	margin-right: 3px;
+}
+
+#buscador>input {
+	margin-top: 3px;
+	margin-bottom: 4px;
+	width: 200px;
 }
 
 #redes {
 	display: inline-block;
-	width: 170px;
-	margin-top:3px;
+	margin-top:11px;
 	vertical-align: top;
-	padding: 3px;
+	margin-right: 75px;
 }
 
 #redes>a {
@@ -44,38 +56,44 @@ header {
 #idioma {
 	display: inline-block;
 	width: 200px;
-	margin-left: 40px;
 	vertical-align: top;
 	margin-top: 20px;
 }
 
-.validateMenu {
+.loginMenu {
 	display: inline-block;
 	vertical-align: top;
-}
-
-.validateButton {
-	display: inline-block;
-	cursor: pointer;
-	border-style: dashed;
-	border-width: 1px;
-	border-color: darkblue;
-	padding: 4px;
-}
-
-.login:hover {
-	background-color: #f9f9f9;
+	margin-left: 20px;
 }
 
 .login {
     position: relative;
-    display: inline-block;
-    padding: 4px;
+    top: 12px; 
+}
+
+.register {
+	position: relative;
+	top: 12px;
+	left: 7px;
+}
+
+.button {
+	display: inline-block;
+	padding: 6px 9px;
+    background-color: #3b5998;
+    color: white;
+    font-weight: bold;
+}
+
+.login:hover {
+	background-color: black;
+	cursor: pointer;
 }
 
 .desplegableLogin {
     display: none;
     position: absolute;
+    text-align: left;
     background-color: #f9f9f9;
     min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -84,16 +102,25 @@ header {
     border-width: 1px;
     border-style: solid;
     border-color: darkblue;
+    color: black;
+    font-weight: normal;
+}
+
+.desplegableLogin>input {
+	margin-top: 3px;
+	margin-bottom: 4px;
+}
+
+.desplegableLogin>div {
+	
 }
 
 .login:hover .desplegableLogin {
     display: block;
 }
 
-input {
-	margin-top: 3px;
-	margin-bottom: 4px;
-}
+
+
 
 #perfil {
 	display: inline-block;
@@ -115,7 +142,7 @@ input {
 #conciertos {
 	display: inline-block;
 	background-color: white;
-	width: 850px;
+	width: 1050px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: darkblue;
@@ -138,8 +165,6 @@ input {
 }
 
 #list-conciertos {
-	display: inline-block;
-	width: 840px;
 	margin: 5px;
 }
 
@@ -167,4 +192,10 @@ input {
 	font-weight: bold;
 	padding: 3px;
 	margin-bottom: 3px;
+}
+
+footer {
+	margin-top: 30px;
+	height: 100px;
+	background-color: #3b5998;
 }
