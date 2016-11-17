@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Locales</title>
-	<link rel="stylesheet" href="localescss.css">
+	<link rel="stylesheet" href="css/localescss.css">
 </head>
 <body id="body">
 	<header>
@@ -14,32 +14,39 @@
 			<input type="text" name="buscador" placeholder="Buscar..."/>
 		</div>
 		<div id="redes">
-			<a href="https://www.facebook.com/Concertpush-367915200215659/"> <img src="imagenes/icono-facebook.png" alt="fb icon" width="40"> 
+			<a href="https://www.facebook.com/Concertpush-367915200215659/"><img src="imagenes/icono-facebook.png" alt="fb icon" width="40"> 
 			</a>
-			<a href="https://twitter.com/concert_push"> <img src="imagenes/icono-twitter.png" alt="fb icon" width="40"> 
+			<a href="https://twitter.com/concert_push"><img src="imagenes/icono-twitter.png" alt="fb icon" width="40"> 
 			</a>
-			<a href="https://www.instagram.com/concert_push/"> <img src="imagenes/icono-instagram.png" alt="fb icon" width="40"> 
+			<a href="https://www.instagram.com/concert_push/"><img src="imagenes/icono-instagram.png" alt="fb icon" width="40"> 
 			</a>
 		</div>
 		<div id="idioma">
+			Idioma:
 			<select name="Idioma">
 				<option value="Español">Español</option>
-				<option value="Ingles">Ingles</option>
+				<option value="Catalan">Catalan</option>
 			</select>
 		</div>
-		
-		<div id="login"> 
-			<form action="" method="POST">
-				<input type="email" name="email">
-			</form>
-		</div>
-
+		<div class="validateMenu">
+            <div class="login">Login</div>
+            <form class="desplegableLogin">
+                <label for="inputMail">E-mail</label>
+                <input name="userMail" id="inputMail" type="email">
+                <label for="inputPass">Password</label>
+                <input name="pass" id="inputPass" type="password">
+                <input type="submit" value="Login">
+            </form>
+            <div class="contDesplegable registre">
+                <div class="registre button">REGISTRATE</div>
+            </div>
+        </div>
 
 	</header>
 
 	<div id="perfil">
 		<div class="centrado">
-			<img src="default.png" alt="" width="150"/>
+			<img src="imagenes/defaultprofile.png" alt="" width="150"/>
 		</div>
 		<div class="centrado">
 			NOMBRE LOCAL
@@ -123,4 +130,5 @@
 		</div>
 	</section>
 </body>
+
 </html>

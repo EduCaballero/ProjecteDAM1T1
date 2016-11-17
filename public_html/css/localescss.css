@@ -8,6 +8,7 @@ header {
 	border-width: 1px;
 	border-style: solid;
 	margin-bottom: 10px;
+	padding: 4px;
 }
 
 #logo {
@@ -25,11 +26,13 @@ header {
 
 #redes {
 	display: inline-block;
-	width: 150px;
+	width: 170px;
+	margin:5px;
+	vertical-align: top;
 }
 
-#redes a {
-	margin: 2px;
+#redes>a {
+	margin: 4px;
 }
 
 #idioma {
@@ -40,13 +43,45 @@ header {
 	margin-top: 20px;
 }
 
-#login {
+.validateMenu {
 	display: inline-block;
-	width: 200px;
-	margin-left: 20px;
 	vertical-align: top;
-	margin-top: 20px;
+}
 
+.validateMenu>form {
+	display: block;
+}
+
+.validateButton {
+	display: inline-block;
+	cursor: pointer;
+	border-style: dashed;
+	border-width: 1px;
+	border-color: darkblue;
+	padding: 4px;
+}
+
+div.validateButton:hover {
+	background-color: #e9ebee;
+}
+
+.dropdownLogin {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 #perfil {
