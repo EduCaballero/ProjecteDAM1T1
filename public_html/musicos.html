@@ -6,7 +6,43 @@
 	<link rel="stylesheet" href="css/musicoscss.css">
 </head>
 <body id="body">
-	<header></header>
+	<header>
+		<div id="logo">
+			<img src="imagenes/logo.png" alt="logo" width="150"/> 
+		</div>
+		<div id="buscador">
+			<div><img src="imagenes/search-ico.png" alt="buscar" width="16"/> </div>
+			<input type="text" name="buscador" placeholder="Buscar..."/>
+		</div>
+		<div id="redes">
+			<a href="https://www.facebook.com/Concertpush-367915200215659/"><img src="imagenes/icono-facebook.png" alt="Facebook" width="35"> 
+			</a>
+			<a href="https://twitter.com/concert_push"><img src="imagenes/icono-twitter.png" alt="Twitter" width="35"> 
+			</a>
+			<a href="https://www.instagram.com/concert_push/"><img src="imagenes/icono-instagram.png" alt="Instagram" width="35"> 
+			</a>
+		</div>
+		<div id="idioma">
+			Idioma:
+			<select name="Idioma">
+				<option value="Español">Español</option>
+				<option value="Catalan">Catalan</option>
+			</select>
+		</div>
+		<div class="loginMenu">
+			<div class="login button">Login
+				<form class="desplegableLogin" action="" method="POST">
+					<label for="inputMail">E-mail:</label>
+					<input name="userMail" id="inputMail" type="email">
+					<label for="inputPass">Password:</label>
+					<input name="pass" id="inputPass" type="password">
+					<input type="submit" value="Login">
+					<div><a href="">¿Has olvidado la contraseña?</a></div>
+				</form>
+			</div>
+			<a href=""><div class="register button">Registrate</div></a>
+		</div>
+	</header>
 	<div id="perfil">
 		<div class="centrado">
 			<img src="imagenes/defaultprofile.png" alt="" width="150"/>
@@ -89,5 +125,6 @@
 			</ul>
 		</div>
 	</section>
+	<footer/>
 </body>
 </html>

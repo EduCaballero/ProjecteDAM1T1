@@ -2,6 +2,119 @@
 	background-color: #e9ebee;
 }
 
+header {
+	text-align: left;
+	background-color: white;
+	border-color: darkblue;
+	border-width: 1px;
+	border-style: solid;
+	margin-bottom: 10px;
+}
+
+#logo {
+	display: inline-block;
+	
+	margin-left: 232px;
+	margin-right: 35px; 
+}
+
+#buscador {
+	display: inline-block;
+	margin-top: 15px;
+	margin-right: 385px;
+	vertical-align: top;
+}
+
+#buscador>div {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 7px;
+	margin-right: 3px;
+}
+
+#buscador>input {
+	margin-top: 3px;
+	margin-bottom: 4px;
+	width: 200px;
+}
+
+#redes {
+	display: inline-block;
+	margin-top:11px;
+	vertical-align: top;
+	margin-right: 75px;
+}
+
+#redes>a {
+	margin: 5px;
+}
+
+#idioma {
+	display: inline-block;
+	width: 200px;
+	vertical-align: top;
+	margin-top: 20px;
+}
+
+.loginMenu {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 20px;
+}
+
+.login {
+    position: relative;
+    top: 12px; 
+}
+
+.register {
+	position: relative;
+	top: 12px;
+	left: 7px;
+}
+
+.button {
+	display: inline-block;
+	padding: 6px 9px;
+    background-color: #3b5998;
+    color: white;
+    font-weight: bold;
+}
+
+.login:hover {
+	background-color: black;
+	cursor: pointer;
+}
+
+.desplegableLogin {
+    display: none;
+    position: absolute;
+    text-align: left;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 14px;
+    z-index: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: darkblue;
+    color: black;
+    font-weight: normal;
+}
+
+.desplegableLogin>input {
+	margin-top: 3px;
+	margin-bottom: 4px;
+}
+
+.desplegableLogin>div {
+	
+}
+
+.login:hover .desplegableLogin {
+    display: block;
+}
+
 #perfil {
 	display: inline-block;
 	width: 160px;
@@ -76,4 +189,10 @@
 	border-color: darkblue;
 	vertical-align: top;
 	margin-left: 5px;
+}
+
+footer {
+	margin-top: 30px;
+	height: 100px;
+	background-color: #3b5998;
 }

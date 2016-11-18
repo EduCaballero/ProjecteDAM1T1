@@ -3,9 +3,8 @@
 	text-align: center;
 }
 
-hr {
-	color:#f5f8fa;
-}
+// CSS CABECERA
+
 header {
 	text-align: left;
 	background-color: white;
@@ -119,8 +118,7 @@ header {
     display: block;
 }
 
-
-
+// FIN CSS CABECERA
 
 #perfil {
 	display: inline-block;
@@ -149,6 +147,10 @@ header {
 	vertical-align: top;
 	margin-left: 5px;
 	text-align: left;
+}
+
+hr {
+	color:#f5f8fa;
 }
 
 #crearconcierto {
