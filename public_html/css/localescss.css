@@ -1,30 +1,35 @@
-#body {
+body {
 	background-color: #e9ebee;
 	text-align: center;
 }
 
-// CSS CABECERA
+/*css cabecera*/
 
 header {
-	text-align: left;
+	text-align: center;
 	background-color: white;
 	border-color: darkblue;
 	border-width: 1px;
 	border-style: solid;
 	margin-bottom: 10px;
+	padding: 0 10px 0px 3px;
 }
+
+header>div {
+	display: inline-block;
+	text-align: left;
+}
+
 
 #logo {
 	display: inline-block;
-	
-	margin-left: 232px;
 	margin-right: 35px; 
 }
 
 #buscador {
 	display: inline-block;
 	margin-top: 15px;
-	margin-right: 385px;
+	margin-right: 200px;
 	vertical-align: top;
 }
 
@@ -82,6 +87,7 @@ header {
     background-color: #3b5998;
     color: white;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .login:hover {
@@ -106,46 +112,38 @@ header {
 }
 
 .desplegableLogin>input {
-	margin-top: 3px;
-	margin-bottom: 4px;
-}
-
-.desplegableLogin>div {
-	
+	margin-bottom: 10px;
 }
 
 .login:hover .desplegableLogin {
     display: block;
 }
 
-// FIN CSS CABECERA
+/*fin css cabecera*/
 
 #perfil {
 	display: inline-block;
-	width: 160px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: darkblue;
-	text-align: center;
 	font-weight: bold;
 	padding: 5px;
 	background-color: white;
 
 }
 
-#centrado {
-	display: inline-block;
+.center {
+	text-align: center;
 }
 
 #conciertos {
 	display: inline-block;
 	background-color: white;
-	width: 1050px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: darkblue;
 	vertical-align: top;
-	margin-left: 5px;
+	margin: 0 5px;
 	text-align: left;
 }
 
@@ -157,12 +155,15 @@ hr {
 	margin: 5px;
 }
 
-#titlelistconcert {
+#crearconcierto:hover {
+	cursor: pointer;
+}
+
+#conciertos>div:nth-child(2) {
 	background-color: #3b5998;
 	color: white;
 	font-weight: bold;
-	padding: 3px;
-	padding-left: 15px;
+	padding: 3px 3px 3px 10px;
 	margin-bottom: 3px;
 }
 
@@ -179,7 +180,6 @@ hr {
 #prox-conciertos {
 	display: inline-block;
 	background-color: white;
-	width: 200px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: darkblue;
@@ -187,12 +187,12 @@ hr {
 	margin-left: 5px;
 }
 
-#titleproxconciertos {
+#prox-conciertos>div:first-child {
 	text-align: center;
 	background-color: #3b5998;
 	color: white;
 	font-weight: bold;
-	padding: 3px;
+	padding: 3px 6px;
 	margin-bottom: 3px;
 }
 

@@ -1,4 +1,4 @@
-#body {
+body {
 	background-color: #e9ebee;
 }
 
@@ -10,12 +10,11 @@ header {
 	border-style: solid;
 	margin-bottom: 10px;
 	padding: 0 10px 0px 3px;
-
 }
+
 header>div {
 	display: inline-block;
 	text-align: left;
-
 }
 
 #logo {
@@ -130,7 +129,6 @@ header>div {
 	background-color: white;
 }
 
-
 #conciertos {
 	display: inline-block;
 	background-color: white;
@@ -139,6 +137,10 @@ header>div {
 	border-color: darkblue;
 	vertical-align: top;
 	margin: 0 5px;
+}
+
+hr {
+	color:#f5f8fa;
 }
 
 #conciertos>div:first-child {
