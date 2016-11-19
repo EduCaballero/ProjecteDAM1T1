@@ -1,0 +1,205 @@
+#body {
+	background-color: #e9ebee;
+}
+
+header {
+	text-align: center;
+	background-color: white;
+	border-color: darkblue;
+	border-width: 1px;
+	border-style: solid;
+	margin-bottom: 10px;
+	padding: 0 10px 0px 3px;
+
+}
+header>div {
+	display: inline-block;
+	text-align: left;
+
+}
+
+#logo {
+	display: inline-block;
+	margin-right: 35px; 
+}
+
+#buscador {
+	display: inline-block;
+	margin-top: 15px;
+	margin-right: 200px;
+	vertical-align: top;
+}
+
+#buscador>div {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 7px;
+	margin-right: 3px;
+}
+
+#buscador>input {
+	margin-top: 3px;
+	margin-bottom: 4px;
+	width: 200px;
+}
+
+#redes {
+	display: inline-block;
+	margin-top:11px;
+	vertical-align: top;
+	margin-right: 75px;
+}
+
+#redes>a {
+	margin: 5px;
+}
+
+#idioma {
+	display: inline-block;
+	width: 200px;
+	vertical-align: top;
+	margin-top: 20px;
+}
+
+.loginMenu {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 20px;
+}
+
+.login {
+    position: relative;
+    top: 12px; 
+}
+
+.register {
+	position: relative;
+	top: 12px;
+	left: 7px;
+}
+
+.button {
+	display: inline-block;
+	padding: 6px 9px;
+    background-color: #3b5998;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login:hover {
+	background-color: black;
+	cursor: pointer;
+}
+
+.desplegableLogin {
+    display: none;
+    position: absolute;
+    text-align: left;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 14px;
+    z-index: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: darkblue;
+    color: black;
+    font-weight: normal;
+}
+
+.desplegableLogin>input {
+	margin-bottom: 10px;
+}
+
+.login:hover .desplegableLogin {
+    display: block;
+}
+
+.center {
+	text-align: center;
+}
+
+#perfil {
+	display: inline-block;
+	width: 160px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: darkblue;
+	font-weight: bold;
+	padding: 5px;
+	background-color: white;
+
+}
+
+#editarperfil {
+	display:inline-block;
+	vertical-align: top;
+	margin-left: 3px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: darkblue;
+	background-color: white;
+	text-align: left;
+}
+
+#editarperfil>div:first-child {
+	display: block;
+	background-color: #3b5998;
+	margin-bottom: 20px;
+	font-weight: bold;
+	font-size: 20px;
+	color: white;
+	padding: 4px;
+	padding-left: 10px;
+}
+
+#editarperfil>div:nth-child(2) {
+	padding: 0px 10px;
+}
+
+#editarperfil>div:nth-child(2)>div:first-child {
+	display: inline-block;
+	vertical-align: top;
+}
+
+#editarperfil>div:nth-child(2)>div:nth-child(2) {
+	display: inline-block;
+	height: 240px;
+	border-style: solid;
+	border-width: 1px;
+	margin: 0px 10px;
+}
+
+#editarperfil>div:nth-child(2)>div:nth-child(3) {
+	display: inline-block;
+	vertical-align: top;
+} 
+
+#ninteg {
+	width: 50px;
+}
+
+label {
+	display: inline-block;
+	width: 200px;
+	margin-bottom: 5px;
+}
+
+input {
+	margin-bottom: 10px;
+}
+
+#buttons {
+	text-align: center;
+	margin-top: 30px;
+}
+#buttons>div {
+	display: inline-block;
+	margin:0px 50px;
+}
+footer {
+	margin-top: 30px;
+	height: 100px;
+	background-color: #3b5998;
+}
