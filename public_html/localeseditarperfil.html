@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Musicos</title>
-	<link rel="stylesheet" href="css/musicoseditarperfilcss.css">
+	<link rel="stylesheet" href="css/localeseditarperfilcss.css">
 </head>
 <body>
 	<header>
@@ -48,29 +48,35 @@
 	<div class="center">
 		<div id="perfil">
 			<img src="imagenes/defaultprofile.png" alt="" width="150"/>
-			<div>NOMBRE MUSICO</div>
+			<div>NOMBRE LOCAL</div>
 		</div>
 
 		<section id="editarperfil">
 			<div>EDITAR PERFIL</div>
 			<div>
 				<div>
-					<form action="musicoseditarperfil.html" method="POST">
+					<form action="localeseditarperfil.html" method="POST">
 						<label for="nombre"> Nombre: </label>
 						<input type="text" id="nombre" name="nombre"/>
 						<br/>
 						<label for="apellidos"> Apellidos: </label>
 						<input type="text" id="apellidos" name="apellidos"/>
 						<br/>
-						<label for="nomart"> Nombre artistico: </label>
-						<input type="text" id="nomart" name="nomart"/>
+						<label for="nomlocal"> Nombre local: </label>
+						<input type="text" id="nomloal" name="nomlocal"/>
 						<br/>
-						<label for="ninteg"> Numero de integrantes: </label>
-						<input type="number" id="ninteg" name="ninteg"/>
+						<label for="aforo"> Aforo: </label>
+						<input type="number" id="aforo" name="aforo"/>
 						<br/>
-						<label for="genero"> Genero: </label>
-						<input type="text" id="genero" name="genero"/>
+						<label for="ciudad"> Ciudad: </label>
+						<input type="text" id="ciudad" name="ciudad"/>
+						<br/>						
+						<label for="dir"> Dirección: </label>
+						<input type="text" id="dir" name="dir"/>
 						<br/>
+						<label for="cp"> Código postal: </label>
+						<input type="text" id="cp" name="cp" size="10" minlength="5" maxlength="0" />
+						<br/>						
 						<label for="tlf"> Telefono: </label>
 						<input type="text" id="tlf" name="tlf"/>
 						<br/>
@@ -83,7 +89,7 @@
 				</div>
 				<div></div>
 				<div>
-					<form action="musicoseditarperfil.html" method="POST">
+					<form action="localeseditarperfil.html" method="POST">
 						<label for="mail1"> E-mail: </label>
 						<input type="email" id="mail1" name="mail1"/>
 						<br/>
@@ -103,12 +109,12 @@
 			</div>
 			<div id="buttons">
 				<div>
-					<form  action="musicos.html" method="get">
+					<form  action="locales.html" method="get">
 						<input type="submit" value="Volver" class="button" />
 					</form>
 				</div>
 				<div>
-					<form action="musicoseditarperfil.html" method="POST">
+					<form action="localeseditarperfil.html" method="POST">
 						<input type="submit" value="Modificar" class="button" />
 					</form>
 				</div>
