@@ -134,7 +134,7 @@ header>div {
 	background-color: white;
 }
 
-#editarperfil {
+#crearconcierto {
 	display:inline-block;
 	vertical-align: top;
 	margin-left: 3px;
@@ -145,7 +145,7 @@ header>div {
 	text-align: left;
 }
 
-#editarperfil>div:first-child {
+#crearconcierto>div:first-child {
 	display: block;
 	background-color: #3b5998;
 	margin-bottom: 20px;
@@ -156,35 +156,17 @@ header>div {
 	padding-left: 10px;
 }
 
-#editarperfil>div:nth-child(2) {
+#crearconcierto>div:nth-child(2) {
 	padding: 0px 10px;
 }
 
-#editarperfil>div:nth-child(2)>div:first-child {
-	display: inline-block;
-	vertical-align: top;
-}
-
-#editarperfil>div:nth-child(2)>div:nth-child(2) {
-	display: inline-block;
-	height: 250px;
-	border-style: solid;
-	border-width: 1px;
-	margin: 0px 10px;
-}
-
-#editarperfil>div:nth-child(2)>div:nth-child(3) {
-	display: inline-block;
-	vertical-align: top;
-} 
-
-#ninteg {
-	width: 50px;
+#valor{
+	width: 80px;
 }
 
 label {
 	display: inline-block;
-	width: 200px;
+	width: 150px;
 	margin-bottom: 5px;
 }
 
@@ -198,8 +180,35 @@ input {
 }
 #buttons>div {
 	display: inline-block;
-	margin:0px 50px;
+	margin:0px 30px;
 }
+
+#prox-conciertos {
+	display: inline-block;
+	background-color: white;
+	border-style: solid;
+	border-width: 1px;
+	border-color: darkblue;
+	vertical-align: top;
+	margin-left: 5px;
+}
+
+.undecored {
+	list-style-type: none;
+	margin: 3px;
+	padding: 3px;
+	text-align: center;
+}
+
+#prox-conciertos>div:first-child {
+	text-align: center;
+	background-color: #3b5998;
+	color: white;
+	font-weight: bold;
+	padding: 3px 6px;
+	margin-bottom: 3px;
+}
+
 footer {
 	margin-top: 30px;
 	height: 100px;

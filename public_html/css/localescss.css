@@ -90,12 +90,17 @@ header>div {
     text-decoration: none;
 }
 
+.button:hover {
+	cursor: pointer;
+} 
+
 .login:hover {
 	background-color: black;
 	cursor: pointer;
 }
 
 .desplegableLogin {
+	cursor: auto;
     display: none;
     position: absolute;
     text-align: left;
@@ -110,6 +115,7 @@ header>div {
     color: black;
     font-weight: normal;
 }
+
 
 .desplegableLogin>input {
 	margin-bottom: 10px;
@@ -177,6 +183,7 @@ hr {
 	padding: 3px;
 	text-align: center;
 }
+
 #prox-conciertos {
 	display: inline-block;
 	background-color: white;

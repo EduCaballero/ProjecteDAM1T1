@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Musicos</title>
-	<link rel="stylesheet" href="css/musicoseditarperfilcss.css">
+	<link rel="stylesheet" href="css/crearconciertocss.css">
 </head>
 <body>
 	<header>
@@ -48,70 +48,59 @@
 	<div class="center">
 		<div id="perfil">
 			<img src="imagenes/defaultprofile.png" alt="" width="150"/>
-			<div>NOMBRE MUSICO</div>
+			<div>NOMBRE LOCAL</div>
 		</div>
 
-		<section id="editarperfil">
-			<div>EDITAR PERFIL</div>
+		<section id="crearconcierto">
+			<div>DATOS DEL CONCIERTO</div>
 			<div>
 				<div>
 					<form action="musicoseditarperfil.html" method="POST">
-						<label for="nombre"> Nombre: </label>
-						<input type="text" id="nombre" name="nombre"/>
+						<label for="fecha"> Fecha: </label>
+						<input type="date" id="fecha" name="fecha"/>
 						<br/>
-						<label for="apellidos"> Apellidos: </label>
-						<input type="text" id="apellidos" name="apellidos"/>
-						<br/>
-						<label for="nomart"> Nombre artistico: </label>
-						<input type="text" id="nomart" name="nomart"/>
-						<br/>
-						<label for="ninteg"> Numero de integrantes: </label>
-						<input type="number" id="ninteg" name="ninteg"/>
+						<label for="hora"> Hora: </label>
+						<input type="time" id="hora" name="hora"/>
 						<br/>
 						<label for="genero"> Genero: </label>
 						<input type="text" id="genero" name="genero"/>
 						<br/>
-						<label for="tlf"> Telefono: </label>
-						<input type="text" id="tlf" name="tlf"/>
+						<label for="valor"> Remuneración: </label>
+						<input type="number" id="valor" name="valor"/>
 						<br/>
-						<label for="web"> Pagina web: </label>
-						<input type="url" id="web" name="web"/>
-						<br/>
-						<label for="imgperfil"> Imagen de perfil: </label>
-						<input type="file" id="imgperfil" name="imgperfil"/>
-					</form>
-				</div>
-				<div></div>
-				<div>
-					<form action="musicoseditarperfil.html" method="POST">
-						<label for="mail1"> E-mail: </label>
-						<input type="email" id="mail1" name="mail1"/>
-						<br/>
-						<label for="mail2"> Confirma E-mail: </label>
-						<input type="email" id="mail2" name="mail2"/>
-						<br/>
-						<label for="pass-actual"> Contraseña actual: </label>
-						<input type="password" id="pass-actual" name="pass-actual"/>
-						<br/>
-						<label for="nuevo-pass"> Nueva contraseña: </label>
-						<input type="password" id="nuevo-pass" name="nuevo-pass"/>
-						<br/>
-						<label for="confirma-pass"> Confirma contraseña: </label>
-						<input type="password" id="confirma-pass" name="confirma-pass"/>
 					</form>
 				</div>
 			</div>
 			<div id="buttons">
 				<div>
-					<form  action="musicos.html" method="get">
-						<input type="submit" value="Volver"/>
+					<form  action="locales.html" method="get">
+						<input type="submit" value="Volver" class="button" />
 					</form>
 				</div>
 				<div>
-					<form action="musicoseditarperfil.html" method="POST">
-						<input type="submit" value="Modificar"/>
+					<form action="crearconcierto.html" method="POST">
+						<input type="submit" value="Crear" class="button" />
 					</form>
 				</div>
+			</div>
+		</section>
+		<section id="prox-conciertos">
+			<div>PROXIMOS CONCIERTOS</div>
+			<div id="lista-proxconciert">
+				<ul class="undecored">
+					<li>
+						Fecha - Local - Hora
+					</li>
+					<li>
+						<hr>Fecha - Local - Hora</hr>
+					</li>
+					<li>
+						<hr>Fecha - Local - Hora</hr>
+					</li>
+					<li>
+						<hr>Fecha - Local - Hora</hr>
+					</li>
+				</ul>
 			</div>
 		</section>
 	</div>
