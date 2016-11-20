@@ -137,7 +137,7 @@ header>div {
 #crearconcierto {
 	display:inline-block;
 	vertical-align: top;
-	margin-left: 3px;
+	margin: 0 5px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: darkblue;
@@ -150,10 +150,8 @@ header>div {
 	background-color: #3b5998;
 	margin-bottom: 20px;
 	font-weight: bold;
-	font-size: 20px;
 	color: white;
-	padding: 4px;
-	padding-left: 10px;
+	padding: 3px 3px 3px 10px;
 }
 
 #crearconcierto>div:nth-child(2) {
@@ -178,6 +176,7 @@ input {
 	text-align: center;
 	margin-top: 30px;
 }
+
 #buttons>div {
 	display: inline-block;
 	margin:0px 30px;

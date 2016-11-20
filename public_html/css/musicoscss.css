@@ -112,9 +112,12 @@ header>div {
     font-weight: normal;
 }
 
-
 .login:hover .desplegableLogin {
     display: block;
+}
+
+.desplegableLogin>input {
+	margin-bottom: 10px;
 }
 
 .center {
@@ -139,6 +142,7 @@ header>div {
 	border-color: darkblue;
 	vertical-align: top;
 	margin: 0 5px;
+	text-align: left;
 }
 
 hr {
@@ -149,10 +153,8 @@ hr {
 	background-color: #3b5998;
 	color: white;
 	font-weight: bold;
-	padding: 3px;
-	padding-left: 15px;
+	padding: 3px 3px 3px 10px;
 	margin-bottom: 3px;
-	font-size: 15px;
 }
 
 #list-conciertos {
@@ -181,8 +183,7 @@ hr {
 	background-color: #3b5998;
 	color: white;
 	font-weight: bold;
-	padding: 3px 5px;
-	font-size: 15px;
+	padding: 3px 6px;
 }
 
 footer {

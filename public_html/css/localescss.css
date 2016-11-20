@@ -116,7 +116,6 @@ header>div {
     font-weight: normal;
 }
 
-
 .desplegableLogin>input {
 	margin-bottom: 10px;
 }
@@ -135,7 +134,6 @@ header>div {
 	font-weight: bold;
 	padding: 5px;
 	background-color: white;
-
 }
 
 .center {
@@ -191,7 +189,6 @@ hr {
 	border-width: 1px;
 	border-color: darkblue;
 	vertical-align: top;
-
 }
 
 #prox-conciertos>div:first-child {
