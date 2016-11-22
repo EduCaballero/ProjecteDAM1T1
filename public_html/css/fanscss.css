@@ -1,0 +1,198 @@
+body {
+	background-color: #e9ebee;
+}
+
+header {
+	text-align: center;
+	background-color: white;
+	border-color: darkblue;
+	border-width: 1px;
+	border-style: solid;
+	margin-bottom: 10px;
+	padding: 0 10px 0px 3px;
+}
+
+header>div {
+	display: inline-block;
+	text-align: left;
+}
+
+#logo {
+	display: inline-block;
+	margin-right: 35px; 
+}
+
+#buscador {
+	display: inline-block;
+	margin-top: 15px;
+	margin-right: 200px;
+	vertical-align: top;
+}
+
+#buscador>div {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 7px;
+	margin-right: 3px;
+}
+
+#buscador>input {
+	margin-top: 3px;
+	margin-bottom: 4px;
+	width: 200px;
+}
+
+#redes {
+	display: inline-block;
+	margin-top:11px;
+	vertical-align: top;
+	margin-right: 75px;
+}
+
+#redes>a {
+	margin: 5px;
+}
+
+#idioma {
+	display: inline-block;
+	width: 200px;
+	vertical-align: top;
+	margin-top: 20px;
+}
+
+.loginMenu {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 20px;
+}
+
+.login {
+    position: relative;
+    top: 12px; 
+}
+
+.register {
+	position: relative;
+	top: 12px;
+	left: 7px;
+}
+
+.button {
+	display: inline-block;
+	padding: 6px 9px;
+    background-color: #3b5998;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.button:hover {
+	cursor: pointer;
+} 
+
+.login:hover {
+	background-color: black;
+	cursor: pointer;
+}
+
+.desplegableLogin {
+	cursor: auto;
+    display: none;
+    position: absolute;
+    text-align: left;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 14px;
+    z-index: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: darkblue;
+    color: black;
+    font-weight: normal;
+}
+
+.login:hover .desplegableLogin {
+    display: block;
+}
+
+.desplegableLogin>input {
+	margin-bottom: 10px;
+}
+
+.center {
+	text-align: center;
+}
+
+#perfil {
+	display: inline-block;
+	border-style: solid;
+	border-width: 1px;
+	border-color: darkblue;
+	font-weight: bold;
+	padding: 5px;
+	background-color: white;
+}
+
+#listados {
+	display: inline-block;
+	background-color: white;
+	border-style: solid;
+	border-width: 1px;
+	border-color: darkblue;
+	vertical-align: top;
+	margin: 0 5px;
+	text-align: left;
+}
+
+hr {
+	color:#f5f8fa;
+}
+
+#listados>div:first-child {
+	background-color: #3b5998;
+	color: white;
+	font-weight: bold;
+	padding: 3px 3px 3px 10px;
+	margin-bottom: 3px;
+}
+
+#list-locales {
+	display: inline-block;
+	margin: 5px;
+}
+
+#list-grupos {
+	display: inline-block;
+	margin: 5px;
+}
+
+.undecored {
+	list-style-type: none;
+	margin: 3px;
+	padding: 3px;
+	text-align: center;
+}
+
+#prox-conciertos {
+	display: inline-block;
+	background-color: white;
+	border-style: solid;
+	border-width: 1px;
+	border-color: darkblue;
+	vertical-align: top;
+}
+
+#prox-conciertos>div:first-child {
+	text-align: center;
+	background-color: #3b5998;
+	color: white;
+	font-weight: bold;
+	padding: 3px 6px;
+}
+
+footer {
+	margin-top: 30px;
+	height: 100px;
+	background-color: #3b5998;
+}
