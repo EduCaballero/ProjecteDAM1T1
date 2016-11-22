@@ -1,6 +1,7 @@
 body {
 	background-color: #e9ebee;
 	text-align: center;
+	width: 100%;
 }
 
 /*css cabecera*/
@@ -13,16 +14,18 @@ header {
 	border-style: solid;
 	margin-bottom: 10px;
 	padding: 0 10px 0px 3px;
+	min-width: 1260px;
 }
 
 header>div {
 	display: inline-block;
 	text-align: left;
+
 }
 
 
 #logo {
-	display: inline-block;
+	float: left;
 	margin-right: 35px; 
 }
 
@@ -96,7 +99,6 @@ header>div {
 
 .login:hover {
 	background-color: black;
-	cursor: pointer;
 }
 
 .desplegableLogin {
@@ -138,6 +140,7 @@ header>div {
 
 .center {
 	text-align: center;
+	min-width: 1150px;
 }
 
 #conciertos {
