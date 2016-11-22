@@ -134,7 +134,7 @@ header>div {
 	background-color: white;
 }
 
-#listados {
+.conciertos {
 	display: inline-block;
 	background-color: white;
 	border-style: solid;
@@ -149,7 +149,7 @@ hr {
 	color:#f5f8fa;
 }
 
-#listados>div:first-child {
+.conciertos>div:first-child {
 	background-color: #3b5998;
 	color: white;
 	font-weight: bold;
@@ -157,12 +157,7 @@ hr {
 	margin-bottom: 3px;
 }
 
-#list-locales {
-	display: inline-block;
-	margin: 5px;
-}
-
-#list-grupos {
+#list-conciertos {
 	display: inline-block;
 	margin: 5px;
 }
@@ -196,3 +191,4 @@ footer {
 	height: 100px;
 	background-color: #3b5998;
 }
+
