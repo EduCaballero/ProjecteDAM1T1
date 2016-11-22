@@ -2,12 +2,14 @@
     display: inline-block;
     width: 100%;
     border-width: 1px;
-    border-color: grey;
+    border-color: blue;
     border-style:solid;
+    background-color: white;
+    padding-bottom: 55px;
 }
 
 #formregistro{
-    padding-left: 5%;
+    padding-left: 3%;
     display: inline-block;
     text-align: left;
     width: 45%;
@@ -20,4 +22,54 @@
     width: 45%;
     vertical-align: top;
     float: right;
+    padding-right: 3%;
 }
+
+.lab1{
+   text-align: right;
+   padding-right: 3px;
+}
+
+.lab2{
+   text-align: right;
+   padding-right: 3px;
+}
+
+.inp1{
+   display: block;
+   width: 80%;
+   text-align: center;
+}
+
+.inp2{
+   display: block;
+   width: 80%;
+   text-align: center;
+}
+
+input{
+  border: 1px solid #999;
+  border-radius: 5%;
+}
+
+h4{
+    text-align: center;
+    border-radius: 5%;
+    border-bottom: solid;
+    border-color: blue;
+    font-family: sans-serif; 
+}
+
+section form{
+    text-align: center;
+}
+
+section form div{
+    text-align: center;
+    padding-left: 15%;
+}
+
+.padre>*{
+    font-family: sans-serif;
+}
+
