@@ -23,7 +23,6 @@ header>div {
 
 }
 
-
 #logo {
 	float: left;
 	margin-right: 35px; 
@@ -140,7 +139,6 @@ header>div {
 
 .center {
 	text-align: center;
-	min-width: 1150px;
 }
 
 #conciertos {
