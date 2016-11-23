@@ -10,6 +10,7 @@ header {
 	border-style: solid;
 	margin-bottom: 10px;
 	padding: 0 10px 0px 3px;
+	min-width: 1260px;
 }
 
 header>div {
@@ -112,16 +113,17 @@ header>div {
     font-weight: normal;
 }
 
-.login:hover .desplegableLogin {
-    display: block;
-}
-
 .desplegableLogin>input {
 	margin-bottom: 10px;
 }
 
+.login:hover .desplegableLogin {
+    display: block;
+}
+
 .center {
 	text-align: center;
+	min-width: 1030px;
 }
 
 #perfil {
@@ -134,66 +136,74 @@ header>div {
 	background-color: white;
 }
 
-.listado {
-	display: inline-block;
-	background-color: white;
+#editarperfil {
+	display:inline-block;
+	vertical-align: top;
+	margin-left: 3px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: darkblue;
-	vertical-align: top;
-	margin: 0 5px;
+	background-color: white;
 	text-align: left;
 }
 
-hr {
-	color:#f5f8fa;
-}
-
-.listado>div:first-child {
+#editarperfil>div:first-child {
+	display: block;
 	background-color: #3b5998;
-	color: white;
+	margin-bottom: 20px;
 	font-weight: bold;
+	color: white;
 	padding: 3px 3px 3px 10px;
-	margin-bottom: 3px;
 }
 
-#list-conciertos {
+#editarperfil>div:nth-child(2) {
+	padding: 0px 10px;
+}
+
+#editarperfil>div:nth-child(2)>div:first-child {
 	display: inline-block;
-	margin: 5px;
-}
-
-#list-locales {
-	display: inline-block;
-	margin: 5px;
-}
-
-.undecored {
-	list-style-type: none;
-	margin: 3px;
-	padding: 3px;
-	text-align: center;
-}
-
-#prox-conciertos {
-	display: inline-block;
-	background-color: white;
-	border-style: solid;
-	border-width: 1px;
-	border-color: darkblue;
 	vertical-align: top;
 }
 
-#prox-conciertos>div:first-child {
-	text-align: center;
-	background-color: #3b5998;
-	color: white;
-	font-weight: bold;
-	padding: 3px 6px;
+#editarperfil>div:nth-child(2)>div:nth-child(2) {
+	display: inline-block;
+	height: 250px;
+	border-style: solid;
+	border-width: 1px;
+	margin: 0px 10px;
 }
 
+#editarperfil>div:nth-child(2)>div:nth-child(3) {
+	display: inline-block;
+	vertical-align: top;
+} 
+
+#ninteg {
+	width: 50px;
+}
+
+label {
+	display: inline-block;
+	width: 170px;
+	margin-bottom: 5px;
+}
+
+input {
+	margin-bottom: 10px;
+}
+
+#buttons {
+	text-align: center;
+	margin-top: 30px;
+}
+
+#buttons>div {
+	display: inline-block;
+	margin:0px 50px;
+}
 footer {
+	display: block;
 	margin-top: 30px;
 	height: 100px;
 	background-color: #3b5998;
 }
-
