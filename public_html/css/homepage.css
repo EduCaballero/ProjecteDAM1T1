@@ -1,0 +1,215 @@
+body {
+	background-color: #e9ebee;
+}
+
+header {
+	text-align: center;
+	background-color: white;
+	border-color: darkblue;
+	border-width: 1px;
+	border-style: solid;
+	margin-bottom: 10px;
+	padding: 0 10px 0px 3px;
+}
+
+header>div {
+	display: inline-block;
+	text-align: left;
+}
+
+#logo {
+	display: inline-block;
+	margin-right: 35px; 
+}
+
+#buscador {
+	display: inline-block;
+	margin-top: 15px;
+	margin-right: 200px;
+	vertical-align: top;
+}
+
+#buscador>div {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 7px;
+	margin-right: 3px;
+}
+
+#buscador>input {
+	margin-top: 3px;
+	margin-bottom: 4px;
+	width: 200px;
+}
+
+#redes {
+	display: inline-block;
+	margin-top:11px;
+	vertical-align: top;
+	margin-right: 75px;
+}
+
+#redes>a {
+	margin: 5px;
+}
+
+#idioma {
+	display: inline-block;
+	width: 200px;
+	vertical-align: top;
+	margin-top: 20px;
+}
+
+.loginMenu {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 20px;
+}
+
+.login {
+    position: relative;
+    top: 12px; 
+}
+
+.register {
+	position: relative;
+	top: 12px;
+	left: 7px;
+}
+
+.button {
+	display: inline-block;
+	padding: 6px 9px;
+    background-color: #3b5998;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.button:hover {
+	cursor: pointer;
+} 
+
+.login:hover {
+	background-color: black;
+	cursor: pointer;
+}
+
+.desplegableLogin {
+	cursor: auto;
+    display: none;
+    position: absolute;
+    text-align: left;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 14px;
+    z-index: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: darkblue;
+    color: black;
+    font-weight: normal;
+}
+
+.login:hover .desplegableLogin {
+    display: block;
+}
+
+.desplegableLogin>input {
+	margin-bottom: 10px;
+}
+
+#carrusel {
+	width: 100%;
+	height: auto;
+    display: block;
+}
+
+#anuncios{
+width: 100%; 
+    padding-left: 5%;
+    padding-top: 1%;
+}
+
+.anuncio{
+display: inline-block;
+    vertical-align: top;
+  width: 40%;
+   padding-left: 40px; 
+}
+
+#agenda-patrocinadores{
+    width: 100%;
+    padding-top: 5%;
+}
+
+#agenda-conciertos{
+	width:25%;
+	display: inline-block;
+    vertical-align: top;
+	padding-left: 4%;
+        
+}
+
+#musicos{
+	width:25%;
+	display: inline-block;
+    vertical-align: top;
+	padding-left: 4%;
+}
+
+#patrocinadores{
+	width:25%;
+	display: inline-block;
+    vertical-align: top;
+	padding-left: 4%;
+}
+
+#patrocinadores img{
+	width: 100%;
+	height: auto;
+}
+
+footer{	
+	clear: both;	
+	width: 100%;
+	background:#3b5998;
+	border-top: 2px solid;
+    margin-top: 30px;
+	height: 100px;
+	color: white;
+}
+
+footer a{
+    color: coral
+}
+
+footer ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.aviso-legal{
+	width:33%;
+	float:left;	
+	box-sizing: border-box;
+	padding: 20px;
+}
+
+.informacion{
+	width:33%;
+	float:left;	
+	box-sizing: border-box;
+	padding: 20px;
+}
+
+.contacto{
+	width:34%;
+	float:left;
+	box-sizing: border-box;
+	padding: 20px;
+}
+
