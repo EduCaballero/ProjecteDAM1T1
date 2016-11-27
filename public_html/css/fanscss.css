@@ -157,13 +157,29 @@ hr {
 	margin-bottom: 3px;
 }
 
+.listado>div:first-child {
+	background-color: #3b5998;
+	color: white;
+	font-weight: bold;
+	padding: 3px 3px 3px 10px;
+	margin-bottom: 3px;
+}
+
+.titulo{
+   background-color: #3b5998;
+	color: white;
+	font-weight: bold;
+	padding: 3px 3px 3px 10px;
+	margin-bottom: 3px; 
+}
+
 #list-conciertos {
-	display: inline-block;
+	display: block;
 	margin: 5px;
 }
 
 #list-locales {
-	display: inline-block;
+	display: block;
 	margin: 5px;
 }
 
