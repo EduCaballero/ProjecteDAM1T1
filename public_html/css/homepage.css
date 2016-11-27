@@ -241,6 +241,7 @@ footer ul{
 	box-sizing: border-box;
 	padding: 1%;
     text-align: left;
+    text-decoration: none;
 }
 
 .informacion{
@@ -249,6 +250,7 @@ footer ul{
 	box-sizing: border-box;
 	padding: 1%;
     text-align: left;
+    text-decoration: none;
 }
 
 .contacto{
@@ -257,5 +259,6 @@ footer ul{
 	box-sizing: border-box;
 	padding: 1%;
     text-align: left;
+    text-decoration: none;
 }
 
