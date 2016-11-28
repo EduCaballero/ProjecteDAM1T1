@@ -10,7 +10,7 @@
 	<header>
 		<div>
 			<div>
-				<img id="logo" src="imagenes/logo.png" alt="logo" width="150"/>
+				<img id="logo" src="imagenes/logo.png" alt="logo" width="150"/> 
 				<div id="buscador">
 					<div><img src="imagenes/search-ico.png" alt="buscar" width="16"/> </div>
 					<input type="text" name="buscador" placeholder="Buscar..." size="35" />
@@ -26,24 +26,26 @@
 					</a>
 				</div>
 				<div id="idioma">
-					<label for="listaIdomas"> Idioma: </label> 
+				<label for="listaIdomas"> Idioma: </label> 
 					<select name="Idioma" id="listaIdomas">
 						<option value="Español">Español</option>
 						<option value="Catalan">Catalan</option>
 					</select>
 				</div>
 				<div class="loginMenu">
-					<div class="login button">Entrar
-						<form class="desplegableLogin" action="" method="POST">
-							<label for="inputMail">Correo electronico:</label>
-							<input name="userMail" id="inputMail" type="email"/>
-							<label for="inputPass">Password:</label>
-							<input name="pass" id="inputPass" type="password"/>
-							<input type="submit" value="Entrar" class="button">
-							<div><a href="#">¿Has olvidado la contraseña?</a></div>
-						</form>
+					<div class="login button">Usuario
+						<ul class="desplegableLogin">
+							<li>
+								<a href="localeseditarperfil.html"><div class="menuOption">Perfil</div></a>
+							</li>
+							<li>
+								<a href="crearconcierto.html"><div class="menuOption">Crear Concierto</div></a>
+							</li>
+							<li>
+								<a href=""><div class="menuOption">Salir</div></a>
+							</li>
+						</ul>
 					</div>
-					<a href="#" class="register button">Registrate</a>
 				</div>
 			</div>
 		</div>
@@ -54,6 +56,7 @@
 			<img src="imagenes/defaultprofile.png" alt="" width="150"/>
 			<div>NOMBRE LOCAL</div>
 		</div>
+
 		<section id="conciertos">
 			<form action="crearconcierto.html">
 				<input type="submit" value="CREAR CONCIERTO" id="crearconcierto" class="button"/>

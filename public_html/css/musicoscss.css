@@ -92,12 +92,6 @@ header>div>div:nth-child(2){
     top: 12px; 
 }
 
-.register {
-	position: relative;
-	top: 12px;
-	left: 7px;
-}
-
 .button {
 	display: inline-block;
 	padding: 6px 9px;
@@ -116,29 +110,45 @@ header>div>div:nth-child(2){
 }
 
 .desplegableLogin {
+	list-style-type: none;
 	cursor: auto;
     display: none;
     position: absolute;
-    text-align: left;
     background-color: #f9f9f9;
     min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 14px;
+    padding: 3px 0;
     z-index: 1;
     border-width: 1px;
     border-style: solid;
     border-color: darkblue;
     color: black;
+    top: 16px;
+    right: 0;
     font-weight: normal;
 }
 
-.desplegableLogin>input {
-	margin-bottom: 10px;
+.menuOption{
+	padding: 5px;
+	padding-left: 10px;
+	text-align: left;
+}
+
+.desplegableLogin a {
+	text-decoration: none;
+	color: black;
+}
+
+.menuOption:hover {
+	background-color: #3b5998;
+	color: white;
+	font-weight: bold;
 }
 
 .login:hover .desplegableLogin {
     display: block;
 }
+
 .center {
 	text-align: center;
 }

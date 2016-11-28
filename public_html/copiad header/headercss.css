@@ -1,6 +1,9 @@
 body {
 	background-color: #e9ebee;
+	text-align: center;
 }
+
+/*css cabecera*/
 
 header {
 	text-align: center;
@@ -92,6 +95,12 @@ header>div>div:nth-child(2){
     top: 12px; 
 }
 
+.register {
+	position: relative;
+	top: 12px;
+	left: 7px;
+}
+
 .button {
 	display: inline-block;
 	padding: 6px 9px;
@@ -110,127 +119,30 @@ header>div>div:nth-child(2){
 }
 
 .desplegableLogin {
-	list-style-type: none;
 	cursor: auto;
     display: none;
     position: absolute;
+    text-align: left;
     background-color: #f9f9f9;
     min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 3px 0;
+    padding: 12px 14px;
     z-index: 1;
     border-width: 1px;
     border-style: solid;
     border-color: darkblue;
     color: black;
-    top: 16px;
-    right: 0;
     font-weight: normal;
+    right: 0;
+    top: 32px;
 }
 
-.menuOption{
-	padding: 5px;
-	padding-left: 10px;
-	text-align: left;
-}
-
-.desplegableLogin a {
-	text-decoration: none;
-	color: black;
-}
-
-.menuOption:hover {
-	background-color: #3b5998;
-	color: white;
-	font-weight: bold;
+.desplegableLogin input {
+	margin: 3px 0 7px 0;
 }
 
 .login:hover .desplegableLogin {
     display: block;
 }
 
-.center {
-	text-align: center;
-}
-
-#perfil {
-	display: inline-block;
-	border-style: solid;
-	border-width: 1px;
-	border-color: darkblue;
-	font-weight: bold;
-	padding: 5px;
-	background-color: white;
-}
-
-#editarperfil {
-	display:inline-block;
-	vertical-align: top;
-	margin-left: 3px;
-	border-style: solid;
-	border-width: 1px;
-	border-color: darkblue;
-	background-color: white;
-	text-align: left;
-}
-
-#editarperfil>div:first-child {
-	display: block;
-	background-color: #3b5998;
-	margin-bottom: 20px;
-	font-weight: bold;
-	color: white;
-	padding: 3px 3px 3px 10px;
-}
-
-#editarperfil>div:nth-child(2) {
-	padding: 0px 10px;
-}
-
-#editarperfil>div:nth-child(2)>div:first-child {
-	display: inline-block;
-	vertical-align: top;
-}
-
-#editarperfil>div:nth-child(2)>div:nth-child(2) {
-	display: inline-block;
-	height: 250px;
-	border-style: solid;
-	border-width: 1px;
-	margin: 0px 10px;
-}
-
-#editarperfil>div:nth-child(2)>div:nth-child(3) {
-	display: inline-block;
-	vertical-align: top;
-} 
-
-#ninteg {
-	width: 50px;
-}
-
-label {
-	display: inline-block;
-	width: 170px;
-	margin-bottom: 5px;
-}
-
-input {
-	margin-bottom: 10px;
-}
-
-#buttons {
-	text-align: center;
-	margin-top: 30px;
-}
-
-#buttons>div {
-	display: inline-block;
-	margin:0px 50px;
-}
-footer {
-	display: block;
-	margin-top: 30px;
-	height: 100px;
-	background-color: #3b5998;
-}
+/*fin css cabecera*/
