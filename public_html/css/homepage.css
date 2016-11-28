@@ -130,15 +130,18 @@ header>div>div:nth-child(2){
     border-color: darkblue;
     color: black;
     font-weight: normal;
+    right: 0;
+    top: 32px;
 }
 
-.desplegableLogin>input {
-	margin-bottom: 10px;
+.desplegableLogin input {
+	margin: 3px 0 7px 0;
 }
 
 .login:hover .desplegableLogin {
     display: block;
 }
+
 #carrusel {
 	width: 100%;
 	height: auto;

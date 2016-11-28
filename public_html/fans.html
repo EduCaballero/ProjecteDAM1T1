@@ -8,40 +8,44 @@
 <body>
 	<header>
 		<div>
-			<div id="logo">
-				<img src="imagenes/logo.png" alt="logo" width="150"/> 
-			</div>
-			<div id="buscador">
-				<div><img src="imagenes/search-ico.png" alt="buscar" width="16"/> </div>
-				<input type="text" name="buscador" placeholder="Buscar..."/>
-			</div>
-			<div id="redes">
-				<a href="https://www.facebook.com/Concertpush-367915200215659/"><img src="imagenes/icono-facebook.png" alt="Facebook" width="35"> 
-				</a>
-				<a href="https://twitter.com/concert_push"><img src="imagenes/icono-twitter.png" alt="Twitter" width="35"> 
-				</a>
-				<a href="https://www.instagram.com/concert_push/"><img src="imagenes/icono-instagram.png" alt="Instagram" width="35"> 
-				</a>
-			</div>
-			<div id="idioma">
-				Idioma:
-				<select name="Idioma">
-					<option value="Español">Español</option>
-					<option value="Catalan">Catalan</option>
-				</select>
-			</div>
-			<div class="loginMenu">
-				<div class="login button">Entrar
-					<form class="desplegableLogin" action="" method="POST">
-						<label for="inputMail">Correo electronico:</label>
-						<input name="userMail" id="inputMail" type="email"/>
-						<label for="inputPass">Password:</label>
-						<input name="pass" id="inputPass" type="password"/>
-						<input type="submit" value="Entrar" class="button"/>
-						<div><a href="#">¿Has olvidado la contraseña?</a></div>
-					</form>
+			<div>
+				<img id="logo" src="imagenes/logo.png" alt="logo" width="150"/> 
+				<div id="buscador">
+					<div><img src="imagenes/search-ico.png" alt="buscar" width="16"/> </div>
+					<input type="text" name="buscador" placeholder="Buscar..." size="35" />
 				</div>
-				<a href="#" class="register button">Registrate</a>
+			</div>
+			<div>
+				<div id="redes">
+					<a href="https://www.facebook.com/Concertpush-367915200215659/"><img src="imagenes/icono-facebook.png" alt="Facebook" width="35"> 
+					</a>
+					<a href="https://twitter.com/concert_push"><img src="imagenes/icono-twitter.png" alt="Twitter" width="35"> 
+					</a>
+					<a href="https://www.instagram.com/concert_push/"><img src="imagenes/icono-instagram.png" alt="Instagram" width="35"> 
+					</a>
+				</div>
+				<div id="idioma">
+				<label for="listaIdomas"> Idioma: </label> 
+					<select name="Idioma" id="listaIdomas">
+						<option value="Español">Español</option>
+						<option value="Catalan">Catalan</option>
+					</select>
+				</div>
+				<div class="loginMenu">
+					<div class="login button">Usuario
+						<ul class="desplegableLogin">
+							<li>
+								<a href="fans.html"><div class="menuOption">Perfil</div></a>
+							</li>
+                            <li>
+								<a href="fanseditarperfil.html"><div class="menuOption">Ediatr Perfil</div></a>
+							</li>
+							<li>
+								<a href=""><div class="menuOption">Salir</div></a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</header>
