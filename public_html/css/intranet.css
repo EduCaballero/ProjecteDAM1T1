@@ -46,7 +46,7 @@ a:hover {
 
 #buscador {
 	position: relative;
-	top: 5px;
+	top: 4px;
 	left: 15px;
 }
 
@@ -54,10 +54,11 @@ a:hover {
 	width: 240px;
 	height: 25px;
 	padding: 0 5px;
+	margin-right: 5px;
 }
 
-#buscador input:nth-child(2) {
-	height: 25px;
+#buscador button {
+	vertical-align: bottom;
 }
 
 #userMenu {
