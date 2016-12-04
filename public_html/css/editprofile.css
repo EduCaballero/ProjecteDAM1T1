@@ -1,0 +1,13 @@
+#edit label {
+	display: inline-block;
+	width: 145px;
+}
+
+#edit td {
+	padding: 8px 7px;
+}
+
+#edit tr:last-child td {
+	padding-top: 15px; 
+	text-align: center;
+}

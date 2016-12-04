@@ -1,0 +1,22 @@
+#create .button {
+	width: 100px;
+}
+
+#create td {
+	padding: 5px 7px;
+}
+
+#create label {
+	display: inline-block;
+	width: 70px;
+}
+
+#create input {
+	width: 100px;
+}
+
+#pending h2, #assigned h2 {
+	margin-bottom: 20px;
+}
+
+

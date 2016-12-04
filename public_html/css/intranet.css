@@ -1,0 +1,182 @@
+body, html {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background-color: #f2f2f2;
+	font-family: Arial,sans-serif;
+	font-size: 14px;
+} 
+
+div {
+	display: inline-block;
+	vertical-align: top;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#topbar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	background-color: white;
+	border: 1px solid rgba(0,0,0,0.2);
+	width: 100%;
+	height: 45px;
+}
+
+#intranetMenu {
+	display: block;
+	width: 1020px;
+	margin: 0 auto;
+	padding: 3px 5px;
+}
+
+#intranetMenu img {
+	height: 38px;
+	width: auto;
+}
+
+#buscador {
+	position: relative;
+	top: 5px;
+	left: 15px;
+}
+
+#buscador input:first-child {
+	width: 240px;
+	height: 25px;
+	padding: 0 5px;
+}
+
+#buscador input:nth-child(2) {
+	height: 25px;
+}
+
+#userMenu {
+	float: right;
+}
+
+#userMenu nav {
+	height: 41px;
+}
+
+#userMenu div {
+	height: 100%;
+	padding: 10px 15px;
+}
+
+#userMenu a {
+	color: black;
+}
+
+#userMenu div:hover {
+	border-bottom: 3px solid #3b5998;
+	color: #3b5998;
+}
+
+#container {
+	width: 1020px;
+	margin: 0 auto;
+	display: block;
+	padding-top: 50px;
+}
+
+#profile {
+	padding: 5px;
+	width: 22%;
+	overflow: hidden;
+}
+
+#profile img {
+	width: 100%;
+	height: auto;
+}
+
+#profile h2 {
+	margin-top: 8px;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+#profile ul {
+	padding-left: 15px;
+	margin-top: -5px;
+}
+
+#main {
+	width: 77%;
+}
+
+.content {
+	width: 100%;
+	background-color: white;
+	padding: 0 15px 15px 15px;
+	border: 1px solid rgba(0,0,0,0.2);
+	margin: 4px;
+}
+
+.button {
+	background-color: #3b5998;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	width: auto;
+	padding: 3px 12px;
+}
+
+table.concertTable {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.concertTable th, .concertTable td {
+	padding: 5px 8px;
+	text-align: left;
+	border: 1px solid #ddd;
+}
+
+.concertTable th {
+	padding: 10px 8px;
+	background-color: #3b5998;
+	color: white;
+}
+
+.concertTable tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.concertTable tr:hover {
+	background-color: rgb(225,225,225);
+}
+
+footer {
+	border-top: 1px solid rgba(0,0,0,0.2);	
+	width: 100%;
+	box-sizing: border-box;
+	margin: 10px 0 0 4px; 
+	padding: 15px 5px;
+}
+
+#legal {
+	width: 38%;
+}
+
+#footInfo {
+	width: 34%;
+}
+
+#contact {
+	width: 26%;
+}
