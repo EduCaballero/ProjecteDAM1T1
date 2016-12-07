@@ -2,114 +2,99 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Editar Perfil</title>
-	<link rel="stylesheet" href="css/fanseditarperfilcss.css">
+	<title>Músico editar perfil</title>
+	<link rel="stylesheet" href="css/editprofile.css">
+	<link rel="stylesheet" href="css/intranet.css">
 </head>
 <body>
 	<header>
-		<div>
-			<div>
-				<img id="logo" src="imagenes/logo.png" alt="logo" width="150"/> 
+		<div id="topbar">
+			<div id="intranetMenu">
+				<a href=""><img src="imagenes/logo.png" alt=""></a>
 				<div id="buscador">
-					<div><img src="imagenes/search-ico.png" alt="buscar" width="16"/> </div>
-					<input type="text" name="buscador" placeholder="Buscar..." size="35" />
+					<form action="" method="GET">
+						<input type="text" placeholder="Busca grupos, locales..." name="buscar">
+						<button type="submit"class="button">Buscar</button>
+					</form>
+				</div>
+				<div id="userMenu">
+					<nav>
+						<a href=""><div>Inicio</div></a><a href=""><div>Usuario</div></a><a href=""><div>Editar Perfil</div></a><a href=""><div>Salir</div></a>
+					</nav>	
 				</div>
 			</div>
-			<div>
-				<div id="redes">
-					<a href="https://www.facebook.com/Concertpush-367915200215659/"><img src="imagenes/icono-facebook.png" alt="Facebook" width="35"> 
-					</a>
-					<a href="https://twitter.com/concert_push"><img src="imagenes/icono-twitter.png" alt="Twitter" width="35"> 
-					</a>
-					<a href="https://www.instagram.com/concert_push/"><img src="imagenes/icono-instagram.png" alt="Instagram" width="35"> 
-					</a>
+		</header>
+		<div id="container">
+			<div id="profile">
+				<a href="fan.html"><img src="imagenes/fan.jpg" alt=""></a>
+				<h2>Ewok_12</h2>
+				<ul>
+					<li><b>Género Favorito: </b>Rock</li>
+					<li><b>Email: </b><a href="mailto:sexyewok@endor.com">sexyewok@endor.com</a></li>
+				</ul>
+			</div>
+			<div id="main">
+				<div id="edit" class="content">
+					<h2>Usuario: Editar perfil</h2>
+					<form action="" method="POST">
+						<table>
+							<tr>
+								<td width="30%"><label for="nameArtist"> Nombre:</label><input type="text" id="nameArtist" name="nameArtist"/> 
+								</td>
+								<td width="25%"><label for="email"> Email: </label><input type="email" id="email" name="email"/> 
+								</td>
+							</tr>
+							<tr>
+								<td><label for="gen">Género Favorito:</label><input type="text" name="gen" id="gen"></td>
+								<td><label for="email2"> Confirma email: </label><input type="email" id="email2" name="email2"/>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="city">Ciudad:</label><input type="text" name="city" id="city"></td>
+								<td><label for="currentPass">Contraseña actual:</label><input type="password" name="currentPass" id="currentPass"></td>
+							</tr>
+							<tr>
+								<td><label for="tlf">Teléfono:</label><input type="text" name="tlf" id="tlf"></td>
+								<td><label for="newPass">Nueva contraseña:</label><input type="password" name="newPass" id="newPass"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><label for="newPass2">Confirma contraseña:</label><input type="password" name="newPass2" id="newPass2"></td>
+							</tr>
+							<tr>
+								<td colspan="2"><label for="imgprofile">Imagen de perfil: </label><input type="file" name="imgprofile" id="imgprofile"></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="submit" value="Modificar" class="button"/>
+								</td>
+							</tr>
+						</table>
+					</form>
 				</div>
-				<div id="idioma">
-				<label for="listaIdomas"> Idioma: </label> 
-					<select name="Idioma" id="listaIdomas">
-						<option value="Español">Español</option>
-						<option value="Catalan">Catalan</option>
-					</select>
-				</div>
-				<div class="loginMenu">
-					<div class="login button">Usuario
-						<ul class="desplegableLogin">
-							<li>
-								<a href="fans.html"><div class="menuOption">Perfil</div></a>
-							</li>
-                            <li>
-								<a href="fanseditarperfil.html"><div class="menuOption">Ediatr Perfil</div></a>
-							</li>
-							<li>
-								<a href=""><div class="menuOption">Salir</div></a>
-							</li>
+				<footer>
+					<div id="legal">
+						<ul>
+							<li><a href=""> Aviso legal</a></li>
+							<li>Copyright 2016 Barcelona</li>
 						</ul>
 					</div>
-				</div>
+					<div id="footInfo">
+						<ul>
+							<li><a href="">Qué es Concert Push?</a></li>
+							<li><a href="">Tienes un local?</a></li>
+							<li><a href="">Eres músico?</a></li>
+							<li><a href="">No se que más poner</a></li>
+						</ul>
+					</div>
+					<div id="contact">
+						<ul>
+							<li>Email: info@concertpush.com</li>
+							<li>Pelai 666, Barcelona</li>
+							<li><a href="">Twitter</a> - <a href=""> Facebook</a></li>
+						</ul>
+					</div>
+				</footer>
 			</div>
 		</div>
-	</header>
-	<div class="center">
-		<div id="perfil">
-			<img src="imagenes/defaultprofile.png" alt="" width="150"/>
-			<div>NOMBRE FAN</div>
-		</div>
-
-		<section id="editarperfil">
-			<div>EDITAR PERFIL</div>
-			<div>
-				<div>
-					<form action="musicoseditarperfil.html" method="POST">
-						<label for="nombre"> Nombre: </label>
-						<input type="text" id="nombre" name="nombre"/>
-						<br/>
-						<label for="apellidos"> Apellidos: </label>
-						<input type="text" id="apellidos" name="apellidos"/>
-						<br/>
-						<label for="nomart"> Nombre de usuario: </label>
-						<input type="text" id="nomart" name="nomusu"/>
-						<br/>
-						<label for="tlf"> Telefono: </label>
-						<input type="text" id="tlf" name="tlf"/>
-						<br/>
-						<label for="imgperfil"> Imagen de perfil: </label>
-						<input type="file" id="imgperfil" name="imgperfil"/>
-					</form>
-				</div>
-				<div></div>
-				<div>
-					<form action="musicoseditarperfil.html" method="POST">
-						<label for="mail1"> E-mail: </label>
-						<input type="email" id="mail1" name="mail1"/>
-						<br/>
-						<label for="mail2"> Confirma E-mail: </label>
-						<input type="email" id="mail2" name="mail2"/>
-						<br/>
-						<label for="pass-actual"> Contraseña actual: </label>
-						<input type="password" id="pass-actual" name="pass-actual"/>
-						<br/>
-						<label for="nuevo-pass"> Nueva contraseña: </label>
-						<input type="password" id="nuevo-pass" name="nuevo-pass"/>
-						<br/>
-						<label for="confirma-pass"> Confirma contraseña: </label>
-						<input type="password" id="confirma-pass" name="confirma-pass"/>
-					</form>
-				</div>
-			</div>
-			<div id="buttons">
-				<!--<div>
-					<form  action="fans.html" method="get">
-						<input type="submit" value="Volver" class="button" />
-					</form>
-				</div>-->
-				<div>
-					<form action="fanseditarperfil.html" method="POST">
-						<input type="submit" value="Modificar" class="button" />
-					</form>
-				</div>
-			</div>
-		</section>
-	</div>
-	<footer/>
-</body>
-</html>
+	</body>
+	</html>
