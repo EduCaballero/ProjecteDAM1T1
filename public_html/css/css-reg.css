@@ -2,10 +2,10 @@
     display: inline-block;
     width: 100%;
     border-width: 1px;
-    border-color: blue;
-    border-style:solid;
     background-color: white;
     padding-bottom: 55px;
+    margin-top: 46px;
+    position: relative;
 }
 
 #formregistro{
@@ -96,7 +96,7 @@ section form div{
 }
 
 .padre>*{
-    font-family: sans-serif;
+    
 }
 
 .radioreg{

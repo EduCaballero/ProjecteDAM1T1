@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>registro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/css-reg.css" rel="stylesheet" type="text/css"/>
+        <link href="css/headercss.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header>
+		<div id="topbar">
+			<div id="intranetMenu">
+				<a href=""><img src="imagenes/logo.png" alt=""></a>
+				<div id="buscador">
+					<form action="" method="GET">
+						<input type="text" placeholder="Busca grupos, locales..." name="buscar">
+						<button type="submit" class="button">Buscar</button>
+					</form>
+                                </div>
+                        </div>
+		</div>
+	</header>
+        <div class="padre">
+        <section id="formregistro">
+            <h4>NUEVO USUARIO</h4><br />
+            
+            <form action="registro01.php" method="get">
+                <label class="lab1">Nombre</label><div><input class="inp1" name="nom" type="text" placeholder="  Introduce tu nombre"  required/></div><br />
+            <label class="lab1">Apellidos</label><div><input class="inp1" name="ape" type="text" placeholder="  Introduce tus apellidos" required/></div><br />           
+            <label class="lab1">Usuario</label><div><input class="inp1" name="user" type="text" placeholder="  Introduce tu nombre de usuario" pattern="[A-Za-z]{3-10}" required/></div><br />
+            <label class="lab1">E-mail</label><div><input class="inp1" name="email" type="email" placeholder="  Introduce tu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required/></div><br />            
+            <label class="lab1">Contraseña</label><div><input class="inp1" name="pass" type="password" placeholder="  Introduce tu password" required/></div><br />        
+            <label class="lab1">Confirma la contraseña</label><div><input class="inp1" name="passconfirm" type="password" placeholder="  Introduce tu password" required/></div><br />
+            
+            <label class="lab1">Tipo de usuario</label><br />
+            <div class="radioreg"><label>Fan</label><input type="radio" name="regtype" value="fan"></div>
+            <div class="radioreg"><label>Artista</label><input type="radio" name="regtype" value="artist"></div>
+            <div class="radioreg"><label>Local<input type="radio" name="regtype" value="local"></div><br />
+
+            <input class="login button" type="submit" value="Regístrate" /> 
+            <input class="login button" type="reset" value="Limpia el formulario">
+            </form>
+        </section>
+        
+        <section id="inicio">
+            <h4>INICIO DE SESIÓN</h4><br />
+            <form action="login.php" method="get">          
+            <label class="lab2">E-mail</label><div><input class="inp2" name="email" type="email" placeholder="  Introduce tu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required/></div><br />            
+            <label class="lab2">Contraseña</label><div><input class="inp2" name="pass" type="password" placeholder="  Introduce tu password" required/></div><br />
+
+            <input class="login button" type="submit" value="Iniciar sesión" /> 
+            <input class="login button" type="reset" value="¿Has olvidado la contraseña?">
+            </form>
+        </section>
+        </div>
+    </body>
+</html>
