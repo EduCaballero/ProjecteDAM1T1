@@ -47,6 +47,10 @@ em{
 	font-style:italic;
 }
 
+ul{
+    list-style-type: none;
+}
+
 /* ------------ */
 /* -- Header -- */
 /* ------------ */
@@ -66,6 +70,25 @@ em{
 #header h1 a{
 	color:#555;
 }
+
+/* --------- */
+/* -- Nav -- */
+/* --------- */
+#nav{
+	float:right;
+	margin-bottom:50px;
+}
+.menu{
+	padding:7px 6px 0 0;
+}
+.menu li{
+	margin-left:10px;
+	padding:0 0 8px;
+	float:left;
+	position:relative;
+    list-style-type: none;
+}
+
 /* ---------------------- */
 /* -- Featured Section -- */
 /* ---------------------- */
@@ -122,6 +145,43 @@ em{
 #featured-section .first{
 	margin-left:0;
 }
+
+/* ---------------- */
+/* ---- Search ---- */
+/* ---------------- */
+
+.search{
+    text-align: center;
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.search form{
+	width:100%;
+	box-sizing: border-box;
+}
+
+.search input{
+	width: 82%;
+	height: 25px;
+  	padding: 10px 16px;
+  	font-size: 18px;
+   	border-color: ##9D9D9D;
+}
+
+.button{
+	background-color: #2684cd;
+	border: none;
+	color: white;
+	padding: 10px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+}
+
 /* ---------------- */
 /* -- Front Page -- */
 /* ---------------- */
@@ -196,9 +256,18 @@ em{
 	padding:15px 0 20px 0;
 	width:100%;
 }
-.copyright{
-	float:left;
+
+#legal {
+	width: 38%;
+    float: left;
 }
-.twitter{
-	float:right;
+
+#footInfo {
+	width: 34%;
+    float: left;
+}
+
+#contact {
+	width: 26%;
+    float: left;
 }
