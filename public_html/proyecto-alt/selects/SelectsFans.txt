@@ -1,0 +1,6 @@
+select concierto.dia, concierto.hora, ciudad.nombre, usuario.nombre as grupo, local.nombre as local, count(*) as votos from concierto
+inner join usuario on concierto.asignado=usuario.id_usuario
+inner join usuario as local on concierto.local=local.id_usuario
+inner join ciudad on usuario.ciudad=ciudad.id_ciudad
+inner join voto_concierto on voto_concierto.concierto=concierto.id_concierto
+group by concierto
