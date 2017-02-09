@@ -71,7 +71,7 @@ CREATE TABLE `concierto` (
 
 LOCK TABLES `concierto` WRITE;
 /*!40000 ALTER TABLE `concierto` DISABLE KEYS */;
-INSERT INTO `concierto` VALUES (1,'2016-12-28','18:00:00',450.00,6,6,1),(2,'2016-12-29','21:00:00',300.00,7,7,1),(3,'2016-12-30','22:00:00',355.00,8,1,1),(4,'2017-01-04','20:00:00',375.00,9,5,1),(5,'2017-01-05','22:00:00',415.00,10,4,1),(6,'2017-01-05','23:00:00',550.00,11,7,1),(7,'2017-01-09','22:00:00',285.00,12,4,1),(8,'2017-01-10','22:30:00',350.00,6,3,1),(9,'2017-01-12','21:25:00',400.00,6,6,0),(10,'2017-02-01','20:00:00',333.00,6,2,0),(11,'2017-02-03','21:00:00',400.00,8,6,1),(12,'2017-02-03','22:00:00',350.00,9,5,0);
+INSERT INTO `concierto` VALUES (1,'2016-12-28','18:00:00',450.00,6,6,1),(2,'2016-12-29','21:00:00',300.00,7,7,1),(3,'2016-12-30','22:00:00',355.00,8,1,1),(4,'2017-01-04','20:00:00',375.00,9,5,1),(5,'2017-01-05','22:00:00',415.00,10,4,1),(6,'2017-01-05','23:00:00',550.00,11,7,1),(7,'2017-01-09','22:00:00',285.00,12,4,1),(8,'2017-01-10','22:30:00',350.00,6,3,1),(9,'2017-01-12','21:25:00',400.00,6,6,0),(10,'2017-02-01','20:00:00',333.00,7,2,0),(11,'2017-02-03','21:00:00',400.00,8,6,1),(12,'2017-02-03','22:00:00',350.00,9,5,0);
 /*!40000 ALTER TABLE `concierto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +204,7 @@ CREATE TABLE `propuesta` (
 
 LOCK TABLES `propuesta` WRITE;
 /*!40000 ALTER TABLE `propuesta` DISABLE KEYS */;
-INSERT INTO `propuesta` VALUES (1,1,0),(1,2,0),(1,3,1),(1,14,0),(2,4,1),(3,1,1),(3,5,0),(4,2,1),(4,3,0),(5,5,1),(9,3,0),(9,4,0),(9,5,0),(10,2,0),(10,6,0),(11,3,1),(12,1,0),(12,4,0);
+INSERT INTO `propuesta` VALUES (1,1,0),(1,2,0),(1,3,1),(1,14,0),(2,4,1),(3,1,1),(3,5,0),(4,2,1),(4,3,0),(5,5,1),(6,4,1),(7,5,1),(8,14,1),(9,3,0),(9,4,0),(9,5,0),(10,2,0),(10,6,0),(11,3,1),(12,1,0),(12,4,0);
 /*!40000 ALTER TABLE `propuesta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +238,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Queen','queen@queen.com','1234','M',1,NULL,NULL,'~/img/queen.jpg'),(2,'David Guetta','david@davidguetta.com','1234','M',2,NULL,NULL,'~/img/davidguetta.jpg'),(3,'Metallica','metallica@metallica.com','1234','M',7,NULL,NULL,'~/img/metallica.jpg'),(4,'Wolfgang Amadeus Mozart','mozart@classy.com','1234','M',6,NULL,NULL,'~/img/mozart.jpeg'),(5,'The Offspring','manolete@gmail.com','1234','M',1,NULL,NULL,'~/img/theoffspring.jpg'),(6,'Razzmatazz','info@razzmatazz','1234','L',1,NULL,NULL,'~/img/razzmatazz.jpg'),(7,'Sala Privat','sala@salaprivat.com','1234','L',2,NULL,NULL,NULL),(8,'Sala Rock','info@salarock.com','1234','L',3,NULL,NULL,NULL),(9,'Rave Cave','rave@ravecave.es','1234','L',6,NULL,NULL,NULL),(10,'The Tribune','info@thetribune.es','1234','L',4,NULL,NULL,NULL),(11,'Classic Hall','classic@classichall.com','1234','L',7,NULL,NULL,NULL),(12,'Punkie Junkie','punkie@junkie.com','1234','L',1,NULL,NULL,NULL),(13,'Fun Haus','info@funhaus.com','1234','L',5,NULL,NULL,NULL),(14,'Bee Gees','info@beegees.com','1234','M',1,NULL,NULL,NULL),(15,'Ruben','ruben@dummy.com','1234','F',1,NULL,NULL,NULL),(16,'Sebastian','sebastian@dummy.com','1234','F',2,NULL,NULL,NULL),(17,'Javier','javier@dummy.com','1234','F',3,NULL,NULL,NULL),(18,'Marc','marc@dummy.com','1234','F',4,NULL,NULL,NULL),(19,'Raquel','raquel@dummy.com','1234','F',5,NULL,NULL,NULL),(20,'Beatriz','beatriz@dummy.com','1234','F',6,NULL,NULL,NULL),(21,'Victoria','victoria@dummy.com','1234','F',7,NULL,NULL,NULL);
+INSERT INTO `usuario` VALUES (1,'Queen','queen@queen.com','1234','M',1,NULL,NULL,'/img/queen.jpg'),(2,'David Guetta','david@davidguetta.com','1234','M',2,NULL,NULL,'/img/davidguetta.jpg'),(3,'Metallica','metallica@metallica.com','1234','M',7,NULL,NULL,'/img/metallica.jpg'),(4,'Wolfgang Amadeus Mozart','mozart@classy.com','1234','M',6,NULL,NULL,'/img/mozart.jpeg'),(5,'The Offspring','manolete@gmail.com','1234','M',1,NULL,NULL,'/img/theoffspring.jpg'),(6,'Razzmatazz','info@razzmatazz','1234','L',1,NULL,NULL,'/img/razzmatazz.jpg'),(7,'Sala Privat','sala@salaprivat.com','1234','L',2,NULL,NULL,NULL),(8,'Sala Rock','info@salarock.com','1234','L',3,NULL,NULL,NULL),(9,'Rave Cave','rave@ravecave.es','1234','L',6,NULL,NULL,NULL),(10,'The Tribune','info@thetribune.es','1234','L',4,NULL,NULL,NULL),(11,'Classic Hall','classic@classichall.com','1234','L',7,NULL,NULL,NULL),(12,'Punkie Junkie','punkie@junkie.com','1234','L',1,NULL,NULL,NULL),(13,'Fun Haus','info@funhaus.com','1234','L',5,NULL,NULL,NULL),(14,'Bee Gees','info@beegees.com','1234','M',1,NULL,NULL,NULL),(15,'Ruben','ruben@dummy.com','1234','F',1,NULL,NULL,NULL),(16,'Sebastian','sebastian@dummy.com','1234','F',2,NULL,NULL,NULL),(17,'Javier','javier@dummy.com','1234','F',3,NULL,NULL,NULL),(18,'Marc','marc@dummy.com','1234','F',4,NULL,NULL,NULL),(19,'Raquel','raquel@dummy.com','1234','F',5,NULL,NULL,NULL),(20,'Beatriz','beatriz@dummy.com','1234','F',6,NULL,NULL,NULL),(21,'Victoria','victoria@dummy.com','1234','F',7,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,4 +305,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-01 13:57:04
+-- Dump completed on 2017-02-08 18:20:54
