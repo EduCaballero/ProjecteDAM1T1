@@ -12,7 +12,8 @@
 </head>
 <body>
 	<header>
-		<?php require_once 'includes/header-intranet.php'; ?>
+		<?php require_once 'includes/header-intranet.php'; require_once 'bbdd_1.php'; 
+                $Tabla1Fans = selectTabla1Fans();?>
 	</header>
 	<div id="container">
 		<div id="profile">
@@ -45,69 +46,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>12-12-2016</td>
-								<td>11:30 PM</td>
-								<td>Barcelona</td>
-								<td><a href="">Palau Sant Jordi</a></td>
-								<td><a href="">Michael Jackson</a></td>
-								<td>14</td>
-								<td><a href="" title="-1"><i class="fa fa-lg fa-thumbs-o-down thumbsdown"></i></a></td>
-							</tr>
-							<tr>
-								<td>14-12-2016</td>
-								<td>09:00 PM</td>
-								<td>Sabadell</td>
-								<td><a href="">Sala Rock</a></td>
-								<td><a href="">Metallica</a></td>
-								<td>34</td>
-								<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>
-							</tr>
-							<tr>
-								<td>15-12-2016</td>
-								<td>10:30 PM</td>
-								<td>Terrasa</td>
-								<td><a href="">Rave Cave</td>
-								<td><a href="">David Guetta</a></td>
-								<td>41</td>
-								<td><a href="" title="-1"><i class="fa fa-lg fa-thumbs-o-down thumbsdown"></i></a></td>
-							</tr>
-							<tr>
-								<td>16-12-2016</td>
-								<td>11:30 PM</td>
-								<td>Granollers</td>
-								<td><a href="">Disco Club</a></td>
-								<td><a href="">ABBA</a></td>
-								<td>33</td>
-								<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>
-							</tr>
-							<tr>
-								<td>17-12-2016</td>
-								<td>06:30 PM</td>
-								<td>Barcelona</td>
-								<td><a href="">Fun Haus</a></td>
-								<td><a href="">Gigi D'Agostino</a></td>
-								<td>17</td>
-								<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>
-							</tr>
-							<tr>
-								<td>17-12-2016</td>
-								<td>09:00 PM</td>
-								<td>Madrid</td>
-								<td><a href="">Mazo Punk</a></td>
-								<td><a href="">Ramones</a></td>
-								<td>29</td>
-								<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>
-							</tr>
-							<tr>
-								<td>18-12-2016</td>
-								<td>12:30 PM</td>
-								<td>Mataró</td>
-								<td><a href="">The Tribune</a></td>
-								<td><a href="">Louis Armstrong</a></td>
-								<td>53</td>
-								<td><a href="" title="-1"><i class="fa fa-lg fa-thumbs-o-down thumbsdown"></i></a></td>
-							</tr>
+							<?php while ($fila = mysqli_fetch_array($conductorescamiones)) {
+                                                            echo "<tr>";
+                                                            extract($fila);
+                                                            echo "<td> $dia </td><td> $hora </td><td> $nombre </td><td> $local </td><td> $musico </td><td> $votos </td>";
+                                                            echo "</tr>";
+                                                        } 
+                                                            echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
+                                                        ?>
 						</tbody>
 					</table>
 				</div>
