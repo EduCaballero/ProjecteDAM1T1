@@ -23,7 +23,7 @@
 </ul>
 </div>
 <div id="social-media">
-	<a href="" title="Facebook"><i class="fa fa-facebook"></i></a><a href="" title="Twitter"><i class="fa fa-twitter"></i></a><a href="" title="Instagram"><i class="fa fa-instagram"></i></a><a href="" title="YouTube"><i class="fa fa-youtube"></i></a>
+	<a href="https://www.facebook.com/Concertpush-367915200215659/" title="Facebook"><i class="fa fa-facebook"></i></a><a href="https://twitter.com/concert_push" title="Twitter"><i class="fa fa-twitter"></i></a><a href="https://www.instagram.com/concert_push/" title="Instagram"><i class="fa fa-instagram"></i></a><a href="" title="YouTube"><i class="fa fa-youtube"></i></a>
 </div>
 </div>
 '; ?>
