@@ -12,8 +12,7 @@
 </head>
 <body>
 	<header>
-		<?php require_once 'includes/header-intranet.php'; require_once 'bbdd_1.php'; 
-                $Tabla1Fans = selectTabla1Fans();?>
+		<?php require_once 'includes/header-intranet.php'; require_once 'bbdd_1.php';?>
 	</header>
 	<div id="container">
 		<div id="profile">
