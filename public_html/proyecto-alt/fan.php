@@ -83,7 +83,7 @@
 								while ($fila2 = mysqli_fetch_array($FansTabla2)) {
                                 	echo "<tr>";
                                     extract($fila2);
-                                    echo "<td><a href=''><img src='$imagen' alt=''></a></td><td><a href=''>$nombre</a></td><td> $genero </td><td> $votos </td>";
+                                    echo "<td><a href=''><img src='$imagen' alt=''></a></td><td width='60%'><a href=''>$nombre</a></td><td width='25%'> $genero </td><td> $votos </td>";
                                     echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
                                     echo "</tr>";
                                 } 

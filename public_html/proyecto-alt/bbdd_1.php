@@ -1,5 +1,44 @@
 <?php 
 
+//Musicos Tabla 1
+function selectTabla1Musicos() {
+    $con = connect("proyecto");
+    $select = "select concierto.dia, concierto.hora, ciudad.nombre as ciudad, usuario.nombre as local, 
+genero.nombre as genero, concierto.pago, count(*) as inscritos
+from propuesta
+join concierto on propuesta.concierto=concierto.id_concierto
+join usuario on concierto.local=usuario.id_usuario
+join ciudad on usuario.ciudad=ciudad.id_ciudad
+join genero on concierto.genero=genero.id_genero
+where concierto.asignado = 0
+group by concierto.dia, concierto.hora, ciudad.nombre, propuesta.concierto, usuario.nombre, genero.nombre, concierto.pago
+order by concierto.dia asc limit 7
+";
+    // Ejecutamos la consulta y recogemos el resultado
+    $resultado = mysqli_query($con, $select);
+    disconnect($con);
+    // devolvemos el resultado
+    return $resultado;
+}
+
+//Musicos Tabla 2
+function selectTabla2Musicos() {
+    $con = connect("proyecto");
+    $select = "select concierto.dia, concierto.hora, ciudad.nombre as ciudad, usuario.nombre as loc, local.direccion, concierto.pago
+from concierto
+join usuario on usuario.id_usuario = concierto.local
+join ciudad on usuario.ciudad=ciudad.id_ciudad
+join local on local.id_local = usuario.id_usuario
+join propuesta on propuesta.concierto=concierto.id_concierto
+where propuesta.aceptado = 1 and propuesta.musico = 3 limit 7
+";
+    // Ejecutamos la consulta y recogemos el resultado
+    $resultado = mysqli_query($con, $select);
+    disconnect($con);
+    // devolvemos el resultado
+    return $resultado;
+}
+
 //Fans Tabla 1
 function selectTabla1Fans() {
     $con = connect("proyecto");
@@ -44,6 +83,7 @@ order by votos desc limit 7
 function connect($database) {
     $connection = mysqli_connect("localhost", "root", "", $database)
             or die("No se ha podido conectar a la BBDD");
+            mysqli_set_charset($connection,"utf8");
     return $connection;
 }
 
