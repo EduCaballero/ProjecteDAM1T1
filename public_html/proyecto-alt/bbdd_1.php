@@ -2,7 +2,7 @@
 
 //Fans Tabla 1
 function selectTabla1Fans() {
-    $con = conectar("proyecto");
+    $con = connect("proyecto");
     $select = "select concierto.dia, concierto.hora, ciudad.nombre, loc.nombre as local, music.nombre as musico, count(*) as votos 
 from concierto
 inner join propuesta on propuesta.concierto=concierto.id_concierto
@@ -16,7 +16,7 @@ ORDER BY dia ASC LIMIT 5
 ";
     // Ejecutamos la consulta y recogemos el resultado
     $resultado = mysqli_query($con, $select);
-    desconectar($con);
+    disconnect($con);
     // devolvemos el resultado
     return $resultado;
 }
@@ -29,6 +29,6 @@ function connect($database) {
 }
 
 function disconnect($connect) {
-    mysqli_close($connection);
+    mysqli_close($connect);
 }
  ?>

@@ -54,9 +54,9 @@
                                 	echo "<tr>";
                                     extract($fila);
                                     echo "<td> $dia </td><td> $hora </td><td> $nombre </td><td> $local </td><td> $musico </td><td> $votos </td>";
+                                    echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
                                     echo "</tr>";
                                 } 
-                                echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
                                	?>
 						</tbody>
 					</table>
