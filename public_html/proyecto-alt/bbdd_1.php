@@ -21,6 +21,25 @@ ORDER BY dia ASC LIMIT 5
     return $resultado;
 }
 
+
+//Fans Tabla 2
+function selectTabla2Fans() {
+    $con = connect("proyecto");
+    $select = "select usuario.imagen, usuario.nombre, genero.nombre as genero, count(*) as votos
+from musico
+inner join genero on genero.id_genero=musico.genero
+inner join usuario on usuario.id_usuario=musico.id_musico
+left join voto_musico on voto_musico.musico=usuario.id_usuario
+group by usuario.imagen, voto_musico.musico, usuario.nombre, genero.nombre
+order by votos desc limit 7
+";
+    // Ejecutamos la consulta y recogemos el resultado
+    $resultado = mysqli_query($con, $select);
+    disconnect($con);
+    // devolvemos el resultado
+    return $resultado;
+}
+
 //CONEXION BBDD
 function connect($database) {
     $connection = mysqli_connect("localhost", "root", "", $database)

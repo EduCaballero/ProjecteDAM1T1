@@ -75,55 +75,19 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><a href=""><img src="img/theoffspring.jpg" alt=""></a></td>
-								<td width="60%"><a href="">The Offspring</a></td>
-								<td width="25%">Punk</td>
-								<td>49</td>
-								<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>
-							</tr>
-							<tr>
-								<td><a href=""><img src="img/metallica.jpg" alt=""></a></td>
-								<td><a href="">Metallica</a></td>
-								<td>Heavy Metal</td>
-								<td>64</td>
-								<td><a href="" title="-1"><i class="fa fa-lg fa-thumbs-o-down thumbsdown"></i></a></td>
-							</tr>
-							<tr>
-								<td><a href=""><img src="img/davidguetta.jpg" alt=""></a></td>
-								<td><a href="">David Guetta</a></td>
-								<td>Dance</td>
-								<td>71</td>
-								<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>
-							</tr>
-							<tr>
-								<td><a href=""><img src="img/queen.jpg" alt=""></a></td>
-								<td><a href="">Queen</a></td>
-								<td>Rock</td>
-								<td>83</td>
-								<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>
-							</tr>
-							<tr>
-								<td><a href=""><img src="img/louis.jpg" alt=""></a></td>
-								<td><a href="">Louis Armstrong</a></td>
-								<td>Jazz</td>
-								<td>45</td>
-								<td><a href="" title="-1"><i class="fa fa-lg fa-thumbs-o-down thumbsdown"></i></a></td>
-							</tr>
-							<tr>
-								<td><a href=""><img src="img/beethoven.jpg" alt=""></a></td>
-								<td><a href="">Ludwig van Beethoven</a></td>
-								<td>Clásica</td>
-								<td>36</td>
-								<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>
-							</tr>
-							<tr>
-								<td><a href=""><img src="img/sia.jpg" alt=""></a></td>
-								<td><a href="">Sia</a></td>
-								<td>Pop</td>
-								<td>30</td>
-								<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>
-							</tr>
+							<?php 
+								//Llamamos a la funcion de la tabla 2 de fans
+								$FansTabla2 = selectTabla2Fans();
+
+								//Extraccion de datos
+								while ($fila = mysqli_fetch_array($FansTabla2)) {
+                                	echo "<tr>";
+                                    extract($fila);
+                                    echo '<td><a href=""><img src="$imagen" alt=""></a></td><td><a href="">$nombre</a></td><td>$genero</td><td>$votos</td>';
+                                    echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
+                                    echo "</tr>";
+                                } 
+                               	?>
 						</tbody>
 					</table>
 				</div>
