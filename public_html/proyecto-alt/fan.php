@@ -53,7 +53,7 @@
 								while ($fila = mysqli_fetch_array($FansTabla1)) {
                                 	echo "<tr>";
                                     extract($fila);
-                                    echo "<td> $dia </td><td> $hora </td><td> $nombre </td><td> $local </td><td> $musico </td><td> $votos </td>";
+                                    echo "<td> $dia </td><td> $hora </td><td> $nombre </td><td><a href=''>$local</a></td><td><a href=''>$musico</a></td><td> $votos </td>";
                                     echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
                                     echo "</tr>";
                                 } 
@@ -80,10 +80,10 @@
 								$FansTabla2 = selectTabla2Fans();
 
 								//Extraccion de datos
-								while ($fila = mysqli_fetch_array($FansTabla2)) {
+								while ($fila2 = mysqli_fetch_array($FansTabla2)) {
                                 	echo "<tr>";
-                                    extract($fila);
-                                    echo '<td><a href=""><img src="$imagen" alt=""></a></td><td><a href="">$nombre</a></td><td>$genero</td><td>$votos</td>';
+                                    extract($fila2);
+                                    echo "<td><a href=''><img src='$imagen' alt=''></a></td><td><a href=''>$nombre</a></td><td> $genero </td><td> $votos </td>";
                                     echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
                                     echo "</tr>";
                                 } 
