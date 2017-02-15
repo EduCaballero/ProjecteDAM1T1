@@ -47,7 +47,7 @@
 						<tbody>
 							<?php 
 								//Llamamos a la funcion de la tabla 1 de fans
-								$FansTabla1 = selectTabla1Fans();
+								$FansTabla1 = FanVotaConciertos();
 
 								//Extraccion de datos
 								while ($fila = mysqli_fetch_array($FansTabla1)) {
@@ -77,7 +77,7 @@
 						<tbody>
 							<?php 
 								//Llamamos a la funcion de la tabla 2 de fans
-								$FansTabla2 = selectTabla2Fans();
+								$FansTabla2 = FanVotaMusicos();
 
 								//Extraccion de datos
 								while ($fila2 = mysqli_fetch_array($FansTabla2)) {

@@ -50,7 +50,7 @@
 						<tbody>
 							<?php 
 								//Llamamos a la funcion de la tabla 1 de musicos
-								$MusicosTabla1 = selectTabla1Musicos();
+								$MusicosTabla1 = MusicoPendienteAsignar();
 
 								//Extraccion de datos
 								while ($fila = mysqli_fetch_array($MusicosTabla1)) {
@@ -83,7 +83,7 @@
 
 							<?php 
 								//Llamamos a la funcion de la tabla 2 de musicos
-								$MusicosTabla2 = selectTabla2Musicos();
+								$MusicosTabla2 = MusicoAsignado();
 
 								//Extraccion de datos
 								while ($fila = mysqli_fetch_array($MusicosTabla2)) {
