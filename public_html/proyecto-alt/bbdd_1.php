@@ -2,7 +2,7 @@
 
 //Musicos Tabla 1
 function MusicoPendienteAsignar() {
-    $con = connect("db4959381_proyecto");
+    $con = connect("proyecto");
     $select = "select concierto.dia, concierto.hora, ciudad.nombre as ciudad, usuario.nombre as local, 
 genero.nombre as genero, concierto.pago, count(*) as inscritos
 from propuesta
@@ -23,7 +23,7 @@ order by concierto.dia asc limit 7
 
 //Musicos Tabla 2
 function MusicoAsignado() {
-    $con = connect("db4959381_proyecto");
+    $con = connect("proyecto");
     $select = "select concierto.dia, concierto.hora, ciudad.nombre as ciudad, usuario.nombre as loc, local.direccion, concierto.pago
 from concierto
 join usuario on usuario.id_usuario = concierto.local
@@ -41,7 +41,7 @@ where propuesta.aceptado = 1 and propuesta.musico = 3 limit 7
 
 //Fans Tabla 1
 function FanVotaConciertos() {
-    $con = connect("db4959381_proyecto");
+    $con = connect("proyecto");
     $select = "select concierto.dia, concierto.hora, ciudad.nombre, loc.nombre as local, music.nombre as musico, count(*) as votos 
 from concierto
 inner join propuesta on propuesta.concierto=concierto.id_concierto
@@ -63,7 +63,7 @@ ORDER BY dia ASC LIMIT 5
 
 //Fans Tabla 2
 function FanVotaMusicos() {
-    $con = connect("db4959381_proyecto");
+    $con = connect("proyecto");
     $select = "select usuario.imagen, usuario.nombre, genero.nombre as genero, count(*) as votos
 from musico
 inner join genero on genero.id_genero=musico.genero
@@ -81,7 +81,7 @@ order by votos desc limit 7
 
 //CONEXION BBDD
 function connect($database) {
-    $connection = mysqli_connect("mysql131int.srv-hostalia.com", "u4959381_dam1t1", "1j/g1~aU@Zc;WFOx", $database)
+    $connection = mysqli_connect("localhost", "root", "", $database)
             or die("No se ha podido conectar a la BBDD");
             mysqli_set_charset($connection,"utf8");
     return $connection;

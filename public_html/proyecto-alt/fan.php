@@ -53,7 +53,7 @@
 								while ($fila = mysqli_fetch_array($FansTabla1)) {
                                 	echo "<tr>";
                                     extract($fila);
-                                    echo "<td> $dia </td><td> $hora </td><td> $nombre </td><td><a href=''>$local</a></td><td><a href=''>$musico</a></td><td> $votos </td>";
+                                    echo "<td>$dia</td><td>$hora</td><td>$nombre</td><td>$local</td><td>$musico</td><td>$votos</td>";
                                     echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
                                     echo "</tr>";
                                 } 
@@ -93,7 +93,7 @@
 				</div>
 			</div>
 			<footer class="footer">
-				<?php require_once '/includes/footer.php'; ?>
+				<?php require_once 'includes/footer.php'; ?>
 			</footer>
 		</div>
 	</div>
