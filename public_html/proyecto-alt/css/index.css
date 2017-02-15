@@ -69,16 +69,6 @@ header {
 	text-decoration: none;
 }
 
-/*
-.logo-link>div {
-	width: 126px;
-	height: 44px;
-	background-image: url(../img/logo.png);
-	background-repeat: no-repeat;
-	background-size: contain;
-}
-*/
-
 #user-menu {
 	float: right;
 }

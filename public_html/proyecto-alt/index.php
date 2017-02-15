@@ -11,6 +11,7 @@
 	<script src="js/src/menu.js"></script>
 </head>
 <body>
+	<?php require_once 'bbdd.php'; ?>
 	<header>
 		<nav id="mobile-menu" class="mobile-menu">
 			<div class="mobile-menu-top">ConcertPush</div>
@@ -87,27 +88,12 @@
 			<div id="agenda">
 				<h2>Próximos conciertos</h2>
 				<ul>
-					<li>
-						28-12-2016 - <a href="">Sala Privat</a> - <a href="">MoonSong</a>
-					</li>
-					<li>
-						31-12-2016 - <a href="">Razzmatazz</a> - <a href="">The Offspring</a>
-					</li>
-					<li>
-						3-1-2017 - <a href="">Sala Rock</a> - <a href="">Metallica</a>
-					</li>
-					<li>
-						4-1-2017 - <a href="">Rave Cave</a> - <a href="">David Guetta</a>
-					</li>
-					<li>
-						4-1-2017 - <a href="">The Tribune</a> - <a href="">Bee Gees</a>
-					</li>
-					<li>
-						6-1-2017 - <a href="">Popland</a> - <a href="">Michael Jackson</a>
-					</li>
-					<li>
-						8-1-2017 - <a href="">Classic Hall</a> - <a href="">Johann Sebastian Bach</a>
-					</li>
+				<?php
+				$concerts = agenda();
+				while ($row = mysqli_fetch_array($concerts,MYSQLI_NUM)) {
+					echo "<li>".$row[0]." - ".$row[1]." - ".$row[2]."</li>";
+				}
+				?>	  
 				</ul>
 			</div>
 		</div>
@@ -116,21 +102,12 @@
 		<div id="ranking">
 			<h2>Ranking músicos</h2>
 			<ul>
-				<li>
-					<a class="ranking-img" href=""><img src="img/queen.jpg" alt=""></a><div class="ranking-data"><a href="">Queen</a> - Rock - 83</div>
-				</li>
-				<li>
-					<a class="ranking-img" href=""><img src="img/davidguetta.jpg" alt=""></a><div class="ranking-data"><a href="">David Guetta</a> - Dance - 71</div>
-				</li>
-				<li>
-					<a class="ranking-img" href=""><img src="img/metallica.jpg" alt=""></a><div class="ranking-data"><a href="">Metallica</a> - Heavy Metal - 64</div>
-				</li>
-				<li>
-					<a class="ranking-img" href=""><img src="img/mozart.jpeg" alt=""></a><div class="ranking-data"><a href="">Wolfgang Amadeus Mozart</a> - Clásica - 58</div>
-				</li>
-				<li>
-					<a class="ranking-img" href=""><img src="img/theoffspring.jpg" alt=""></a><div class="ranking-data"><a href="">The Offspring</a> - Punk - 49</div>
-				</li>
+			<?php
+			$musics = ranking();
+			while ($row = mysqli_fetch_array($musics)) {
+				echo "<li><div class='ranking-img'><img src='".$row["imagen"]."'></div><div class='ranking-data'>".$row["musico"]." - ".$row["genero"]." - ".$row["votos"]."</div></li>";
+			}
+			?>
 			</ul>
 		</div>
 	</div>

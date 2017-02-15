@@ -21,6 +21,7 @@ function disableMenu() {
       $(this).children('.dropdown-sub').slideDown(200);
     },
     function(){
+      $(this).children('.dropdown-sub').stop();
       $(this).children('.dropdown-sub').slideUp(0);
     }
     );

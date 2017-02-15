@@ -11,6 +11,7 @@
 	<script src="js/src/menu.js"></script>
 </head>
 <body>
+	<?php require_once 'bbdd.php'; ?>
 	<header>
 		<?php require_once 'includes/header-intranet.php'; ?>
 	</header>
@@ -86,69 +87,21 @@
 				</tr>
 			</thead>
 			<tbody>
+			<?php
+			$concCreated = concCreatedLoc();
+			while ($row = mysqli_fetch_array($concCreated)) {
+				echo"
 				<tr>
-					<td>18-12-2016</td>
-					<td>10:30 PM</td>
-					<td>Pop</td>
-					<td>300€</td>
-					<td><a href="">1</a></td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>19-12-2016</td>
-					<td>09:30 PM</td>
-					<td>Dance</td>
-					<td>225€</td>
-					<td><a href="">2</a></td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>19-12-2016</td>
-					<td>11:30 PM</td>
-					<td>Jazz</td>
-					<td>300€</td>
-					<td><a href="">4</a></td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>20-12-2016</td>
-					<td>06:30 PM</td>
-					<td>Soul</td>
-					<td>350€</td>
-					<td><a href="">3</a></td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>22-12-2016</td>
-					<td>04:00 PM</td>
-					<td>Blues</td>
-					<td>300€</td>
-					<td><a href="">4</a></td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>23-12-2016</td>
-					<td>10:30 PM</td>
-					<td>Disco</td>
-					<td>450€</td>
-					<td><a href="">4</a></td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>24-12-2016</td>
-					<td>11:15 PM</td>
-					<td>Punk</td>
-					<td>350€</td>
-					<td><a href="">2</a></td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
+					<td>".$row["dia"]."</td>
+					<td>".$row["hora"]."</td>
+					<td>".$row["genero"]."</td>
+					<td>".$row["pago"]."</td>
+					<td>".$row["inscritos"]."</td>
+					<td><a href=''>Eliminar</a></td>
+					<td><a href=''>Modificar</a></td>
+				</tr>";
+			}
+			?>
 			</tbody>
 		</table>
 	</div>
@@ -169,76 +122,22 @@
 				</tr>
 			</thead>
 			<tbody>
+			<?php
+			$concAssign = concAssignLoc();
+			while ($row = mysqli_fetch_array($concAssign)) {
+				echo"
 				<tr>
-					<td>12-12-2016</td>
-					<td>11:30 PM</td>
-					<td>Disco</td>
-					<td><a href="">Bee Gees</a></td>
-					<td>350€</td>
-					<td>5</td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>14-12-2016</td>
-					<td>09:00 PM</td>
-					<td>Rock</td>
-					<td><a href="">Queen</a></td>
-					<td>650€</td>
-					<td>10</td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>15-12-2016</td>
-					<td>10:30 PM</td>
-					<td>Pop</td>
-					<td><a href="">The Bangles</a></td>
-					<td>250€</td>
-					<td>4</td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>26-12-2016</td>
-					<td>12:30 PM</td>
-					<td>Punk</td>
-					<td><a href="">The Offspring</a></td>
-					<td>300€</td>
-					<td>8</td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>27-12-2016</td>
-					<td>12:30 PM</td>
-					<td>Pop</td>
-					<td><a href="">Michael Jackson</a></td>
-					<td>425€</td>
-					<td>13</td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>28-12-2016</td>
-					<td>11:30 PM</td>
-					<td>Soul</td>
-					<td><a href="">Stevie Wonder</a></td>
-					<td>450€</td>
-					<td>7</td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
-				<tr>
-					<td>29-12-2016</td>
-					<td>12:30 PM</td>
-					<td>Raggae</td>
-					<td><a href="">Bob Marley</a></td>
-					<td>400€</td>
-					<td>6</td>
-					<td><a href="">Eliminar</a></td>
-					<td><a href="">Modificar</a></td>
-				</tr>
+					<td>".$row["dia"]."</td>
+					<td>".$row["hora"]."</td>
+					<td>".$row["genero"]."</td>
+					<td>".$row["musico"]."</td>
+					<td>".$row["pago"]."</td>
+					<td>".$row["votos"]."</td>
+					<td><a href=''>Eliminar</a></td>
+					<td><a href=''>Modificar</a></td>
+				</tr>";
+			}
+			?>
 			</tbody>
 		</table>
 	</div>
