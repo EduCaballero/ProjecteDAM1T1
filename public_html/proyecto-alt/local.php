@@ -144,7 +144,7 @@
 </div>
 <footer class="footer">
 	<div class="content-container">
-		<?php require_once '/includes/footer.php'; ?>
+		<?php require_once 'includes/footer.php'; ?>
 	</div>
 </footer>
 </div>

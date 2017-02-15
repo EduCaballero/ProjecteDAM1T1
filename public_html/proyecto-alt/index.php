@@ -123,7 +123,7 @@
 </div>
 </div>
 <footer class="footer">
-	<?php require_once '/includes/footer.php'; ?>
+	<?php require_once 'includes/footer.php'; ?>
 </footer>
 </div>
 </body>
