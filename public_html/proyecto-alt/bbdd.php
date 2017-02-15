@@ -1,7 +1,7 @@
 <?php 
 
 function agenda() {
-	$con = connect("proyecto");
+	$con = connect("db4959381_proyecto");
 	$select = "select concierto.dia, local.nombre as local, musico.nombre as musico
 		  	   from concierto
 			   inner join usuario as local on concierto.local = local.id_usuario
@@ -16,7 +16,7 @@ function agenda() {
 }
 
 function ranking() {
-	$con = connect("proyecto");
+	$con = connect("db4959381_proyecto");
 	$select = "select usuario.imagen, usuario.nombre as musico, genero.nombre as genero, count(*) as votos 
 		       from voto_musico
 			   inner join usuario on voto_musico.musico = usuario.id_usuario
@@ -31,7 +31,7 @@ function ranking() {
 }
 
 function concCreatedLoc() {
-	$con = connect("proyecto");
+	$con = connect("db4959381_proyecto");
 	$select = "select concierto.dia, concierto.hora, genero.nombre as genero, concierto.pago, count(*) as inscritos
 			   from concierto 
 			   join propuesta on propuesta.concierto = concierto.id_concierto
@@ -45,7 +45,7 @@ function concCreatedLoc() {
 }
 
 function concAssignLoc() {
-	$con = connect("proyecto");
+	$con = connect("db4959381_proyecto");
 	$select = "select concierto.dia, concierto.hora, genero.nombre as genero, usuario.nombre as musico, concierto.pago, count(*) as votos
 			   from concierto
 			   join genero on concierto.genero = genero.id_genero
@@ -60,7 +60,7 @@ function concAssignLoc() {
 }
 
 function connect($database) {
-    $con = mysqli_connect("localhost", "root", "", $database)
+    $con = mysqli_connect("mysql131int.srv-hostalia.com", "u4959381_dam1t1", "1j/g1~aU@Zc;WFOx", $database)
             or die("No se ha podido conectar a la BBDD");
     mysqli_set_charset($con,"utf8");        
     return $con;
