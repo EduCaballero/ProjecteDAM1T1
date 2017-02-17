@@ -50,11 +50,10 @@
 						<tbody>
 							<?php 
 								//Llamamos a la funcion de la tabla 1 de musicos
-								$MusicosTabla1 = MusicoPendienteAsignar(); 
-                                                                
+								$MusicoPendienteAsignar = MusicoPendienteAsignar();
 
 								//Extraccion de datos
-								while ($fila = mysqli_fetch_array($MusicosTabla1)) {
+								while ($fila = mysqli_fetch_array($MusicoPendienteAsignar)) {
                                 	echo "<tr>";
                                     extract($fila);
                                     echo "<td> $dia </td><td> $hora </td><td> $ciudad </td><td><a href=''>$local</a></td><td>$genero</td><td>$pago</td><td>$inscritos</td>";
@@ -84,13 +83,13 @@
 
 							<?php 
 								//Llamamos a la funcion de la tabla 2 de musicos
-								$MusicosTabla2 = MusicoAsignado();
+								$MusicoAsignado = MusicoAsignado();
 
 								//Extraccion de datos
-								while ($fila = mysqli_fetch_array($MusicosTabla2)) {
+								while ($fila = mysqli_fetch_array($MusicoAsignado)) {
                                 	echo "<tr>";
                                     extract($fila);
-                                    echo "<td> $dia </td><td> $hora </td><td> $ciudad </td><td><a href=''>$loc</a></td><td>$direccion</td><td>$pago</td>";
+                                    echo "<td>$dia</td><td>$hora</td><td>$ciudad</td><td>$loc</td><td>$direccion</td><td>$pago</td>";
                                     echo "</tr>";
                                 } 
                                	?>
@@ -99,7 +98,7 @@
 				</div>
 			</div>
 			<footer class="footer">
-				<?php require_once '/includes/footer.php'; ?>
+				<?php require_once 'includes/footer.php'; ?>
 			</footer>
 		</div>
 	</div>
