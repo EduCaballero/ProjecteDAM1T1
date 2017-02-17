@@ -50,7 +50,8 @@
 						<tbody>
 							<?php 
 								//Llamamos a la funcion de la tabla 1 de musicos
-								$MusicosTabla1 = MusicoPendienteAsignar();
+								$MusicosTabla1 = MusicoPendienteAsignar(); 
+                                                                
 
 								//Extraccion de datos
 								while ($fila = mysqli_fetch_array($MusicosTabla1)) {
