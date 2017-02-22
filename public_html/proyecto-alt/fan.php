@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -11,8 +11,9 @@
 	<script src="js/src/menu.js"></script>
 </head>
 <body>
+	<?php require_once 'bbdd_1.php';?>
 	<header>
-		<?php require_once 'includes/header-intranet.php'; require_once 'bbdd_1.php';?>
+		<?php require_once 'includes/header-intranet.php'; ?>
 	</header>
 	<div id="container">
 		<div id="profile">
@@ -47,17 +48,17 @@
 						<tbody>
 							<?php 
 								//Llamamos a la funcion de la tabla 1 de fans
-								$FanVotaConciertos = FanVotaConciertos();
+							$FanVotaConciertos = FanVotaConciertos();
 
 								//Extraccion de datos
-								while ($fila = mysqli_fetch_array($FanVotaConciertos)) {
-                                	echo "<tr>";
-                                    extract($fila);
-                                    echo "<td> $dia </td><td> $hora </td><td> $nombre </td><td><a href=''>$local</a></td><td><a href=''>$musico</a></td><td> $votos </td>";
-                                    echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
-                                    echo "</tr>";
-                                } 
-                               	?>
+							while ($fila = mysqli_fetch_array($FanVotaConciertos)) {
+								echo "<tr>";
+								extract($fila);
+								echo "<td> $dia </td><td> $hora </td><td> $nombre </td><td><a href=''>$local</a></td><td><a href=''>$musico</a></td><td> $votos </td>";
+								echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
+								echo "</tr>";
+							} 
+							?>
 						</tbody>
 					</table>
 				</div>
@@ -77,23 +78,23 @@
 						<tbody>
 							<?php 
 								//Llamamos a la funcion de la tabla 2 de fans
-								$FanVotaMusicos = FanVotaMusicos();
+							$FanVotaMusicos = FanVotaMusicos();
 
 								//Extraccion de datos
-								while ($fila2 = mysqli_fetch_array($FanVotaMusicos)) {
-                                	echo "<tr>";
-                                    extract($fila2);
-                                    echo "<td><a href=''><img src='$imagen' alt=''></a></td><td width='60%'><a href=''>$nombre</a></td><td width='25%'> $genero </td><td> $votos </td>";
-                                    echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
-                                    echo "</tr>";
-                                } 
-                               	?>
+							while ($fila2 = mysqli_fetch_array($FanVotaMusicos)) {
+								echo "<tr>";
+								extract($fila2);
+								echo "<td><a href=''><img src='$imagen' alt=''></a></td><td width='60%'><a href=''>$nombre</a></td><td width='25%'> $genero </td><td> $votos </td>";
+								echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
+								echo "</tr>";
+							} 
+							?>
 						</tbody>
 					</table>
 				</div>
 			</div>
 			<footer class="footer">
-				<?php require_once '/includes/footer.php'; ?>
+				<?php require_once 'includes/footer.php'; ?>
 			</footer>
 		</div>
 	</div>
