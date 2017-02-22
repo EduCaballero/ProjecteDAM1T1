@@ -6,6 +6,7 @@
 	<title>ConcertPush - Registro</title>
 	<link rel="stylesheet" href="css/signin-signup.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+	<script src="js/src/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 	<header>
@@ -15,10 +16,48 @@
 			</div>
 		</div>
 	</header>
+	<?php
+	if (isset($_POST["next"])) {
+		$email = $_POST["email"];
+		$pass = $_POST["password"];
+		$user = $_POST["user-type"];
+		function hideForms($userType) {
+			?>
+			<script>
+				$(document).ready(function() {
+					$("#signup-step-one").hide();
+					$("#signup-step-one :input").attr("disabled", true);
+					$("#user-<?php echo $userType ?>").siblings().hide(); 
+					$("#user-<?php echo $userType ?>").siblings().find("input").attr("disabled", true);
+					$("#user-<?php echo $userType ?>").siblings().find("select").attr("disabled", true);
+				});
+			</script>
+			<?php
+		}
+		if ($user=='L') {
+			hideForms("local");	
+		}
+		if ($user=='M') {
+			hideForms("musico");
+		}
+		if ($user=='F') {
+			hideForms("fan");	
+		}
+	} else {
+		?>
+		<script>
+			$(document).ready(function() {
+				$("#signup-step-two").hide();
+				$("#signup-step-two :input").attr("disabled", true); 
+			});
+		</script>
+		<?php
+	}
+	?>
 	<div id="signin-signup-container">
-		<form action="" method="post">
-			<div id="signup-form-two-steps">
-				<div id="signup-step-one">
+		<div id="signup-form-two-steps">
+			<div id="signup-step-one">
+				<form action="" method="post">
 					<div class="signin-signup-form">
 						<h1>Únete hoy a ConcertPush.</h1>
 						<input type="email" name="email" placeholder="Email" maxlength="80" required>
@@ -32,13 +71,15 @@
 						</select>
 					</div>
 					<input type="submit" class="btn btn-submit" name="next" value="Siguiente">
-					<div id="subtext-box">
-						<small>¿Tienes cuenta? <a href="signin.php">Iniciar sesión</a>
-						</small>
-					</div>
+				</form>
+				<div id="subtext-box">
+					<small>¿Tienes cuenta? <a href="signin.php">Iniciar sesión</a>
+					</small>
 				</div>
-				<div id="signup-step-two">
-					<div id="user-local" class="signin-signup-form">
+			</div>
+			<div id="signup-step-two">
+				<form id="user-local" action="" method="post">
+					<div class="signin-signup-form">
 						<h1>Registro local</h1>
 						<input type="text" name="nombre-local" placeholder="Nombre del local" maxlength="60" required>
 						<input type="text" name="ciudad-local" placeholder="Ciudad" maxlength="60" required>
@@ -47,7 +88,10 @@
 						<input type="text" name="telefono-local" placeholder="Teléfono" maxlength="9" pattern="\d*">
 						<input type="url" name="web-local" placeholder="Página web" maxlength="80">
 					</div>
-					<div id="user-musico" class="signin-signup-form">
+					<input type="submit" class="btn btn-submit" name="reg-local" value="Registrarte">
+				</form>
+				<form id="user-musico" action="" method="post">
+					<div class="signin-signup-form">
 						<h1>Registro músico</h1>
 						<input type="text" name="nombre-musico" placeholder="Nombre artistico" maxlength="60" required>
 						<input type="text" name="num-miembros" placeholder="Numero de miembros" pattern="\d*" maxlength="4">
@@ -76,7 +120,10 @@
 						<input type="text" name="telefono-musico" maxlength="9" placeholder="Teléfono" pattern="\d*">
 						<input type="url" name="web-musico" placeholder="Página web" maxlength="80" >
 					</div>	
-					<div id="user-fan" class="signin-signup-form">
+					<input type="submit" class="btn btn-submit" name="reg-music" value="Registrarte">
+				</form>
+				<form id="user-fan" action="" method="post">
+					<div class="signin-signup-form">
 						<h1>Registro fan</h1>
 						<ul>
 							<li><input type="text" id="nombre-fan" name="nombre-fan" placeholder="Nombre" maxlength="60" required></li><li><input type="text" id="apellidos-fan" name="apellidos-fan" placeholder="Apellidos" maxlength="60" ></li>
@@ -266,10 +313,12 @@
 					</li>
 				</ul>
 			</div>
-			<input type="submit" class="btn btn-submit" name="registrar" value="Registrarte">
+			<input type="submit" class="btn btn-submit" name="reg-fan" value="Registrarte">
 		</div>
-	</div>
-</form>
+	</form>
 </div>
+</div>
+</div>
+
 </body>
 </html>
