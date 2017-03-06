@@ -208,9 +208,9 @@ input[type="url"]:focus, select:focus{
 
 /* ---------------------- */
 
-
-label {
-
+#signup-step-one, #signup-step-two, 
+#user-local, #user-musico, #user-fan {
+	display: none;
 }
 
 @media screen and (max-width: 380px) {
