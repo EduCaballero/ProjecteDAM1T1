@@ -89,6 +89,15 @@
 				$emailR = $_POST["email"];
 				$passR = $_POST["password"];
 				$userR = $_POST["usertype"];
+
+				//Verificamos que el email a registrar no esta en la bbdd
+				$email=selectEmail($emailR);
+				while($row = mysqli_fetch_array($email)){
+					$controlEmail=$row["mail"];
+				}
+				if(isset($controlEmail)){
+				if($controlEmail===$emailR)echo "<h1>El email ya existe</h1>";}
+				else{
 			?>
 			<div id="signup-step-two">
 			<?php if ($userR=='L') { ?>
@@ -125,14 +134,14 @@
 						<input type="text" name="nombre_musico" placeholder="Nombre artistico">
 						<input type="text" name="num_miembros" placeholder="Numero de miembros">
 						<select name="genero">
-							<option value="">Género</option>
-							<option value="1">Rock</option>
-							<option value="2">Pop</option>
-							<option value="3">Disco</option>
-							<option value="4">Punk</option>
-							<option value="5 Metal">Dance</option>
-							<option value="6">Heavy Metal</option>
-							<option value="7">Clasica</option>
+						<?php
+						$generos = AllGeneros();
+							while ($fila = mysqli_fetch_array($generos)) {
+        					extract($fila);
+       						echo "<option value='$id_genero'>$nombre";
+        					echo "</option>";
+    						}
+    						?>
 						</select>
                         <select class="provincia" name="provincia">
                         	<option value="">Provincia</option>
@@ -230,6 +239,7 @@
 		</div>              
 	</form>
 	<?php 
+			}
 			} 
 		}
 	} 

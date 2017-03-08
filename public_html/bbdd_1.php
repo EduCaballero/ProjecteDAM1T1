@@ -1,5 +1,21 @@
 <?php 
 
+function AllGeneros() {
+    $con = connect("proyecto");
+    $select = "select * from genero";
+    $res = mysqli_query($con,$select);
+    disconnect($con);
+    return $res;
+}
+
+function selectEmail($email) {
+    $con = connect("proyecto");
+    $select = "select mail from usuario where mail = '$email'";
+    $res = mysqli_query($con,$select);
+    disconnect($con);
+    return $res;
+}
+
 function selectProvincias() {
     $con = connect("proyecto");
     $select = "select id, provincia from provincias";
