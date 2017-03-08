@@ -20,7 +20,7 @@ function altaUsuario($email,$pass,$user,$ciudad,$telefono,$web,$nombre) {
     $con = connect("proyecto");
 // Tenemos la conexión con la BBDD :)
 // Preparamos el insert
-    $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,imagen) values('$nombre','$email','$pass','$user','$ciudad','$telefono', 'img/default_profile.jpg')";
+    $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,imagen) values('$nombre','$email','$pass','$user','4','$telefono', 'img/default_profile.jpg')";
     // Insertamos en la bbdd
     if (mysqli_query($con, $insert)) {
         echo '
