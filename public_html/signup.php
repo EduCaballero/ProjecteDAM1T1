@@ -96,7 +96,15 @@
 					$controlEmail=$row["mail"];
 				}
 				if(isset($controlEmail)){
-				if($controlEmail===$emailR)echo "<h1>El email ya existe</h1>";}
+				if($controlEmail===$emailR)echo "
+
+				<div id='done'>
+                <p><b>El email introducido ya existe.</b></p>
+                <p><a href='signin.php'>Entrar a Concertpush.</a></p>
+                <p><a href='signup.php'>Registrate.</a></p>
+            	</div>
+
+					";}
 				else{
 			?>
 			<div id="signup-step-two">
@@ -119,8 +127,8 @@
 						</select>
 						<input type="text" name="dir_local" placeholder="Dirección">
 						<input type="text" name="aforo" placeholder="Aforo">
-						<input type="text" name="telefono_local" placeholder="Teléfono">
-						<input type="url" name="web_local" placeholder="Página web">
+						<input type="text" name="telefono_local" placeholder="Teléfono (Opcional)">
+						<input type="url" name="web_local" placeholder="Página web (Opcional)">
 						<input type='hidden' name='email' value='<?php echo $emailR ?>'>
 						<input type='hidden' name='password' value='<?php echo $passR ?>'>
 						<input type='hidden' name='user' value='<?php echo $userR ?>'>
@@ -134,7 +142,7 @@
 						<input type="text" name="nombre_musico" placeholder="Nombre artistico">
 						<input type="text" name="num_miembros" placeholder="Numero de miembros">
 						<select name="genero">
-						<?php
+							<?php
 						$generos = AllGeneros();
 							while ($fila = mysqli_fetch_array($generos)) {
         					extract($fila);
@@ -156,8 +164,8 @@
 						<select class="ciudad" name="ciudad_musico" required>
 							<option value="">Municipio</option>
 						</select>
-						<input type="text" name="telefono_musico" placeholder="Teléfono">
-						<input type="url" name="web_musico" placeholder="Página web">
+						<input type="text" name="telefono_musico" placeholder="Teléfono (Opcional)">
+						<input type="url" name="web_musico" placeholder="Página web (Opcional)">
 						<input type='hidden' name='email' value='<?php echo $emailR ?>'>
 						<input type='hidden' name='password' value='<?php echo $passR ?>'>
 						<input type='hidden' name='user' value='<?php echo $userR ?>'>
@@ -184,8 +192,8 @@
 						<select class="ciudad" name="ciudad_fan" required>
 							<option value="">Municipio</option>
 						</select>
-						<input type="text" name="telefono_fan" placeholder="Teléfono">
-						<input type="url" name="web_fan" placeholder="Página web">
+						<input type="text" name="telefono_fan" placeholder="Teléfono (Opcional)">
+						<input type="url" name="web_fan" placeholder="Página web (Opcional)">
 						<div id="user-sex">
 							<span>Sexo:</span>
 							<label for="fan-hombre">Hombre</label>
