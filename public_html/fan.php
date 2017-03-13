@@ -11,7 +11,28 @@
 	<script src="js/src/menu.js"></script>
 </head>
 <body>
-	<?php require_once 'bbdd_1.php';?>
+	<?php require_once 'bbdd_1.php';
+		if (isset($_POST["vote"])) {
+			switch ($_POST["vote"]) {
+				case "voteConcert":
+					$conId = $_POST["conId"];
+					addConVote(15,$conId);
+					break;
+				case "delVoteConcert":
+					$conId = $_POST["conId"];
+					delConVote(15,$conId);
+					break;
+				case "voteMusic":
+					$musicId = $_POST["musicId"];
+					addMusicVote(15,$musicId);
+					break;
+				case "delVoteMusic":
+					$musicId = $_POST["musicId"];
+					delMusicVote(15,$musicId);
+					break;
+			}
+		}
+	?>
 	<header>
 		<?php require_once 'includes/header-intranet.php'; ?>
 	</header>
@@ -39,7 +60,7 @@
 								<th>Fecha</th>
 								<th>Hora</th>
 								<th width="20%">Ciudad</th>
-								<th width="25%">Local</th>
+								<th width="26%">Local</th>
 								<th width="26%">Músico</th>
 								<th>Votos</th>
 								<th>Vota</th>
@@ -49,16 +70,39 @@
 							<?php 
 								//Llamamos a la funcion de la tabla 1 de fans
 							$FanVotaConciertos = FanVotaConciertos();
-
 								//Extraccion de datos
 							while ($fila = mysqli_fetch_array($FanVotaConciertos)) {
-								echo "<tr>";
 								extract($fila);
-								echo "<td> $dia </td><td> $hora </td><td> $nombre </td><td><a href=''>$local</a></td><td><a href=''>$musico</a></td><td> $votos </td>";
-								echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
-								echo "</tr>";
-							} 
-							?>
+								echo "<tr>
+										<td>$dia</td>
+										<td>$hora</td>
+										<td>$municipio</td>
+										<td>$local</td>
+										<td>$musico</td>
+										<td>$votos</td>";
+								// Comprobamos si el fan ha votado a este concierto
+								// Si ha votado puede retirar el voto, si no ha votado puede votar.
+								// Pongo 15 como ID del fan por que aun no hay session donde recoger la ID del fan.	
+								$fanVote = fanVoteConcert($id_concierto,15);
+								$voted = mysqli_fetch_array($fanVote);
+								if ($voted["fan"] == 15) {
+									echo "<td>
+									<form action='' method='post'>
+									<input type='hidden' name='conId' value='$id_concierto'>
+									<button name='vote' value='delVoteConcert' class='fa fa-lg fa-thumbs-o-down thumbsdown' title='-1'>
+									</form>
+									</td>
+									</tr>";
+								} else {
+								echo "<td>
+									<form action='' method='post'>
+									<input type='hidden' name='conId' value='$id_concierto'>
+									<button name='vote' value ='voteConcert' class='fa fa-lg fa-thumbs-o-up thumbsup' title='+1'>
+									</form>
+									</td>
+									</tr>";
+								}
+							} ?>
 						</tbody>
 					</table>
 				</div>
@@ -70,7 +114,7 @@
 						<thead>
 							<tr>
 								<th colspan="2">Músico / Grupo</th>
-								<th>Género</th>
+								<th  width="25%">Género</th>
 								<th>Votos</th>
 								<th>Vota</th>
 							</tr>
@@ -79,16 +123,37 @@
 							<?php 
 								//Llamamos a la funcion de la tabla 2 de fans
 							$FanVotaMusicos = FanVotaMusicos();
-
 								//Extraccion de datos
-							while ($fila2 = mysqli_fetch_array($FanVotaMusicos)) {
-								echo "<tr>";
-								extract($fila2);
-								echo "<td><a href=''><img src='$imagen' alt=''></a></td><td width='60%'><a href=''>$nombre</a></td><td width='25%'> $genero </td><td> $votos </td>";
-								echo '<td><a href="" title="+1"><i class="fa fa-lg fa-thumbs-o-up thumbsup"></i></a></td>';
-								echo "</tr>";
-							} 
-							?>
+							while ($fila = mysqli_fetch_array($FanVotaMusicos)) {
+								extract($fila);
+								echo "<tr>
+										<td><img src='$imagen' alt=''></td>
+										<td width='60%'>$nombre</td>
+										<td>$genero</td>
+										<td>$votos</td>";
+								// Comprobamos si el fan ha votado a este musico
+								// Si ha votado puede retirar el voto, si no ha votado puede votar.
+								// Pongo 15 como ID del fan por que aun no hay session donde recoger la ID del fan.			
+								$fanVote = fanVoteMusic($musico,15);
+								$voted = mysqli_fetch_array($fanVote);
+								if ($voted["fan"] == 15) {
+									echo "<td>
+									<form action='' method='post'>
+									<input type='hidden' name='musicId' value='$musico'>
+									<button name='vote' value='delVoteMusic' class='fa fa-lg fa-thumbs-o-down thumbsdown' title='-1'>
+									</form>
+									</td>
+									</tr>";
+								} else {
+								echo "<td>
+									<form action='' method='post'>
+									<input type='hidden' name='musicId' value='$musico'>
+									<button name='vote' value ='voteMusic' class='fa fa-lg fa-thumbs-o-up thumbsup' title='+1'>
+									</form>
+									</td>
+									</tr>";
+								}
+							} ?>
 						</tbody>
 					</table>
 				</div>

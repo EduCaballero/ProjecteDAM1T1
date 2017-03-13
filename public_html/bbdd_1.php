@@ -40,11 +40,11 @@ function altaUsuario($email,$pass,$user,$ciudad,$telefono,$web,$nombre) {
     // Insertamos en la bbdd
     if (mysqli_query($con, $insert)) {
         echo '
-            <div id="done">
-                <p><b>Gracias por registrarte.</b></p>
-                <p><a href="signin.php">Entrar a Concertpush con tu cuenta.</a></p>
-                <p><a href="index.php">Ir a la pagina principal.</a></p>
-            </div>
+        <div id="done">
+            <p><b>Gracias por registrarte.</b></p>
+            <p><a href="signin.php">Entrar a Concertpush con tu cuenta.</a></p>
+            <p><a href="index.php">Ir a la pagina principal.</a></p>
+        </div>
         ';
     } else {
         // Si hay error lo mostramos por pantalla
@@ -100,10 +100,8 @@ function altaLocal($dir,$aforo) {
     $insert = "insert into local(id_local,aforo,direccion) 
     values('$id[0]',$aforo,'$dir')";
     // Insertamos en la bbdd
-    if (mysqli_query($con, $insert)) {
-        // Ha ido todo bien
-    } else {
-        // Si hay error lo mostramos por pantalla
+    if (!mysqli_query($con, $insert)) {
+       // Si hay error lo mostramos por pantalla
         echo mysqli_error($con);
     }
     // Desconectamos
@@ -151,16 +149,16 @@ function MusicoAsignado() {
 
 //Fans Tabla 1
 function FanVotaConciertos() {
-    $con = connect("db4959381_proyecto");
-    $select = "select concierto.dia, concierto.hora, ciudad.nombre, loc.nombre as local, music.nombre as musico, count(*) as votos 
+    $con = connect("proyecto");
+    $select = "select concierto.dia, concierto.hora, municipios.municipio, loc.nombre as local, music.nombre as musico, count(*) as votos, concierto.id_concierto
     from concierto
     inner join propuesta on propuesta.concierto=concierto.id_concierto
     inner join usuario as loc on concierto.local=loc.id_usuario
     inner join usuario as music on propuesta.musico = music.id_usuario
-    inner join ciudad on loc.ciudad=ciudad.id_ciudad
+    inner join municipios on loc.ciudad=municipios.id
     join voto_concierto on voto_concierto.concierto=concierto.id_concierto
     where propuesta.aceptado = 1
-    group by voto_concierto.concierto,concierto.dia, concierto.hora, ciudad.nombre, loc.nombre, music.nombre
+    group by voto_concierto.concierto,concierto.dia, concierto.hora, municipios.municipio, loc.nombre, music.nombre
     ORDER BY dia ASC LIMIT 5
     ";
     // Ejecutamos la consulta y recogemos el resultado
@@ -173,8 +171,8 @@ function FanVotaConciertos() {
 
 //Fans Tabla 2
 function FanVotaMusicos() {
-    $con = connect("db4959381_proyecto");
-    $select = "select usuario.imagen, usuario.nombre, genero.nombre as genero, count(*) as votos
+    $con = connect("proyecto");
+    $select = "select usuario.imagen, usuario.nombre, genero.nombre as genero, count(*) as votos, voto_musico.musico
     from musico
     inner join genero on genero.id_genero=musico.genero
     inner join usuario on usuario.id_usuario=musico.id_musico
@@ -187,6 +185,62 @@ function FanVotaMusicos() {
     disconnect($con);
     // devolvemos el resultado
     return $resultado;
+}
+
+function fanVoteConcert($concertId,$fanId) {
+   $con = connect("proyecto");
+   $select = "select voto_concierto.fan
+   from voto_concierto
+   where voto_concierto.concierto = '$concertId' and voto_concierto.fan = '$fanId'";
+   $res = mysqli_query($con, $select);
+   disconnect($con);
+   return $res;            
+}
+
+function fanVoteMusic($musicId,$fanId) {
+   $con = connect("proyecto");
+   $select = "select voto_musico.fan
+   from voto_musico
+   where voto_musico.musico = '$musicId' and voto_musico.fan = '$fanId'";
+   $res = mysqli_query($con, $select);
+   disconnect($con);
+   return $res;            
+}
+
+function addConVote($fanId,$conId) {
+    $con = connect("proyecto");
+    $insert = "insert into voto_concierto values('$fanId','$conId')";
+    if (!mysqli_query($con, $insert)) {
+        echo mysqli_error($con);
+    }
+    disconnect($con);
+}
+
+function delConVote($fanId,$conId) {
+    $con = connect("proyecto");
+    $delete = "delete from voto_concierto where fan='$fanId' and concierto='$conId'";
+    if (!mysqli_query($con, $delete)) {
+        echo mysqli_error($con);
+    }
+    disconnect($con);
+}
+
+function addMusicVote($fanId,$musicId) {
+    $con = connect("proyecto");
+    $insert = "insert into voto_musico values('$fanId','$musicId')";
+    if (!mysqli_query($con, $insert)) {
+        echo mysqli_error($con);
+    }
+    disconnect($con);
+}
+
+function delMusicVote($fanId,$musicId) {
+    $con = connect("proyecto");
+    $delete = "delete from voto_musico where fan='$fanId' and musico='$musicId'";
+    if (!mysqli_query($con, $delete)) {
+        echo mysqli_error($con);
+    }
+    disconnect($con);
 }
 
 //CONEXION BBDD

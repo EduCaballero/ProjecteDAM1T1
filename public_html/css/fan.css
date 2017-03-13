@@ -12,6 +12,12 @@
 	text-align: center;
 }
 
+button {
+	background-color: transparent;
+	border: 0;
+	cursor: pointer;
+}
+
 .thumbsup {
 	color: #3b5998;
 }
