@@ -1,0 +1,89 @@
+#form-container {
+	padding: 0 0 15px 0;
+}
+
+#form-container h2 {
+	font-weight: normal;
+	padding-left: 14px;
+}
+
+.form-profile h2 span {
+	margin-right: 8px;
+}
+
+.form-row {
+	border-top: 1px solid #ddd;
+	width: 100%;
+}
+
+.form-row label {
+	display: inline-block;
+	width: 20%;
+	text-align: right;
+	color: #6f6f6f;
+	font-weight: bold;
+	padding: 12px 10px;
+	line-height: 30px;
+	box-sizing: border-box;
+	border-right: 1px solid #ddd;
+	white-space: nowrap;
+}
+
+.form-row:last-child label {
+	border-right: 0;
+}
+
+.input-wrap {
+	vertical-align: baseline;
+	width: 80%;
+	padding: 12px;
+}
+
+.input-wrap input[type="text"],input[type="email"],
+input[type="password"],input[type="url"], select {
+	font-family: inherit;
+	font-size: inherit;
+	padding: 5px 10px;
+	border: 1px solid rgba(0,0,0,0.3);
+	box-sizing: border-box;
+	width: 100%;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+}
+
+.input-wrap select {
+	padding: 5px 6px;
+}
+
+.input-wrap input[type="text"]:focus,input[type="email"]:focus,
+input[type="password"]:focus,input[type="url"]:focus, 
+select:focus {
+	border: 1px solid #4cb1ff;
+	background-color: #fff;
+}
+
+@media screen and (max-width: 1080px) {
+	#form-container {
+		border-bottom: 1px solid rgba(0,0,0,0.2)
+	}
+
+	.form-row {
+		border-top: 0;
+	}
+
+	.form-row label {
+		border-right: 0;
+		padding: 10px 10px 0 10px;
+		line-height: 18px;
+		text-align: left;
+	}
+	
+	.input-wrap {
+		width: 100%;
+		padding: 3px 10px 8px 10px;
+	}
+
+	.form-row:last-child {
+		text-align: center;
+	}
+}
