@@ -1,5 +1,13 @@
 <?php 
 
+function checkEmail($reqEmail) {
+    $con = connect("proyecto");
+    $select = "select mail from usuario where mail = '$reqEmail'";
+    $res = mysqli_query($con,$select);
+    disconnect($con);
+    return $res;
+}
+
 function AllGeneros() {
     $con = connect("proyecto");
     $select = "select * from genero";

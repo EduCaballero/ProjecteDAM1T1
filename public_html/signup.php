@@ -38,7 +38,7 @@
 		    $genero = $_POST["genero"];
 		    $telefono = $_POST["telefono_musico"];
 		    $web = $_POST["web_musico"];
-		    $ciudad = $_POST["ciudad_music"];
+		    $ciudad = $_POST["ciudad_musico"];
 		    $email = $_POST["email"];
 			$pass = $_POST["password"];
 			$user = $_POST["user"];
@@ -89,18 +89,6 @@
 				$emailR = $_POST["email"];
 				$passR = $_POST["password"];
 				$userR = $_POST["usertype"];
-
-				//Verificamos que el email a registrar no esta en la bbdd
-				$email=selectEmail($emailR);
-				$controlEmail = mysqli_fetch_array($email);
-				if ($controlEmail["mail"]==$emailR) {
-					echo "
-					<div id='done'>
-	                <p><b>El email introducido ya existe.</b></p>
-	                <p><a href='index.php'>Ir a la página principal.</a></p>
-	                <p><a href='signup.php'>Volver al registro.</a></p>
-	            	</div>";
-				} else {
 			?>
 			<div id="signup-step-two">
 			<?php if ($userR=='L') { ?>
@@ -137,14 +125,13 @@
 						<input type="text" name="nombre_musico" placeholder="Nombre artistico">
 						<input type="text" name="num_miembros" placeholder="Numero de miembros">
 						<select name="genero">
-							<?php
+						<?php
 						$generos = AllGeneros();
-							while ($fila = mysqli_fetch_array($generos)) {
-        					extract($fila);
-       						echo "<option value='$id_genero'>$nombre";
-        					echo "</option>";
-    						}
-    						?>
+						while ($fila = mysqli_fetch_array($generos)) {
+	        				extract($fila);
+	       					echo "<option value='$id_genero'>$nombre</option>";
+    					}
+    					?>
 						</select>
                         <select class="provincia" name="provincia">
                         	<option value="">Provincia</option>
@@ -241,8 +228,7 @@
 			<input type="submit" class="btn btn-submit" name="reg-fan" value="Registrarte">
 		</div>              
 	</form>
-	<?php 
-			}
+	<?php 			
 			} 
 		}
 	} 

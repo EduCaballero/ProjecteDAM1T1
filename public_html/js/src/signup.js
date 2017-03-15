@@ -18,7 +18,15 @@ $(document).ready(function() {
 			email: {
 				required: true,
 				maxlength: 80,
-				email: true
+				email: true,
+				remote: {
+				 	url: "validateEmail.php",
+                    type: "post",
+                    data: { email: function() {
+                    		return $('#reg-user :input[name="email"]').val();
+                    	}
+                	}
+				}
 			},
 			password: {
 				required: true,
@@ -35,7 +43,8 @@ $(document).ready(function() {
 			email: {
 				required: "Este campo es obligatorio",
 				maxlength: "Por favor, introduce no más de 80 caracteres",
-				email: "Introduce una direccion de email valida"
+				email: "Introduce una direccion de email valida",
+				remote: "Este correo ya está en uso"
 			},
 			password: {
 				required: "Este campo es obligatorio",
