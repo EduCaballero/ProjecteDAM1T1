@@ -32,7 +32,7 @@
 			$user = $_POST["user"];
         	altaUsuario($email,$pass,$user,$ciudad,$telefono,$web,$nombre);
         	altaLocal($dir,$aforo);
-        } else if(isset($_POST["reg-music"])) {
+        } else if (isset($_POST["reg-music"])) {
         	$nombre = $_POST["nombre_musico"];
         	$numMiembros = $_POST["num_miembros"];
 		    $genero = $_POST["genero"];
@@ -63,7 +63,7 @@
 	?>
 	<div id="signin-signup-container">
 		<div id="signup-form-two-steps">
-		<?php if(!isset($_POST["next"])) { ?>
+		<?php if (!isset($_POST["next"])) { ?>
 			<div id="signup-step-one">
 				<form id="reg-user" action="" method="post">
 					<div class="signin-signup-form">
@@ -92,20 +92,15 @@
 
 				//Verificamos que el email a registrar no esta en la bbdd
 				$email=selectEmail($emailR);
-				while($row = mysqli_fetch_array($email)){
-					$controlEmail=$row["mail"];
-				}
-				if(isset($controlEmail)){
-				if($controlEmail===$emailR)echo "
-
-				<div id='done'>
-                <p><b>El email introducido ya existe.</b></p>
-                <p><a href='signin.php'>Entrar a Concertpush.</a></p>
-                <p><a href='signup.php'>Registrate.</a></p>
-            	</div>
-
-					";}
-				else{
+				$controlEmail = mysqli_fetch_array($email);
+				if ($controlEmail["mail"]==$emailR) {
+					echo "
+					<div id='done'>
+	                <p><b>El email introducido ya existe.</b></p>
+	                <p><a href='index.php'>Ir a la página principal.</a></p>
+	                <p><a href='signup.php'>Volver al registro.</a></p>
+	            	</div>";
+				} else {
 			?>
 			<div id="signup-step-two">
 			<?php if ($userR=='L') { ?>

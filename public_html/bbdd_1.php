@@ -159,8 +159,7 @@ function FanVotaConciertos() {
     join voto_concierto on voto_concierto.concierto=concierto.id_concierto
     where propuesta.aceptado = 1
     group by voto_concierto.concierto,concierto.dia, concierto.hora, municipios.municipio, loc.nombre, music.nombre
-    ORDER BY dia ASC LIMIT 5
-    ";
+    ORDER BY dia ASC LIMIT 5";
     // Ejecutamos la consulta y recogemos el resultado
     $resultado = mysqli_query($con, $select);
     disconnect($con);
@@ -172,14 +171,13 @@ function FanVotaConciertos() {
 //Fans Tabla 2
 function FanVotaMusicos() {
     $con = connect("proyecto");
-    $select = "select usuario.imagen, usuario.nombre, genero.nombre as genero, count(*) as votos, voto_musico.musico
+    $select = "select usuario.imagen, usuario.nombre, genero.nombre as genero, count(voto_musico.fan) as votos, usuario.id_usuario as musico
     from musico
     inner join genero on genero.id_genero=musico.genero
     inner join usuario on usuario.id_usuario=musico.id_musico
     left join voto_musico on voto_musico.musico=usuario.id_usuario
-    group by usuario.imagen, voto_musico.musico, usuario.nombre, genero.nombre
-    order by votos desc limit 7
-    ";
+    group by usuario.id_usuario
+    order by votos desc limit 7";
     // Ejecutamos la consulta y recogemos el resultado
     $resultado = mysqli_query($con, $select);
     disconnect($con);
