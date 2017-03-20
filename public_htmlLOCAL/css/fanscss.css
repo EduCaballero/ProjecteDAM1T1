@@ -1,0 +1,21 @@
+#assigned h2, #pending h2 {
+	margin-bottom: 20px;
+}
+
+.voto-si{
+  background-color: #41BF3F;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	width: auto;
+	padding: 3px 12px;  
+}
+
+.voto-no{
+  background-color: grey;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	width: auto;
+	padding: 3px 12px;  
+}
