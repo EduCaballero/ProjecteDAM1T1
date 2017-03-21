@@ -13,60 +13,46 @@
 <body>
 	<?php require_once 'bbdd.php'; require_once 'bbdd_1.php';?>
 	<header>
-		<?php require_once 'includes/header-intranet.php'; 
-
-			$dia = date("d");
-			$mes = date("m");
-			$anyo = date("Y");
-			$hora = date("H");
-			$minutos = date("m");
-			echo "<script> function saberDia(){return '".$dia."'}</script>";
-			echo "<script> function saberMes(){return '".$mes."'}</script>";
-			echo "<script> function saberAnyo(){return '".$anyo."'}</script>";
-			echo "<script> function saberHora(){return '".$hora."'}</script>";
-			echo "<script> function saberMinutos(){return '".$minutos."'}</script>";
-		?>
-
-		<script type="text/javascript">
-
-			function checkdate(input,input2){
-			var validformat=/^\d{2}\/\d{2}\/\d{4}$/
-			var validformatHour=/^\d?\d:\d{2}$/; 	
-			var returnval=false
-			var dia = saberDia()
-			var mes = saberMes()
-			var anyo = saberAnyo()
-			var hora = saberHora()
-			var min = saberMinutos()
-
-			if (!validformat.test(input.value))
-				alert("Fecha: Formato invalido")
-			if(!validformatHour.test(input2.value))
-				alert("Hora: Formato invalido")
-			else{
-				var monthfield=input.value.split("/")[1]
-				var dayfield=input.value.split("/")[0]
-				var yearfield=input.value.split("/")[2]
-				var hourfield=input2.value.split(":")[0]
-				var minfield=input2.value.split(":")[1]
-				var dayobj = new Date(yearfield, monthfield-1, dayfield, hourfield, minfield)
-				var dayserv = new Date(anyo, mes-1, dia, hora, min)
-			if ((dayobj.getMonth()+1!=monthfield)||(dayobj.getDate()!=dayfield)||(dayobj.getFullYear()!=yearfield))
-				alert("Dia, mes, año incorrecto");
-			if(hourfield>23||hourfield<0)alert("Hora incorrecta");
-			if(minfield>59||hourfield<0)alert("Hora incorrecta");
-			var compareDates = dayobj>dayserv
-			if(compareDates == false)alert("La fecha no puede ser anterior a la actual");
-			else
-				//si va todo bien devolvemos true
-				returnval=true
-			}
-			if (returnval==false) input.select();
-				return returnval
-			}
-
-		</script>
+		<?php require_once 'includes/header-intranet.php'; ?>
 	</header>
+	<script type="text/javascript">
+	function checkdate(dateinp,hourinp) {
+		var validformat=/^\d{2}\/\d{2}\/\d{4}$/;
+		var validformatHour=/^\d?\d:\d{2}$/; 	
+		var dia = <?php echo date("d") ?>;
+		var mes = <?php echo date("m") ?>;
+		var anyo = <?php echo date("Y") ?>;
+
+		if (!validformat.test(dateinp.value)) {
+			alert("Formato de la fecha invalido");
+			dateinp.select();
+		} else if (!validformatHour.test(hourinp.value)) {
+			alert("Formato de la hora invalido");
+			hourinp.select();
+		} else {
+			var monthfield=dateinp.value.split("/")[1];
+			var dayfield=dateinp.value.split("/")[0];
+			var yearfield=dateinp.value.split("/")[2];
+			var hourfield=hourinp.value.split(":")[0];
+			var minfield=hourinp.value.split(":")[1];
+			var dateconc = new Date(yearfield, monthfield-1, dayfield, hourfield, minfield);
+			var dateserv = new Date(anyo, mes-1, dia);
+			if (dateconc.getMonth()+1 != monthfield || dateconc.getDate() != dayfield || dateconc.getFullYear() != yearfield) {
+				alert("Fecha incorrecta");
+				dateinp.select();
+			} else if (hourfield > 23 || hourfield < 0 || minfield > 59 || minfield < 0) {
+				alert("Hora incorrecta");
+				hourinp.select();
+			} else if (dateconc<dateserv) {
+				alert("La fecha no puede ser anterior a la actual");
+				dateinp.select();
+			} else { 
+				return true;
+			}
+		}
+		return false;
+	}
+	</script>
 	<div id="container">
 		<div id="profile">
 			<div class="content-container">
