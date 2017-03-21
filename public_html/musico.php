@@ -11,8 +11,9 @@
 	<script src="js/src/menu.js"></script>
 </head>
 <body>
+	<?php require_once 'bbdd.php'; ?>
 	<header>
-		<?php require_once 'includes/header-intranet.php'; require_once 'bbdd_1.php';?>
+		<?php require_once 'includes/header-intranet.php'; ?>
 	</header>
 	<div id="container">
 		<div id="profile">

@@ -15,6 +15,54 @@
 	<header>
 		<?php require_once 'includes/header-intranet.php'; ?>
 	</header>
+	<script type="text/javascript">
+	function checkdate(dateinp,hourinp) {
+		var validformat=/^\d{2}\/\d{2}\/\d{4}$/;
+		var validformatHour=/^\d?\d:\d{2}$/; 	
+		var dia = <?php echo date("d") ?>;
+		var mes = <?php echo date("m") ?>;
+		var anyo = <?php echo date("Y") ?>;
+
+		if (!validformat.test(dateinp.value)) {
+			alert("Formato de la fecha invalido");
+			dateinp.select();
+		} else if (!validformatHour.test(hourinp.value)) {
+			alert("Formato de la hora invalido");
+			hourinp.select();
+		} else {
+			var monthfield=dateinp.value.split("/")[1];
+			var dayfield=dateinp.value.split("/")[0];
+			var yearfield=dateinp.value.split("/")[2];
+			var hourfield=hourinp.value.split(":")[0];
+			var minfield=hourinp.value.split(":")[1];
+			var dateconc = new Date(yearfield, monthfield-1, dayfield, hourfield, minfield);
+			var dateserv = new Date(anyo, mes-1, dia);
+			if (dateconc.getMonth()+1 != monthfield || dateconc.getDate() != dayfield || dateconc.getFullYear() != yearfield) {
+				alert("Fecha incorrecta");
+				dateinp.select();
+			} else if (hourfield > 23 || hourfield < 0 || minfield > 59 || minfield < 0) {
+				alert("Hora incorrecta");
+				hourinp.select();
+			} else if (dateconc<dateserv) {
+				alert("La fecha no puede ser anterior a la actual");
+				dateinp.select();
+			} else { 
+				return true;
+			}
+		}
+		return false;
+	}
+	</script>
+	<?php
+	if (isset($_POST["create"])) {
+		$date = explode("/",$_POST["mydate"]);
+		$hour = explode(":",$_POST["mytime"]);
+		$genre = $_POST["genre"];
+		$pago = $_POST["pago"];
+		$local = 6;
+		insertConcierto($date[0],$date[1],$date[2],$hour[0],$hour[1],$pago,$local,$genre);
+	}
+	?>
 	<div id="container">
 		<div id="profile">
 			<div class="content-container">
@@ -34,41 +82,28 @@
 			<div id="create" class="content">
 				<div class="content-container">
 					<h2><span class="fa fa-calendar-plus-o"></span>Crear concierto</h2>
-					<form action="" method="POST">
+					<form onSubmit="return checkdate(this.mydate,this.mytime)" action="" method="post">
 						<div class="form-crt-row">
 							<div class="form-crt-row-sub">
-								<label>Fecha</label><input type="text" name="date" placeholder="dd/mm/aaaa" required/>
+								<label>Fecha</label><input type="text" name="mydate" placeholder="dd/mm/aaaa" required/>
 							</div><div class="form-crt-row-sub">				
-							<label>Hora</label><input type="text" name="time" placeholder="hh:mm" required/> 
+							<label>Hora</label><input type="text" name="mytime" placeholder="hh:mm" required/> 
 						</div>
 					</div><div class="form-crt-row">
 					<div class="form-crt-row-sub">
 						<label>Género</label><select name="genre" required>
-						<option value="">Género</option>
-						<option value="Pop">Pop</option>
-						<option value="Rock">Rock</option>
-						<option value="Disco">Disco</option>
-						<option value="Clasica">Clásica</option>
-						<option value="Heavy Metal">Heavy Metal</option>
-						<option value="Jazz">Jazz</option>
-						<option value="Blues">Blues</option>
-						<option value="Country">Country</option>
-						<option value="Electronica">Electronica</option>
-						<option value="Hip-hop">Hip-hop</option>
-						<option value="Dance">Dance</option>
-						<option value="House">House</option>
-						<option value="Trance">Trance</option>
-						<option value="Folk">Folk</option>
-						<option value="Punk">Punk</option>
-						<option value="Raggae">Raggae</option>
-						<option value="Alternative">Alternative</option>
-						<option value="Proressive">Progressive</option>
-						<option value="R&B and soul">Soul</option>
+						<?php
+						$generos = AllGeneros();
+							while ($fila = mysqli_fetch_array($generos)) {
+	        					extract($fila);
+	       						echo "<option value='$id_genero'>$nombre</option>";
+    						}
+    					?>
 					</select>
 				</div><div class="form-crt-row-sub">
 				<label>Pago</label><input type="text" name="pago" pattern="\d*" placeholder="€" required/></div>
 			</div>
-			<input type="submit" value="Crear" class="btn btn-submit"/>
+			<input type="submit" value="Crear" name="create" class="btn btn-submit"/>
 		</form>
 	</div>
 </div>

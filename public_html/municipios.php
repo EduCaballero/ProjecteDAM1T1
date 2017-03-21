@@ -1,5 +1,5 @@
 <?php
-	require_once 'bbdd_1.php';
+	require_once 'bbdd.php';
 
 	$id = $_POST["id"];
 	$municipios = selectMunicipiosByProv($id);

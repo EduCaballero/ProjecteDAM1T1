@@ -11,7 +11,7 @@
 	<script src="js/src/menu.js"></script>
 </head>
 <body>
-	<?php require_once 'bbdd_1.php';
+	<?php require_once 'bbdd.php';
 		if (isset($_POST["vote"])) {
 			switch ($_POST["vote"]) {
 				case "voteConcert":

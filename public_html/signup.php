@@ -17,7 +17,7 @@
 				<a href="index.php" title="ConcertPush" class="logo-link">ConcertPush</a>
 			</div>
 		</div>
-		<?php require_once('bbdd_1.php'); ?>
+		<?php require_once 'bbdd.php'; ?>
 	</header>
 	<?php
 		if (isset($_POST["reg-local"])) {
