@@ -1,20 +1,18 @@
 <?php 
 
 function insertConcierto($dia,$mes,$anyo,$hora,$min,$pago,$local,$genero) {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
     $insert = "insert into concierto(dia,hora,pago,local,genero,asignado) 
     values('$anyo-$mes-$dia','$hora:$min:00',$pago,$local,$genero,0)";
-    if (mysqli_query($con, $insert)) {
-       
-    } else {
+    if (!mysqli_query($con, $insert)) {
         echo mysqli_error($con);
     }
     disconnect($con);
 }
 
 function agenda() {
-	$con = connect("proyecto");
-	$select = "select concierto.dia, local.nombre as local, musico.nombre as musico
+	$con = connect("db4959381_proyecto");
+	$select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, local.nombre as local, musico.nombre as musico
 	from concierto
 	inner join usuario as local on concierto.local = local.id_usuario
 	inner join propuesta on propuesta.concierto = concierto.id_concierto
@@ -28,7 +26,7 @@ function agenda() {
 }
 
 function ranking() {
-	$con = connect("proyecto");
+	$con = connect("db4959381_proyecto");
 	$select = "select usuario.imagen, usuario.nombre as musico, genero.nombre as genero, count(voto_musico.fan) as votos 
 	from usuario
 	left join voto_musico on voto_musico.musico = usuario.id_usuario
@@ -43,8 +41,8 @@ function ranking() {
 }
 
 function concCreatedLoc() {
-	$con = connect("proyecto");
-	$select = "select concierto.dia, concierto.hora, genero.nombre as genero, concierto.pago, count(propuesta.musico) as inscritos
+	$con = connect("db4959381_proyecto");
+	$select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, genero.nombre as genero, concierto.pago, count(propuesta.musico) as inscritos
     from concierto 
     left join propuesta on propuesta.concierto = concierto.id_concierto
     join usuario on concierto.local = usuario.id_usuario
@@ -52,20 +50,20 @@ function concCreatedLoc() {
     where concierto.asignado = 0 and usuario.id_usuario = 6
     group by concierto.dia, concierto.hora, genero.nombre, concierto.pago
     order by concierto.dia asc limit 7";
-	$result = mysqli_query($con, $select);
-	disconnect($con);
-	return $result;
+    $result = mysqli_query($con, $select);
+    disconnect($con);
+    return $result;
 }
 
 function concAssignLoc() {
-	$con = connect("proyecto");
-	$select = "select concierto.dia, concierto.hora, genero.nombre as genero, usuario.nombre as musico, concierto.pago, count(*) as votos
+	$con = connect("db4959381_proyecto");
+	$select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, genero.nombre as genero, usuario.nombre as musico, concierto.pago, count(*) as votos
 	from concierto
 	join genero on concierto.genero = genero.id_genero
 	join propuesta on concierto.id_concierto = propuesta.concierto
 	join usuario on propuesta.musico = usuario.id_usuario 
 	join voto_concierto on voto_concierto.concierto = concierto.id_concierto
-	where propuesta.aceptado = 1 and concierto.local=6 
+	where propuesta.aceptado = 1 and concierto.local = 6 
 	group by voto_concierto.concierto, concierto.dia, concierto.hora, genero.nombre, usuario.nombre, concierto.pago";
 	$result = mysqli_query($con, $select);
 	disconnect($con);
@@ -73,7 +71,7 @@ function concAssignLoc() {
 }
 
 function selectEmail($email) {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
     $select = "select mail from usuario where mail = '$email'";
     $res = mysqli_query($con,$select);
     disconnect($con);
@@ -81,7 +79,7 @@ function selectEmail($email) {
 }
 
 function checkEmail($reqEmail) {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
     $select = "select mail from usuario where mail = '$reqEmail'";
     $res = mysqli_query($con,$select);
     disconnect($con);
@@ -89,7 +87,7 @@ function checkEmail($reqEmail) {
 }
 
 function AllGeneros() {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
     $select = "select * from genero";
     $res = mysqli_query($con,$select);
     disconnect($con);
@@ -97,7 +95,7 @@ function AllGeneros() {
 }
 
 function selectProvincias() {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
     $select = "select id, provincia from provincias";
     $res = mysqli_query($con,$select);
     disconnect($con);
@@ -105,7 +103,7 @@ function selectProvincias() {
 }
 
 function selectMunicipiosByProv($provincia) {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
     $select = "select id, municipio from municipios where provincia_id='$provincia'";
     $res = mysqli_query($con,$select);
     disconnect($con);
@@ -113,7 +111,7 @@ function selectMunicipiosByProv($provincia) {
 }
 
 function altaUsuario($email,$pass,$user,$ciudad,$telefono,$web,$nombre) {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
 // Tenemos la conexión con la BBDD :)
 // Preparamos el insert
     $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,imagen) values('$nombre','$email','$pass','$user','$ciudad','$telefono', 'img/default_profile.jpg')";
@@ -135,7 +133,7 @@ function altaUsuario($email,$pass,$user,$ciudad,$telefono,$web,$nombre) {
 }
 
 function altaFan($sex,$apellidos,$day,$month,$year) {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
 // Tenemos la conexión con la BBDD :)
     $idsel = mysqli_query($con,"select id_usuario from usuario order by id_usuario desc limit 1");
     $id = mysqli_fetch_array($idsel,MYSQLI_NUM);
@@ -154,7 +152,7 @@ function altaFan($sex,$apellidos,$day,$month,$year) {
 }
 
 function altaMusico($numMiembros,$generoMusico) {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
 // Tenemos la conexión con la BBDD :)
     $idsel = mysqli_query($con,"select id_usuario from usuario order by id_usuario desc limit 1");
     $id = mysqli_fetch_array($idsel,MYSQLI_NUM);
@@ -173,7 +171,7 @@ function altaMusico($numMiembros,$generoMusico) {
 }
 
 function altaLocal($dir,$aforo) {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
     $idsel = mysqli_query($con,"select id_usuario from usuario order by id_usuario desc limit 1");
     $id = mysqli_fetch_array($idsel,MYSQLI_NUM);
 // Preparamos el insert
@@ -190,18 +188,17 @@ function altaLocal($dir,$aforo) {
 
 //Musicos Tabla 1
 function MusicoPendienteAsignar() {
-    $con = connect("proyecto");
-    $select = "select concierto.dia, concierto.hora, ciudad.nombre as ciudad, usuario.nombre as local, 
-    genero.nombre as genero, concierto.pago, count(*) as inscritos
+    $con = connect("db4959381_proyecto");
+    $select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio as ciudad, usuario.nombre as local, 
+    genero.nombre as genero, concierto.pago, count(propuesta.musico) as inscritos
     from propuesta
     join concierto on propuesta.concierto=concierto.id_concierto
     join usuario on concierto.local=usuario.id_usuario
-    join ciudad on usuario.ciudad=ciudad.id_ciudad
+    join municipios on usuario.ciudad=municipios.id
     join genero on concierto.genero=genero.id_genero
     where concierto.asignado = 0
-    group by concierto.dia, concierto.hora, ciudad.nombre, propuesta.concierto, usuario.nombre, genero.nombre, concierto.pago
-    order by concierto.dia asc limit 7
-    ";
+    group by concierto.dia, concierto.hora, municipios.municipio, propuesta.concierto, usuario.nombre, genero.nombre, concierto.pago
+    order by concierto.dia asc limit 7";
     // Ejecutamos la consulta y recogemos el resultado
     $resultado = mysqli_query($con, $select);
     disconnect($con);
@@ -211,15 +208,15 @@ function MusicoPendienteAsignar() {
 
 //Musicos Tabla 2
 function MusicoAsignado() {
-    $con = connect("proyecto");
-    $select = "select concierto.dia, concierto.hora, ciudad.nombre as ciudad, usuario.nombre as loc, local.direccion, concierto.pago
+    $con = connect("db4959381_proyecto");
+    $select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio as ciudad, usuario.nombre as loc, local.direccion, concierto.pago
     from concierto
     join usuario on usuario.id_usuario = concierto.local
-    join ciudad on usuario.ciudad=ciudad.id_ciudad
+    join municipios on usuario.ciudad=municipios.id
     join local on local.id_local = usuario.id_usuario
     join propuesta on propuesta.concierto=concierto.id_concierto
-    where propuesta.aceptado = 1 and propuesta.musico = 3 limit 7
-    ";
+    where propuesta.aceptado = 1 and propuesta.musico = 3 
+    order by concierto.dia asc limit 7";
     // Ejecutamos la consulta y recogemos el resultado
     $resultado = mysqli_query($con, $select);
     disconnect($con);
@@ -229,8 +226,8 @@ function MusicoAsignado() {
 
 //Fans Tabla 1
 function FanVotaConciertos() {
-    $con = connect("proyecto");
-    $select = "select concierto.dia, concierto.hora, municipios.municipio, local.nombre as local, musico.nombre as musico, count(voto_concierto.fan) as votos, concierto.id_concierto
+    $con = connect("db4959381_proyecto");
+    $select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio, local.nombre as local, musico.nombre as musico, count(voto_concierto.fan) as votos, concierto.id_concierto
     from concierto
     inner join propuesta on propuesta.concierto=concierto.id_concierto
     inner join usuario as local on concierto.local=local.id_usuario
@@ -250,7 +247,7 @@ function FanVotaConciertos() {
 
 //Fans Tabla 2
 function FanVotaMusicos() {
-    $con = connect("proyecto");
+    $con = connect("db4959381_proyecto");
     $select = "select usuario.imagen, usuario.nombre, genero.nombre as genero, count(voto_musico.fan) as votos, usuario.id_usuario as musico
     from musico
     inner join genero on genero.id_genero=musico.genero
@@ -266,7 +263,7 @@ function FanVotaMusicos() {
 }
 
 function fanVoteConcert($concertId,$fanId) {
- $con = connect("proyecto");
+ $con = connect("db4959381_proyecto");
  $select = "select voto_concierto.fan
  from voto_concierto
  where voto_concierto.concierto = '$concertId' and voto_concierto.fan = '$fanId'";
@@ -276,7 +273,7 @@ function fanVoteConcert($concertId,$fanId) {
 }
 
 function fanVoteMusic($musicId,$fanId) {
-	$con = connect("proyecto");
+	$con = connect("db4959381_proyecto");
  $select = "select voto_musico.fan
  from voto_musico
  where voto_musico.musico = '$musicId' and voto_musico.fan = '$fanId'";
@@ -286,7 +283,7 @@ function fanVoteMusic($musicId,$fanId) {
 }
 
 function addConVote($fanId,$conId) {
-	$con = connect("proyecto");
+	$con = connect("db4959381_proyecto");
     $insert = "insert into voto_concierto values('$fanId','$conId')";
     if (!mysqli_query($con, $insert)) {
         echo mysqli_error($con);
@@ -295,7 +292,7 @@ function addConVote($fanId,$conId) {
 }
 
 function delConVote($fanId,$conId) {
-	$con = connect("proyecto");
+	$con = connect("db4959381_proyecto");
     $delete = "delete from voto_concierto where fan='$fanId' and concierto='$conId'";
     if (!mysqli_query($con, $delete)) {
         echo mysqli_error($con);
@@ -304,7 +301,7 @@ function delConVote($fanId,$conId) {
 }
 
 function addMusicVote($fanId,$musicId) {
-	$con = connect("proyecto");
+	$con = connect("db4959381_proyecto");
     $insert = "insert into voto_musico values('$fanId','$musicId')";
     if (!mysqli_query($con, $insert)) {
         echo mysqli_error($con);
@@ -313,7 +310,7 @@ function addMusicVote($fanId,$musicId) {
 }
 
 function delMusicVote($fanId,$musicId) {
-	$con = connect("proyecto");
+	$con = connect("db4959381_proyecto");
     $delete = "delete from voto_musico where fan='$fanId' and musico='$musicId'";
     if (!mysqli_query($con, $delete)) {
         echo mysqli_error($con);
@@ -322,7 +319,7 @@ function delMusicVote($fanId,$musicId) {
 }
 
 function connect($database) {
-	$con = mysqli_connect("localhost", "root", "", $database)
+	$con = mysqli_connect("mysql128int.srv-hostalia.com", "u4959381_dam1t1", "1j/g1~aU@Zc;WFOx", $database)
 	or die("No se ha podido conectar a la BBDD");
 	mysqli_set_charset($con,"utf8");        
 	return $con;

@@ -17,7 +17,7 @@
 	</header>
 	<script type="text/javascript">
 	function checkdate(dateinp,hourinp) {
-		var validformat=/^\d{2}\/\d{2}\/\d{4}$/;
+		var validformat=/^\d{2}\-\d{2}\-\d{4}$/;
 		var validformatHour=/^\d?\d:\d{2}$/; 	
 		var dia = <?php echo date("d") ?>;
 		var mes = <?php echo date("m") ?>;
@@ -30,9 +30,9 @@
 			alert("Formato de la hora invalido");
 			hourinp.select();
 		} else {
-			var monthfield=dateinp.value.split("/")[1];
-			var dayfield=dateinp.value.split("/")[0];
-			var yearfield=dateinp.value.split("/")[2];
+			var monthfield=dateinp.value.split("-")[1];
+			var dayfield=dateinp.value.split("-")[0];
+			var yearfield=dateinp.value.split("-")[2];
 			var hourfield=hourinp.value.split(":")[0];
 			var minfield=hourinp.value.split(":")[1];
 			var dateconc = new Date(yearfield, monthfield-1, dayfield, hourfield, minfield);
@@ -55,7 +55,7 @@
 	</script>
 	<?php
 	if (isset($_POST["create"])) {
-		$date = explode("/",$_POST["mydate"]);
+		$date = explode("-",$_POST["mydate"]);
 		$hour = explode(":",$_POST["mytime"]);
 		$genre = $_POST["genre"];
 		$pago = $_POST["pago"];
@@ -85,13 +85,14 @@
 					<form onSubmit="return checkdate(this.mydate,this.mytime)" action="" method="post">
 						<div class="form-crt-row">
 							<div class="form-crt-row-sub">
-								<label>Fecha</label><input type="text" name="mydate" placeholder="dd/mm/aaaa" required/>
+								<label>Fecha</label><input type="text" name="mydate" placeholder="dd-mm-aaaa" required/>
 							</div><div class="form-crt-row-sub">				
 							<label>Hora</label><input type="text" name="mytime" placeholder="hh:mm" required/> 
 						</div>
 					</div><div class="form-crt-row">
 					<div class="form-crt-row-sub">
 						<label>Género</label><select name="genre" required>
+							<option value="">Elige un género</option>
 						<?php
 						$generos = AllGeneros();
 							while ($fila = mysqli_fetch_array($generos)) {
