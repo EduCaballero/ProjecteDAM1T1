@@ -1,0 +1,33 @@
+#vote-music .contentTable td:first-child {
+	padding: 4px 6px;
+}
+
+#vote-music .contentTable td:first-child img {
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+}
+
+#vote-music .contentTable td:first-child, .contentTable td:last-child {
+	text-align: center;
+}
+
+button {
+	background-color: transparent;
+	border: 0;
+	cursor: pointer;
+}
+
+.thumbsup {
+	color: #3b5998;
+}
+
+.thumbsdown {
+	color: #9c9c9c;
+}
+
+@media screen and (max-width: 1080px) {
+	#vote-music {
+		border-bottom: 1px solid rgba(0,0,0,0.2);
+	}
+}
