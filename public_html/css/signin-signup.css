@@ -109,7 +109,7 @@ li {
 
 .signin-signup-form {
 	margin-top: 90px;
-	padding: 15px;
+	padding: 15px 15px 5px 15px;
 	width: 100%;
 	background-color: #fff;
 	border: 1px solid rgba(0,0,0,0.2);
@@ -141,10 +141,6 @@ input[type="url"]:focus, select:focus{
 .signin-signup-form input[type="radio"] {
 	margin-right: 20px;
 	vertical-align: top;
-}
-
-.signin-signup-form input[type="url"]:last-child, select:last-child {
-	margin-bottom: 0;
 }
 
 #forgot {
@@ -222,8 +218,46 @@ input[type="url"]:focus, select:focus{
 	transform: translate(-50%, -30%);
 }
 
-label {
+.input-wrap {
+	position: relative;
+	width: 100%;
+}
+label.error {
+	position: absolute;
+	top: 35px;
+	left: 0;
+	font-size: 12px;
+	padding: 3px 6px;
+	z-index: 10;
+	background: #efe7e3;
+	border: 1px solid #f58484;
+	border-radius: 3px;
+}
 
+label.error:after, label.error:before {
+	bottom: 100%;
+	left: 20%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	
+}
+
+label.error:after {
+	border-color: rgba(213, 200, 205, 0);
+	border-bottom-color: #efe7e3;
+	border-width: 5px;
+	margin-left: -5px;
+}
+
+label.error:before {
+	border-color: rgba(245, 132, 132, 0);
+	border-bottom-color: #f58484;
+	border-width: 6px;
+	margin-left: -6px;
 }
 
 @media screen and (max-width: 380px) {

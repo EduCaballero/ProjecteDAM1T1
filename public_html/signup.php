@@ -68,15 +68,23 @@
 				<form id="reg-user" action="" method="post">
 					<div class="signin-signup-form">
 						<h1>Únete hoy a ConcertPush.</h1>
-						<input type="email" name="email" placeholder="Email">
-						<input type="password" id="password" name="password" placeholder="Contraseña">
-						<input type="password" name="confirm_password" placeholder="Reescribe la contraseña">
-						<select name="usertype" id="usertype">
-							<option value="">Tipo de usuario</option>
-							<option value="L">Local</option>
-							<option value="M">Músico</option>
-							<option value="F">Fan</option>
-						</select>
+						<div class="input-wrap">
+							<input type="email" name="email" placeholder="Email">
+						</div>
+						<div class="input-wrap">
+							<input type="password" id="password" name="password" placeholder="Contraseña">
+						</div>
+						<div class="input-wrap">
+							<input type="password" name="confirm_password" placeholder="Reescribe la contraseña">
+						</div>
+						<div class="input-wrap">
+							<select name="usertype" id="usertype">
+								<option value="">Tipo de usuario</option>
+								<option value="L">Local</option>
+								<option value="M">Músico</option>
+								<option value="F">Fan</option>
+							</select>
+						</div>
 					</div>
 					<input type="submit" class="btn btn-submit" name="next" value="Siguiente">
 				</form>
@@ -95,23 +103,36 @@
 				<form id="user-local" action="" method="post">
 					<div class="signin-signup-form">
 						<h1>Registro local</h1>
-						<input type="text" name="nombre_local" placeholder="Nombre del local">
-						<select class="provincia" name="provincia" required>
-							<option value="">Provincia</option>
-						<?php
-						$provincias=selectProvincias();
-						while ($row = mysqli_fetch_array($provincias)) {
-							echo "<option value='".$row["id"]."'>".$row["provincia"]."</option>";
-						}
-						?>
-						</select>
-						<select class="ciudad" name="ciudad_local" required>
-							<option value="">Municipio</option>
-						</select>
-						<input type="text" name="dir_local" placeholder="Dirección">
-						<input type="text" name="aforo" placeholder="Aforo">
-						<input type="text" name="telefono_local" placeholder="Teléfono (Opcional)">
-						<input type="url" name="web_local" placeholder="Página web (Opcional)">
+						<div class="input-wrap">
+							<input type="text" name="nombre_local" placeholder="Nombre del local">
+						</div>
+						<div class="input-wrap">
+							<select class="provincia" name="provincia" required>
+								<option value="">Provincia</option>
+								<?php
+								$provincias=selectProvincias();
+								while ($row = mysqli_fetch_array($provincias)) {
+									echo "<option value='".$row["id"]."'>".$row["provincia"]."</option>";
+								} ?>
+							</select>
+						</div>
+						<div class="input-wrap">
+							<select class="ciudad" name="ciudad_local" required>
+								<option value="">Municipio</option>
+							</select>
+						</div>
+						<div class="input-wrap">
+							<input type="text" name="dir_local" placeholder="Dirección">
+						</div>
+						<div class="input-wrap">
+							<input type="text" name="aforo" placeholder="Aforo">
+						</div>
+						<div class="input-wrap">
+							<input type="text" name="telefono_local" placeholder="Teléfono (Opcional)">
+						</div>
+						<div class="input-wrap">
+							<input type="url" name="web_local" placeholder="Página web (Opcional)">
+						</div>
 						<input type='hidden' name='email' value='<?php echo $emailR ?>'>
 						<input type='hidden' name='password' value='<?php echo $passR ?>'>
 						<input type='hidden' name='user' value='<?php echo $userR ?>'>
@@ -122,32 +143,44 @@
 				<form id="user-musico" action="" method="post">
 					<div class="signin-signup-form">
 						<h1>Registro músico</h1>
-						<input type="text" name="nombre_musico" placeholder="Nombre artistico">
-						<input type="text" name="num_miembros" placeholder="Numero de miembros">
-						<select name="genero">
-						<?php
-						$generos = AllGeneros();
-						while ($fila = mysqli_fetch_array($generos)) {
-	        				extract($fila);
-	       					echo "<option value='$id_genero'>$nombre</option>";
-    					}
-    					?>
-						</select>
-                        <select class="provincia" name="provincia">
-                        	<option value="">Provincia</option>
-						<?php
-						$provincias=selectProvincias();
-						while ($row = mysqli_fetch_array($provincias)) {
-							echo "<option value='".$row["id"]."'>".$row["provincia"]."</option>";
-						}
-						?>
-						</select>
-						</select>
-						<select class="ciudad" name="ciudad_musico" required>
-							<option value="">Municipio</option>
-						</select>
-						<input type="text" name="telefono_musico" placeholder="Teléfono (Opcional)">
-						<input type="url" name="web_musico" placeholder="Página web (Opcional)">
+						<div class="input-wrap">
+							<input type="text" name="nombre_musico" placeholder="Nombre artistico">
+						</div>
+						<div class="input-wrap">
+							<input type="text" name="num_miembros" placeholder="Numero de miembros">
+						</div>
+						<div class="input-wrap">
+							<select name="genero">
+								<option value="">Género</option>
+								<?php
+								$generos = AllGeneros();
+								while ($fila = mysqli_fetch_array($generos)) {
+			        				extract($fila);
+			       					echo "<option value='$id_genero'>$nombre</option>";
+		    					} ?>
+							</select>
+						</div>
+                        <div class="input-wrap">
+                        	<select class="provincia" name="provincia">
+                        		<option value="">Provincia</option>
+								<?php
+								$provincias=selectProvincias();
+								while ($row = mysqli_fetch_array($provincias)) {
+									echo "<option value='".$row["id"]."'>".$row["provincia"]."</option>";
+								} ?>
+							</select>
+						</div>
+						<div class="input-wrap">
+							<select class="ciudad" name="ciudad_musico" required>
+								<option value="">Municipio</option>
+							</select>
+						</div>
+						<div class="input-wrap">
+							<input type="text" name="telefono_musico" placeholder="Teléfono (Opcional)">
+						</div>
+						<div class="input-wrap">
+							<input type="url" name="web_musico" placeholder="Página web (Opcional)">
+						</div>
 						<input type='hidden' name='email' value='<?php echo $emailR ?>'>
 						<input type='hidden' name='password' value='<?php echo $passR ?>'>
 						<input type='hidden' name='user' value='<?php echo $userR ?>'>
@@ -159,82 +192,97 @@
 					<div class="signin-signup-form">
 						<h1>Registro fan</h1>
 						<ul>
-                            <li><input type="text" id="nombre_fan" name="nombre_fan" placeholder="Nombre"></li><li><input type="text" id="apellidos_fan" name="apellidos_fan" placeholder="Apellidos"></li>
+                            <li>
+                            	<div class="input-wrap">
+                            		<input type="text" id="nombre_fan" name="nombre_fan" placeholder="Nombre">
+                            	</div>
+                            </li><li>
+                            	<div class="input-wrap"><input type="text" id="apellidos_fan" name="apellidos_fan" placeholder="Apellidos">
+                            	</div>
+                            </li>
 						</ul>
-						<select class="provincia" name="provincia">
-                        	<option value="">Provincia</option>
-						<?php
-						$provincias=selectProvincias();
-						while ($row = mysqli_fetch_array($provincias)) {
-							echo "<option value='".$row["id"]."'>".$row["provincia"]."</option>";
-						}
-						?>
-						</select>
-						</select>
-						<select class="ciudad" name="ciudad_fan" required>
-							<option value="">Municipio</option>
-						</select>
-						<input type="text" name="telefono_fan" placeholder="Teléfono (Opcional)">
-						<input type="url" name="web_fan" placeholder="Página web (Opcional)">
-						<div id="user-sex">
-							<span>Sexo:</span>
-							<label for="fan-hombre">Hombre</label>
-							<input id="fan-hombre" type="radio" name="fan_sex" value="H">
-							<label for="fan-mujer">Mujer</label>
-							<input id="fan-mujer" type="radio" name="fan_sex" value="M">
+						<div class="input-wrap">
+							<select class="provincia" name="provincia">
+                        		<option value="">Provincia</option>
+								<?php
+								$provincias=selectProvincias();
+								while ($row = mysqli_fetch_array($provincias)) {
+									echo "<option value='".$row["id"]."'>".$row["provincia"]."</option>";
+								} ?>
+							</select>
+						</div>
+						<div class="input-wrap">
+							<select class="ciudad" name="ciudad_fan" required>
+								<option value="">Municipio</option>
+							</select>
+						</div>
+						<div class="input-wrap">
+							<input type="text" name="telefono_fan" placeholder="Teléfono (Opcional)">
+						</div>
+						<div class="input-wrap">
+							<input type="url" name="web_fan" placeholder="Página web (Opcional)">
+						</div>
+						<div class="input-wrap">
+							<div id="user-sex">
+								<span>Sexo:</span>
+								<label for="fan-hombre">Hombre</label>
+								<input id="fan-hombre" type="radio" name="fan_sex" value="H">
+								<label for="fan-mujer">Mujer</label>
+								<input id="fan-mujer" type="radio" name="fan_sex" value="M">
+							</div>
 						</div>
 						<span id="fecha-nac">Fecha de nacimiento</span>
 						<ul>
 							<li class="birthdate">
-								<select name="day">
+								<div class="input-wrap"><select name="day">
 									<option value="">Dia</option>
 									<?php
 									for ($i=1; $i<32;$i++) {
 										echo '<option value="'.$i.'">'.$i.'</option>';
-									}
-									?>
+									} ?>
 								</select>
+							</div>
 							</li><li class="birthdate">
-							<select name="month">
-								<option value="">Mes</option>
-								<option value="1">Enero</option>
-								<option value="2">Febrero</option>
-								<option value="3">Marzo</option>
-								<option value="4">Abril</option>	
-								<option value="5">Mayo</option>
-								<option value="6">Junio</option>
-								<option value="7">Julio</option>
-								<option value="8">Agosto</option>
-								<option value="9">Septiembre</option>
-								<option value="10">Octubre</option>
-								<option value="11">Noviembre</option>
-								<option value="12">Diciembre</option>
-							</select>
-						</li><li class="birthdate">
-						<select name="year">
-							<option value="">Año</option>
-							<?php
-							for ($i=2016; $i>1900;$i--) {
-								echo '<option value="'.$i.'">'.$i.'</option>';
-							}
-							?>
-						</select>
-					</li>
-				</ul>
-				<input type='hidden' name='email' value='<?php echo $emailR ?>'>
-				<input type='hidden' name='password' value='<?php echo $passR ?>'>
-				<input type='hidden' name='user' value='<?php echo $userR ?>'>
+								<div class="input-wrap">
+									<select name="month">
+										<option value="">Mes</option>
+										<option value="1">Enero</option>
+										<option value="2">Febrero</option>
+										<option value="3">Marzo</option>
+										<option value="4">Abril</option>	
+										<option value="5">Mayo</option>
+										<option value="6">Junio</option>
+										<option value="7">Julio</option>
+										<option value="8">Agosto</option>
+										<option value="9">Septiembre</option>
+										<option value="10">Octubre</option>
+										<option value="11">Noviembre</option>
+										<option value="12">Diciembre</option>
+									</select>
+								</div>
+							</li><li class="birthdate">
+								<div class="input-wrap">
+									<select name="year">
+										<option value="">Año</option>
+										<?php
+										for ($i=2016; $i>1900;$i--) {
+											echo '<option value="'.$i.'">'.$i.'</option>';
+										} ?>
+									</select>
+								</div>
+							</li>
+						</ul>
+						<input type='hidden' name='email' value='<?php echo $emailR ?>'>
+						<input type='hidden' name='password' value='<?php echo $passR ?>'>
+						<input type='hidden' name='user' value='<?php echo $userR ?>'>
+					</div>
+					<input type="submit" class="btn btn-submit" name="reg-fan" value="Registrarte">         
+				</form>
+				<?php 	} 
+					}
+				} ?>
 			</div>
-			<input type="submit" class="btn btn-submit" name="reg-fan" value="Registrarte">
-		</div>              
-	</form>
-	<?php 			
-			} 
-		}
-	} 
-	?>
-</div>
-</div>
-</div>
+		</div>
+	</div>
 </body>
 </html>

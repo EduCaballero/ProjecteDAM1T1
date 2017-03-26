@@ -1,4 +1,9 @@
 $(document).ready(function() {
+	jQuery.validator.addMethod("regex", function(value, element, regexp) {          
+		return this.optional(element) || regexp.test(value);
+		}, 
+		"Please enter a valid pasword."
+	);
 	$(".provincia").change(function() {
 		$.ajax({
 			type : "POST",
@@ -30,6 +35,7 @@ $(document).ready(function() {
 			},
 			password: {
 				required: true,
+				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/,
 				maxlength: 32,
 				minlength: 4
 			},
@@ -48,6 +54,7 @@ $(document).ready(function() {
 			},
 			password: {
 				required: "Este campo es obligatorio",
+				regex: "La contraseña contiene caracteres no permitidos",
 				maxlength: "Por favor, introduce no más de 32 caracteres",
 				minlength: "Por favor, introduce por lo menos 4 caracteres"
 			},
@@ -64,12 +71,14 @@ $(document).ready(function() {
 		rules: {
 			nombre_local: {
 				required: true,
-				maxlength: 60
+				maxlength: 60,
+				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/,
 			},
 			ciudad_local: "required",
 			dir_local: {
 				required: true,
-				maxlength: 60
+				maxlength: 60,
+				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/
 			},
 			aforo: {
 				required: true,
@@ -90,13 +99,15 @@ $(document).ready(function() {
 			nombre_local: {
 				required: "Este campo es obligatorio",
 				maxlength: "Por favor, introduce no más de 60 caracteres",
+				regex: "El nombre contiene caracteres no permitidos"
 			},
 			ciudad_local: {
-				required: "Este campo es obligatorio"
+				required: "Este campo es obligatorio",
 			},
 			dir_local: {
 				required: "Este campo es obligatorio",
 				maxlength: "Por favor, introduce no más de 60 caracteres",
+				regex: "La dirección contiene caracteres no permitidos"
 			},
 			aforo: {
 				required: "Este campo es obligatorio",
@@ -118,7 +129,8 @@ $(document).ready(function() {
 		rules: {
 			nombre_musico: {
 				required: true,
-				maxlength: 60
+				maxlength: 60,
+				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/
 			},
 			ciudad_local: "required",
 			genero: "required",
@@ -140,7 +152,8 @@ $(document).ready(function() {
 		messages: {
 			nombre_musico: {
 				required: "Este campo es obligatorio",
-				maxlength: "Por favor, introduce no mas de 60 caracteres"
+				maxlength: "Por favor, introduce no mas de 60 caracteres",
+				regex: "El nombre contiene caracteres no permitidos"
 			},
 			ciudad_local: {
 				required: "Este campo es obligatorio"
@@ -168,10 +181,13 @@ $(document).ready(function() {
 		rules: {
 			nombre_fan: {
 				required: true,
-				maxlength: 60
+				maxlength: 60,
+				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/
 			},
 			apellidos_fan: {
-				maxlength: 60
+				required: true,
+				maxlength: 60,
+				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/
 			},
 			telefono_fan: {
 				digits: true,
@@ -191,10 +207,13 @@ $(document).ready(function() {
 		messages: {
 			nombre_fan: {
 				required: "Este campo es obligatorio",
-				maxlength: "Por favor, introduce no mas de 60 caracteres"
+				maxlength: "Por favor, introduce no mas de 60 caracteres",
+				regex: "El nombre contiene caracteres no permitidos"
 			},
 			apellidos_fan: {
-				maxlength: "Por favor, introduce no mas de 60 caracteres"
+				required: "Este campo es obligatorio",
+				maxlength: "Por favor, introduce no mas de 60 caracteres",
+				regex: "Los apellidos contienen caracteres no permitidos"
 			},
 			telefono_fan: {
 				minlength: "Por favor, intruduce 9 caracteres como minimo",
