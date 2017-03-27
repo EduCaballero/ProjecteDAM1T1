@@ -65,25 +65,28 @@
 					<input type="submit" class="btn-submit" name="entrar" value="Iniciar sesión">
 				</form>
 				<?php
-		        if (isset($_POST["entrar"])) {
-		            $user = $_POST["email"];
-		            $pass = $_POST["password"];
-		            if (validateUser($user, $pass)) {
-		                session_start();
-		                $_SESSION["user"] = $user;
-		                $tipo = getTypeByUser($user);
-		                $_SESSION["tipo"] = $tipo;
-		                if ($tipo == "M") {
-		                    header("Location: musico.php");
-		                }else if($tipo == "L"){
-		                    header("Location: local.php");
-		                }else if($tipo == "F"){
-		                	header("Location: fan.php");
-		                }
-		            } else {
-		                //Mensaje de error
+			require_once 'bbdd.php';
+		    if (isset($_POST["entrar"])) {
+		    	$user = $_POST["email"];
+		        $pass = $_POST["password"];
+		        if (validateUser($user, $pass)) {
+		        	session_start();
+		            $_SESSION["user"] = $user;
+		            $tipo = getTypeByUser($user);
+		            $_SESSION["tipo"] = $tipo;
+		            $id = getIdByUser($user);
+		            $_SESSION["id"] = $id;
+		            if ($tipo == "M") {
+		            	header("Location: musico.php");
+		            }else if($tipo == "L"){
+		                 header("Location: local.php");
+		            }else if($tipo == "F"){
+		               	header("Location: fan.php");
 		            }
-		        }
+		    	} else {
+		            //Mensaje de error
+		        	}
+		    }
 	        ?>
 			</div>
 			<div id="modal-footer">
