@@ -1,9 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function() { 
 	jQuery.validator.addMethod("regex", function(value, element, regexp) {          
 		return this.optional(element) || regexp.test(value);
-		}, 
-		"Please enter a valid pasword."
-	);
+	});
 	$(".provincia").change(function() {
 		$.ajax({
 			type : "POST",
@@ -35,9 +33,9 @@ $(document).ready(function() {
 			},
 			password: {
 				required: true,
-				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/,
 				maxlength: 32,
-				minlength: 4
+				minlength: 4,
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
 			},
 			confirm_password: {
 				required: true,
@@ -72,13 +70,13 @@ $(document).ready(function() {
 			nombre_local: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/,
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
 			},
 			ciudad_local: "required",
 			dir_local: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
 			},
 			aforo: {
 				required: true,
@@ -130,7 +128,7 @@ $(document).ready(function() {
 			nombre_musico: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
 			},
 			ciudad_local: "required",
 			genero: "required",
@@ -182,12 +180,12 @@ $(document).ready(function() {
 			nombre_fan: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
 			},
 			apellidos_fan: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
 			},
 			telefono_fan: {
 				digits: true,
