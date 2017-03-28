@@ -1,6 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION["id"])) {
+	if($_SESSION["tipo"]=="L"){
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,5 +102,9 @@ if (isset($_SESSION["id"])) {
 </body>
 </html>
 <?php
-}else header("Location: index.php");
+}else{
+	if($_SESSION["tipo"]=="F")header("Location: ../fan/editfan.php");
+	else if($_SESSION["tipo"]=="M")header("Location: ../musico/editmusico.php");
+} 
+	}else header("Location: index.php");
 ?>

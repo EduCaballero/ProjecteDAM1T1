@@ -1,4 +1,16 @@
-<?php echo '
+<?php 
+session_start();
+if($_SESSION["tipo"]=="L"){
+	$url = 'local/editlocal.php';
+	$user = '../local.php';
+}else if($_SESSION["tipo"]=="M"){
+	$url = 'musico/editmusico.php';
+	$user = '../musico.php';
+}else if($_SESSION["tipo"]=="F"){
+		$url = 'fan/editfan.php';
+		$user = '../fan.php';
+	}
+echo '
 <nav id="mobile-menu" class="mobile-menu">
 	<div class="mobile-menu-top">ConcertPush</div>
 	<ul>
@@ -23,7 +35,7 @@
 	</form>
 	<nav id="user-menu">
 		<ul>
-			<li class="user-menu-item"><a href="" class="user-menu-link">USUARIO</a></li><li class="user-menu-item"><a href="" class="user-menu-link">EDITAR PERFIL</a></li><li class="user-menu-item"><a href="cerrarSesion.php" class="user-menu-link">SALIR</a></li>
+			<li class="user-menu-item"><a href="'.$user.'" class="user-menu-link">USUARIO</a></li><li class="user-menu-item"><a href="'.$url.'" class="user-menu-link">EDITAR PERFIL</a></li><li class="user-menu-item"><a href="cerrarSesion.php" class="user-menu-link">SALIR</a></li>
 		</ul>
 	</nav>
 </div>
