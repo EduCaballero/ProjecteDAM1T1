@@ -1,3 +1,10 @@
+<?php
+require_once 'bbdd.php';
+session_start();
+if (isset($_SESSION["id"])) {
+	if($_SESSION["tipo"]=="L") {
+		$userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +18,6 @@
 	<script src="js/src/menu.js"></script>
 </head>
 <body>
-	<?php require_once 'bbdd.php'; ?>
 	<header>
 		<?php require_once 'includes/header-intranet.php'; ?>
 	</header>
@@ -66,14 +72,28 @@
 	<div id="container">
 		<div id="profile">
 			<div class="content-container">
-				<div id="profileImg"><a href=""><img src="img/razzmatazz.jpg" alt=""></a></div>
+				<div id="profileImg"><a href=""><img src="<?php echo $userData["imagen"] ?>" alt=""></a></div>
 				<div id="profile-data">
-					<h2>Razzmatazz</h2>
+					<h2><?php echo $userData["nombre"] ?></h2>
 					<ul id=profile-data-sub>
-						<li><span class="fa fa-lg fa-map-marker icon-profile"></span><span>Barcelona</span></li>
-						<li><span class="fa fa-lg fa-phone icon-profile"></span><span>93 123 1231</span></li>
-						<li><span class="fa fa-envelope icon-profile"></span><span>info@razzmatazz.com</span></li>
-						<li><span class="fa fa-link icon-profile"></span><a href=""><span>razzmatazz.com</span></a></li>
+						<li>
+							<span class="fa fa-lg fa-map-marker icon-profile"></span><span><?php echo getMunicipioById($userData["ciudad"]) ?></span>
+						</li>
+						<?php if (isset($userData["telefono"])) { ?>
+						<li>
+							<span class="fa fa-lg fa-phone icon-profile"></span><span><?php echo $userData["telefono"] ?></span>
+						</li>
+						<?php } ?>
+						<li>
+							<span class="fa fa-envelope icon-profile"></span><span><?php echo $userData["mail"] ?></span>
+						</li>
+						<?php if (isset($userData["web"])) {
+							$url = explode("://",$userData["web"],2);
+						?>
+						<li>
+							<span class="fa fa-link icon-profile"></span><a href=""><span><?php echo $url[1] ?></span></a>
+						</li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -124,9 +144,9 @@
 			</thead>
 			<tbody>
 			<?php
-			$concCreated = concCreatedLoc();
+			$concCreated = concCreatedLoc($_SESSION["id"]);
 			while ($row = mysqli_fetch_array($concCreated)) {
-				echo"
+				echo "
 				<tr>
 					<td>".$row["dia"]."</td>
 					<td>".$row["hora"]."</td>
@@ -136,8 +156,7 @@
 					<td><a href=''>Eliminar</a></td>
 					<td><a href=''>Modificar</a></td>
 				</tr>";
-			}
-			?>
+			} ?>
 			</tbody>
 		</table>
 	</div>
@@ -159,9 +178,9 @@
 			</thead>
 			<tbody>
 			<?php
-			$concAssign = concAssignLoc();
+			$concAssign = concAssignLoc($_SESSION["id"]);
 			while ($row = mysqli_fetch_array($concAssign)) {
-				echo"
+				echo "
 				<tr>
 					<td>".$row["dia"]."</td>
 					<td>".$row["hora"]."</td>
@@ -172,8 +191,7 @@
 					<td><a href=''>Eliminar</a></td>
 					<td><a href=''>Modificar</a></td>
 				</tr>";
-			}
-			?>
+			} ?>
 			</tbody>
 		</table>
 	</div>
@@ -187,3 +205,10 @@
 </div>
 </body>
 </html>
+<?php
+	} else {
+		if ($_SESSION["tipo"]=="F") header("Location: fan.php");
+		else if ($_SESSION["tipo"]=="M") header("Location: musico.php");
+	} 
+} else header("Location: index.php");
+?>

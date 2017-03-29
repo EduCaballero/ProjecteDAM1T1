@@ -1,12 +1,7 @@
-$(document).ready(function() {
-  $("#overlay").click(function() {
-    $("body").removeClass("has-active-menu");
-  });
-  $(".mobile-menu-button").click(function() {
-     $("body").addClass("has-active-menu");
-  });
-});
-
+function enableMenu() {
+  var overlay = document.querySelector("body");
+  overlay.classList.add("has-active-menu");
+}
 
 function disableMenu() {
   var overlay = document.querySelector("body");
@@ -18,7 +13,7 @@ function disableMenu() {
 
 /*
  * Drop-down menu
- *
+ */
 
  $(document).ready(function() {
   $('.dropdown').hover(

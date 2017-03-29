@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="css/index.css">
 	<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Open+Sans|Roboto" rel="stylesheet"> 
 	<script src="js/src/jquery-3.1.1.min.js"></script>
-	<script src="js/src/menu.js"></script>
+	<script src="js/src/mobile.js"></script>
+	<script src="js/src/index.js"></script>
 </head>
 <body>
 	<?php require_once 'bbdd.php'; ?>
@@ -31,7 +32,7 @@
 			<div class="logo">
 				<a href="index.php" title="ConcertPush" class="logo-link">ConcertPush</a>
 			</div><div id="mobile-button-container">
-			<div class="mobile-menu-button" onclick="enableMenu()" title="Abrir menú">
+			<div class="mobile-menu-button" title="Abrir menú">
 				<span class="fa fa-bars"></span>
 			</div>
 		</div><div class="mobile-title"><h1>ConcertPush</h1></div>
@@ -46,7 +47,7 @@
 				</ul>
 			</div><div class="signin-signup">
 			<ul>
-				<li class="user-menu-item"><div class="user-menu-link signin" onclick="enableModal()">INICIAR SESIÓN</div></li><li class="user-menu-item"><a href="signup.php" class="user-menu-link">REGÍSTRATE</a></li>
+				<li class="user-menu-item"><div class="user-menu-link signin">INICIAR SESIÓN</div></li><li class="user-menu-item"><a href="signup.php" class="user-menu-link">REGÍSTRATE</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -64,11 +65,35 @@
 					<a href="">¿Olvidaste tu contraseña?</a>
 					<input type="submit" class="btn-submit" name="entrar" value="Iniciar sesión">
 				</form>
+				<?php
+			require_once 'bbdd.php';
+		    if (isset($_POST["entrar"])) {
+		    	$user = $_POST["email"];
+		        $pass = $_POST["password"];
+		        if (validateUser($user, $pass)) {
+		        	session_start();
+		            $_SESSION["user"] = $user;
+		            $tipo = getTypeByUser($user);
+		            $_SESSION["tipo"] = $tipo;
+		            $id = getIdByUser($user);
+		            $_SESSION["id"] = $id;
+		            if ($tipo == "M") {
+		            	header("Location: musico.php");
+		            }else if($tipo == "L"){
+		                 header("Location: local.php");
+		            }else if($tipo == "F"){
+		               	header("Location: fan.php");
+		            }
+		    	} else {
+		            //Mensaje de error
+		        	}
+		    }
+	        ?>
 			</div>
 			<div id="modal-footer">
 				¿Nuevo en ConcertPush? <a href="signup.php">Regístrate »</a>
 			</div>
-			<button type="button" class="fa fa-lg fa-close btn-close" onclick="disableMenu()"></button>	
+			<button type="button" class="fa fa-lg fa-close btn-close"></button>	
 		</div>
 	</div>
 </div>

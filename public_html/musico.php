@@ -1,3 +1,10 @@
+<?php
+require_once 'bbdd.php';
+session_start();
+if (isset($_SESSION["id"])) {
+	if($_SESSION["tipo"]=="M") {
+		$userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,25 +15,41 @@
 	<link rel="stylesheet" href="css/musico.css">
 	<link rel="stylesheet" href="css/intranet.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+	<script src="js/src/jquery-3.1.1.min.js"></script>
 	<script src="js/src/menu.js"></script>
 </head>
 <body>
-	<?php require_once 'bbdd.php'; ?>
 	<header>
 		<?php require_once 'includes/header-intranet.php'; ?>
 	</header>
 	<div id="container">
 		<div id="profile">
 			<div class="content-container">
-				<div id="profileImg"><a href=""><img src="img/musico.jpg" alt=""></a></div>
+				<div id="profileImg"><a href=""><img src="<?php echo $userData["imagen"] ?>" alt=""></a></div>
 				<div id="profile-data">
-					<h2>Darth Vader</h2>
+					<h2><?php echo $userData["nombre"] ?></h2>
 					<ul id="profile-data-sub">
-						<li><span class="fa fa-music icon-profile"></span><span>Clásica</span></li>
-						<li><span class="fa fa-lg fa-map-marker icon-profile"></span><span>Estrella de la Muerte</span></li>
-						<li><span class="fa fa-lg fa-phone icon-profile"></span><span>666 123 123</span></li>
-						<li><span class="fa fa-envelope icon-profile"></span><span>darthvader@starwars.com</span></li>
-						<li><span class="fa fa-link icon-profile"></span><a href=""><span>darthvader.com</span></a></li>
+						<li>
+							<span class="fa fa-music icon-profile"></span><span><?php echo getMusicGeneroById($_SESSION["id"]) ?></span>
+						</li>
+						<li>
+							<span class="fa fa-lg fa-map-marker icon-profile"></span><span><?php echo getMunicipioById($userData["ciudad"]) ?></span>
+						</li>
+						<?php if (isset($userData["telefono"])) { ?>
+						<li>
+							<span class="fa fa-lg fa-phone icon-profile"></span><span><?php echo $userData["telefono"] ?></span>
+						</li>
+						<?php } ?>
+						<li>
+							<span class="fa fa-envelope icon-profile"></span><span><?php echo $userData["mail"] ?></span>
+						</li>
+						<?php if (isset($userData["web"])) {
+							$url = explode("://",$userData["web"],2);
+						?>
+						<li>
+							<span class="fa fa-link icon-profile"></span><a href=""><span><?php echo $url[1] ?></span></a>
+						</li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -52,16 +75,21 @@
 							<?php 
 								//Llamamos a la funcion de la tabla 1 de musicos
 								$MusicoPendienteAsignar = MusicoPendienteAsignar();
-
 								//Extraccion de datos
 								while ($fila = mysqli_fetch_array($MusicoPendienteAsignar)) {
-                                	echo "<tr>";
                                     extract($fila);
-                                    echo "<td> $dia </td><td> $hora </td><td> $ciudad </td><td><a href=''>$local</a></td><td>$genero</td><td>$pago</td><td>$inscritos</td>";
-                                    echo '<td><a href="">Inscribirse</a></td>';
-                                    echo "</tr>";
-                                } 
-                               	?>
+                                    echo "
+                                    <tr>
+                                    	<td>$dia</td>
+                                    	<td>$hora</td>
+                                    	<td>$ciudad</td>
+                                    	<td>$local</td>
+                                    	<td>$genero</td>
+                                    	<td>$pago</td>
+                                    	<td>$inscritos</td>
+                                    	<td><a href=''>Inscribirse </a></td>
+                                    </tr>";
+                                } ?>
 						</tbody>
 					</table>
 				</div>
@@ -84,16 +112,20 @@
 
 							<?php 
 								//Llamamos a la funcion de la tabla 2 de musicos
-								$MusicoAsignado = MusicoAsignado();
-
+								$MusicoAsignado = MusicoAsignado($_SESSION["id"]);
 								//Extraccion de datos
 								while ($fila = mysqli_fetch_array($MusicoAsignado)) {
-                                	echo "<tr>";
                                     extract($fila);
-                                    echo "<td>$dia</td><td>$hora</td><td>$ciudad</td><td>$loc</td><td>$direccion</td><td>$pago</td>";
-                                    echo "</tr>";
-                                } 
-                               	?>
+                                    echo "
+                                    <tr>
+                                    	<td>$dia</td>
+                                    	<td>$hora</td>
+                                    	<td>$ciudad</td>
+                                    	<td>$loc</td>
+                                    	<td>$direccion</td>
+                                    	<td>$pago</td>
+                                    </tr>";
+                                } ?>
 						</tbody>
 					</table>
 				</div>
@@ -105,3 +137,10 @@
 	</div>
 </body>
 </html>
+<?php
+	} else {
+		if($_SESSION["tipo"]=="F") header("Location: fan.php");
+		else if($_SESSION["tipo"]=="L") header("Location: local.php");
+	} 
+} else header("Location: index.php");
+?>

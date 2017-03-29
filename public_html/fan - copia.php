@@ -1,10 +1,3 @@
-<?php
-require_once 'bbdd.php';
-session_start();
-if (isset($_SESSION["id"])) {
-	if($_SESSION["tipo"]=="F") {
-		$userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
-    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,24 +11,24 @@ if (isset($_SESSION["id"])) {
 	<script src="js/src/menu.js"></script>
 </head>
 <body>
-	<?php 
+	<?php require_once 'bbdd.php';
 		if (isset($_POST["vote"])) {
 			switch ($_POST["vote"]) {
 				case "voteConcert":
 					$conId = $_POST["conId"];
-					addConVote($_SESSION["id"],$conId);
+					addConVote(15,$conId);
 					break;
 				case "delVoteConcert":
 					$conId = $_POST["conId"];
-					delConVote($_SESSION["id"],$conId);
+					delConVote(15,$conId);
 					break;
 				case "voteMusic":
 					$musicId = $_POST["musicId"];
-					addMusicVote($_SESSION["id"],$musicId);
+					addMusicVote(15,$musicId);
 					break;
 				case "delVoteMusic":
 					$musicId = $_POST["musicId"];
-					delMusicVote($_SESSION["id"],$musicId);
+					delMusicVote(15,$musicId);
 					break;
 			}
 		}
@@ -46,21 +39,13 @@ if (isset($_SESSION["id"])) {
 	<div id="container">
 		<div id="profile">
 			<div class="content-container">
-				<div id="profileImg"><a href=""><img src="<?php echo $userData["imagen"] ?>" alt=""></a></div>
+				<div id="profileImg"><a href=""><img src="img/fan.jpg" alt=""></a></div>
 				<div id="profile-data">
-					<h2><?php echo $userData["nombre"] ?></h2>
+					<h2>Lance A. Baker</h2>
 					<ul id="profile-data-sub">
-						<li>
-							<span class="fa fa-lg fa-map-marker icon-profile"></span><span><?php echo getMunicipioById($userData["ciudad"]) ?></span>
-						</li>
-						<?php if (isset($userData["telefono"])) { ?>
-						<li>
-							<span class="fa fa-lg fa-phone icon-profile"></span><span><?php echo $userData["telefono"] ?></span>
-						</li>
-						<?php } ?>
-						<li>
-							<span class="fa fa-envelope icon-profile"></span><span><?php echo $userData["mail"] ?></span>
-						</li>
+						<li><span class="fa fa-lg fa-map-marker icon-profile"></span><span>Barcelona</span></li>
+						<li><span class="fa fa-lg fa-phone icon-profile"></span><span>674123123</span></li>
+						<li><span class="fa fa-envelope icon-profile"></span><span>lance332@yahoo.com</span></li>
 					</ul>
 				</div>
 			</div>
@@ -97,7 +82,10 @@ if (isset($_SESSION["id"])) {
 										<td>$votos</td>";
 								// Comprobamos si el fan ha votado a este concierto
 								// Si ha votado puede retirar el voto, si no ha votado puede votar.
-								if (fanVoteConcert($id_concierto,$_SESSION["id"])) {
+								// Pongo 15 como ID del fan por que aun no hay session donde recoger la ID del fan.	
+								$fanVote = fanVoteConcert($id_concierto,15);
+								$voted = mysqli_fetch_array($fanVote);
+								if ($voted["fan"] == 15) {
 									echo "<td>
 									<form action='' method='post'>
 									<input type='hidden' name='conId' value='$id_concierto'>
@@ -144,8 +132,11 @@ if (isset($_SESSION["id"])) {
 										<td>$genero</td>
 										<td>$votos</td>";
 								// Comprobamos si el fan ha votado a este musico
-								// Si ha votado puede retirar el voto, si no ha votado puede votar.		
-								if (fanVoteMusic($musico,$_SESSION["id"])) {
+								// Si ha votado puede retirar el voto, si no ha votado puede votar.
+								// Pongo 15 como ID del fan por que aun no hay session donde recoger la ID del fan.			
+								$fanVote = fanVoteMusic($musico,15);
+								$voted = mysqli_fetch_array($fanVote);
+								if ($voted["fan"] == 15) {
 									echo "<td>
 									<form action='' method='post'>
 									<input type='hidden' name='musicId' value='$musico'>
@@ -174,10 +165,3 @@ if (isset($_SESSION["id"])) {
 	</div>
 </body>
 </html>
-<?php
-	} else {
-		if($_SESSION["tipo"]=="L") header("Location: local.php");
-		else if($_SESSION["tipo"]=="M") header("Location: musico.php");
-	} 
-} else header("Location: index.php");
-?>
