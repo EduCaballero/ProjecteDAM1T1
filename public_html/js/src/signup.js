@@ -7,16 +7,17 @@ $(document).ready(function() {
 			type : "POST",
 			url : "municipios.php",
 			dataType : "json",
-			data: {id: $(".provincia").val()},
+			data: {id: $("#concertdate").val()},
 			success: function(data) {
 				$(".ciudad option").remove();
-				$.each(data, function(){
+				$.each(data, function() {
 					$(".ciudad").append('<option value="'+ this.id +'">'+ this.municipio +'</option>')
 				});
 			}
 		});
 	});
 	$("#reg-user").validate({
+		focusCleanup: true,
 		rules: {
 			email: {
 				required: true,
@@ -24,11 +25,7 @@ $(document).ready(function() {
 				email: true,
 				remote: {
 				 	url: "validateEmail.php",
-                    type: "post",
-                    data: { email: function() {
-                    		return $('#reg-user :input[name="email"]').val();
-                    	}
-                	}
+                    type: "post"
 				}
 			},
 			password: {
@@ -66,17 +63,18 @@ $(document).ready(function() {
 		}
 	});
 	$("#user-local").validate({
+		focusCleanup: true,
 		rules: {
 			nombre_local: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
 			},
 			ciudad_local: "required",
 			dir_local: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
 			},
 			aforo: {
 				required: true,
@@ -124,11 +122,12 @@ $(document).ready(function() {
 		}
 	});
 	$("#user-musico").validate({
+		focusCleanup: true,
 		rules: {
 			nombre_musico: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
 			},
 			ciudad_local: "required",
 			genero: "required",
@@ -176,16 +175,17 @@ $(document).ready(function() {
 		}
 	});
 	$("#user-fan").validate({
+		focusCleanup: true,
 		rules: {
 			nombre_fan: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
 			},
 			apellidos_fan: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
 			},
 			telefono_fan: {
 				digits: true,

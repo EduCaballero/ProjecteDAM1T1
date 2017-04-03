@@ -45,25 +45,7 @@ if (isset($_SESSION["id"])) {
 	</header>
 	<div id="container">
 		<div id="profile">
-			<div class="content-container">
-				<div id="profileImg"><a href=""><img src="<?php echo $userData["imagen"] ?>" alt=""></a></div>
-				<div id="profile-data">
-					<h2><?php echo $userData["nombre"] ?></h2>
-					<ul id="profile-data-sub">
-						<li>
-							<span class="fa fa-lg fa-map-marker icon-profile"></span><span><?php echo getMunicipioById($userData["ciudad"]) ?></span>
-						</li>
-						<?php if (isset($userData["telefono"])) { ?>
-						<li>
-							<span class="fa fa-lg fa-phone icon-profile"></span><span><?php echo $userData["telefono"] ?></span>
-						</li>
-						<?php } ?>
-						<li>
-							<span class="fa fa-envelope icon-profile"></span><span><?php echo $userData["mail"] ?></span>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<?php require_once 'includes/fan-profile.php'; ?>
 		</div>
 		<div id="main">
 			<div id="vote-concert" class="content">
@@ -139,7 +121,7 @@ if (isset($_SESSION["id"])) {
 							while ($fila = mysqli_fetch_array($FanVotaMusicos)) {
 								extract($fila);
 								echo "<tr>
-										<td><img src='$imagen' alt=''></td>
+										<td><img src='img/".$imagen."' alt=''></td>
 										<td width='60%'>$nombre</td>
 										<td>$genero</td>
 										<td>$votos</td>";
@@ -176,8 +158,8 @@ if (isset($_SESSION["id"])) {
 </html>
 <?php
 	} else {
-		if($_SESSION["tipo"]=="L") header("Location: local.php");
-		else if($_SESSION["tipo"]=="M") header("Location: musico.php");
+		if ($_SESSION["tipo"]=="L") header("Location: local.php");
+		else if ($_SESSION["tipo"]=="M") header("Location: musico.php");
 	} 
 } else header("Location: index.php");
 ?>

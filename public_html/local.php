@@ -4,6 +4,13 @@ session_start();
 if (isset($_SESSION["id"])) {
 	if($_SESSION["tipo"]=="L") {
 		$userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
+		if (isset($_POST["create"])) {
+			$date = explode("-",$_POST["concert-date"]);
+			$hour = explode(":",$_POST["concert-time"]);
+			$genre = $_POST["genre"];
+			$pago = $_POST["pago"];
+			insertConcierto($date[0],$date[1],$date[2],$hour[0],$hour[1],$pago,$_SESSION["id"],$genre);
+		}
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,21 +22,70 @@ if (isset($_SESSION["id"])) {
 	<link rel="stylesheet" href="css/local.css">
 	<link rel="stylesheet" href="css/intranet.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
-	<script src="js/src/menu.js"></script>
+	<script src="js/src/jquery-3.1.1.min.js"></script>
+	<script src="js/src/mobile.js"></script>
+	<!-- documentación en momentjs.com/docs -->
+	<script src="js/src/moment.min.js"></script>
 </head>
 <body>
 	<header>
 		<?php require_once 'includes/header-intranet.php'; ?>
 	</header>
 	<script type="text/javascript">
-	function checkdate(dateinp,hourinp) {
-		var validformat=/^\d{2}\-\d{2}\-\d{4}$/;
-		var validformatHour=/^\d?\d:\d{2}$/; 	
-		var dia = <?php echo date("d") ?>;
-		var mes = <?php echo date("m") ?>;
-		var anyo = <?php echo date("Y") ?>;
+		function checkdate(date_inp,time_inp) {
+			var validDate = moment(date_inp, "DD-MM-YYYY").isValid();
+			if (!validDate) {
+				alert("Formato de la fecha invalido");
+				$("#concert-date").select();
+				return false;
+			}
+			var validTime = moment(time_inp, "HH:mm").isValid();
+			if (!validTime) {
+				alert("Formato de la hora invalido");
+				$("#concert-hour").select();
+				return false;
+			}
 
-		if (!validformat.test(dateinp.value)) {
+			/*
+			var serverdate = moment("<?php echo date("d-m-Y") ?>","DD-MM-YYYY");
+			var date = moment(date_inp,"DD-MM-YYYY");
+			var isBefore = moment(date).isBefore(serverdate,'day');
+			if (isBefore) {
+				alert("La fecha no puede ser anterior a la actual");
+				$("#concert-date").select();
+				return false;
+			}
+			*/
+			
+			var isBefore;
+			$.ajax({
+				type : "POST",
+				async: false,
+				url : "server-date.php",
+				dataType : "json",
+				data: {date: $("#concert-date").val()},
+				success: (function(data) {
+		       		isBefore = data;
+		    	})
+			});
+			if (isBefore) {
+				alert("La fecha no puede ser anterior a la actual");
+				$("#concert-date").select();
+				return false;
+			}
+			return true;
+		}
+	</script>
+	<!--
+	<script type="text/javascript">
+	function checkdate(dateinp,hourinp) {
+		var validformatDate=/^\d{2}\-\d{2}\-\d{4}$/;
+		var validformatHour=/^\d?\d:\d{2}$/; 	
+		var day = <?php echo date("d") ?>;
+		var month = <?php echo date("m") ?>;
+		var year = <?php echo date("Y") ?>;
+
+		if (!validformatDate.test(dateinp.value)) {
 			alert("Formato de la fecha invalido");
 			dateinp.select();
 		} else if (!validformatHour.test(hourinp.value)) {
@@ -59,55 +115,21 @@ if (isset($_SESSION["id"])) {
 		return false;
 	}
 	</script>
-	<?php
-	if (isset($_POST["create"])) {
-		$date = explode("-",$_POST["mydate"]);
-		$hour = explode(":",$_POST["mytime"]);
-		$genre = $_POST["genre"];
-		$pago = $_POST["pago"];
-		$local = 6;
-		insertConcierto($date[0],$date[1],$date[2],$hour[0],$hour[1],$pago,$local,$genre);
-	}
-	?>
+	-->
 	<div id="container">
 		<div id="profile">
-			<div class="content-container">
-				<div id="profileImg"><a href=""><img src="<?php echo $userData["imagen"] ?>" alt=""></a></div>
-				<div id="profile-data">
-					<h2><?php echo $userData["nombre"] ?></h2>
-					<ul id=profile-data-sub>
-						<li>
-							<span class="fa fa-lg fa-map-marker icon-profile"></span><span><?php echo getMunicipioById($userData["ciudad"]) ?></span>
-						</li>
-						<?php if (isset($userData["telefono"])) { ?>
-						<li>
-							<span class="fa fa-lg fa-phone icon-profile"></span><span><?php echo $userData["telefono"] ?></span>
-						</li>
-						<?php } ?>
-						<li>
-							<span class="fa fa-envelope icon-profile"></span><span><?php echo $userData["mail"] ?></span>
-						</li>
-						<?php if (isset($userData["web"])) {
-							$url = explode("://",$userData["web"],2);
-						?>
-						<li>
-							<span class="fa fa-link icon-profile"></span><a href=""><span><?php echo $url[1] ?></span></a>
-						</li>
-						<?php } ?>
-					</ul>
-				</div>
-			</div>
+			<?php require_once 'includes/local-profile.php'; ?>
 		</div>
 		<div id="main">
 			<div id="create" class="content">
 				<div class="content-container">
 					<h2><span class="fa fa-calendar-plus-o"></span>Crear concierto</h2>
-					<form onSubmit="return checkdate(this.mydate,this.mytime)" action="" method="post">
+					<form onSubmit="return checkdate($('#concert-date').val(),$('#concert-time').val())" action="" method="post">
 						<div class="form-crt-row">
 							<div class="form-crt-row-sub">
-								<label>Fecha</label><input type="text" name="mydate" placeholder="dd-mm-aaaa" required/>
+								<label>Fecha</label><input type="text" id="concert-date" name="concert-date" placeholder="dd-mm-aaaa" required/>
 							</div><div class="form-crt-row-sub">				
-							<label>Hora</label><input type="text" name="mytime" placeholder="hh:mm" required/> 
+							<label>Hora</label><input type="text" id="concert-time" name="concert-time" placeholder="hh:mm" required/> 
 						</div>
 					</div><div class="form-crt-row">
 					<div class="form-crt-row-sub">

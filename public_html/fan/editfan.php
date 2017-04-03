@@ -1,3 +1,10 @@
+<?php
+require_once '../bbdd.php';
+session_start();
+if (isset($_SESSION["id"])) {
+	if ($_SESSION["tipo"]=="F") {
+		$userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +23,7 @@
 	</header>
 	<div id="container">
 		<div id="profile">
-			<div class="content-container">
-				<div id="profileImg"><a href=""><img src="../img/fan.jpg" alt=""></a></div>
-				<div id="profile-data">
-					<h2>Lance A. Baker</h2>
-					<ul id="profile-data-sub">
-						<li><span class="fa fa-lg fa-map-marker icon-profile"></span><span>Barcelona</span></li>
-						<li><span class="fa fa-lg fa-phone icon-profile"></span><span>674123123</span></li>
-						<li><span class="fa fa-envelope icon-profile"></span><span>lance332@yahoo.com</span></li>
-					</ul>
-				</div>
-			</div>
+			<?php require_once '../includes/fan-profile.php'; ?>
 		</div>
 		<div id="main">
 			<div id="form-container" class="content">
@@ -87,3 +84,10 @@
 	</div>
 </body>
 </html>
+<?php
+	} else {
+		if ($_SESSION["tipo"]=="L") header("Location: ../local/editlocal.php");
+		else if($_SESSION["tipo"]=="M") header("Location: ../musico/editmusico.php");
+	}	 
+} else header("Location: index.php");
+?>

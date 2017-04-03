@@ -1,3 +1,10 @@
+<?php
+require_once '../bbdd.php';
+session_start();
+if (isset($_SESSION["id"])) {
+	if ($_SESSION["tipo"]=="M") {
+		$userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,19 +23,7 @@
 	</header>
 	<div id="container">
 		<div id="profile">
-			<div class="content-container">
-				<div id="profileImg"><a href=""><img src="../img/musico.jpg" alt=""></a></div>
-				<div id="profile-data">
-					<h2>Darth Vader</h2>
-					<ul id="profile-data-sub">
-						<li><span class="fa fa-music icon-profile"></span><span>Clásica</span></li>
-						<li><span class="fa fa-lg fa-map-marker icon-profile"></span><span>Estrella de la Muerte</span></li>
-						<li><span class="fa fa-lg fa-phone icon-profile"></span><span>666 123 123</span></li>
-						<li><span class="fa fa-envelope icon-profile"></span><span>darthvader@starwars.com</span></li>
-						<li><span class="fa fa-link icon-profile"></span><a href=""><span>darthvader.com</span></a></li>
-					</ul>
-				</div>
-			</div>
+			<?php require_once '../includes/music-profile.php'; ?>
 		</div>
 		<div id="main">
 			<div id="form-container" class="content">
@@ -119,3 +114,10 @@
 	</div>
 </body>
 </html>
+<?php
+	} else {
+		if ($_SESSION["tipo"]=="L") header("Location: ../local/editlocal.php");
+		else if($_SESSION["tipo"]=="F") header("Location: ../fan/editfan.php");
+	}	 
+} else header("Location: index.php");
+?>

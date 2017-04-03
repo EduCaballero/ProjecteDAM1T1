@@ -12,7 +12,29 @@
 	<script src="js/src/index.js"></script>
 </head>
 <body>
-	<?php require_once 'bbdd.php'; ?>
+	<?php require_once 'bbdd.php'; 
+    if (isset($_POST["entrar"])) {
+    	$user = $_POST["email"];
+        $pass = $_POST["password"];
+        if (validateUser($user, $pass)) {
+        	session_start();
+            $_SESSION["user"] = $user;
+            $tipo = getTypeByUser($user);
+            $_SESSION["tipo"] = $tipo;
+            $id = getIdByUser($user);
+            $_SESSION["id"] = $id;
+            if ($tipo == "M") {
+            	header("Location: musico.php");
+            } else if($tipo == "L") {
+	            header("Location: local.php");
+	        } else if($tipo == "F") {
+			    header("Location: fan.php");
+	        }
+	    } else {
+			// Mensaje de error
+		}
+	}
+	?>
 	<header>
 		<nav id="mobile-menu" class="mobile-menu">
 			<div class="mobile-menu-top">ConcertPush</div>
@@ -27,7 +49,7 @@
 				<li class="mobile-menu-item"><a class="mobile-menu-link" href="#"><span class="fa fa-language"></span>Gallego</a></li>
 			</ul>
 		</nav>
-		<div id="overlay" onclick="disableMenu()"></div>
+		<div id="overlay"></div>
 		<div id="topbar">
 			<div class="logo">
 				<a href="index.php" title="ConcertPush" class="logo-link">ConcertPush</a>
@@ -65,35 +87,11 @@
 					<a href="">¿Olvidaste tu contraseña?</a>
 					<input type="submit" class="btn-submit" name="entrar" value="Iniciar sesión">
 				</form>
-				<?php
-			require_once 'bbdd.php';
-		    if (isset($_POST["entrar"])) {
-		    	$user = $_POST["email"];
-		        $pass = $_POST["password"];
-		        if (validateUser($user, $pass)) {
-		        	session_start();
-		            $_SESSION["user"] = $user;
-		            $tipo = getTypeByUser($user);
-		            $_SESSION["tipo"] = $tipo;
-		            $id = getIdByUser($user);
-		            $_SESSION["id"] = $id;
-		            if ($tipo == "M") {
-		            	header("Location: musico.php");
-		            }else if($tipo == "L"){
-		                 header("Location: local.php");
-		            }else if($tipo == "F"){
-		               	header("Location: fan.php");
-		            }
-		    	} else {
-		            //Mensaje de error
-		        	}
-		    }
-	        ?>
 			</div>
 			<div id="modal-footer">
 				¿Nuevo en ConcertPush? <a href="signup.php">Regístrate »</a>
 			</div>
-			<button type="button" class="fa fa-lg fa-close btn-close"></button>	
+			<button type="button" class="fa fa-lg fa-close btn-close close-modal"></button>	
 		</div>
 	</div>
 </div>
@@ -130,7 +128,7 @@
 			<?php
 			$musics = ranking();
 			while ($row = mysqli_fetch_array($musics)) {
-				echo "<li><div class='ranking-img'><img src='".$row["imagen"]."'></div><div class='ranking-data'>".$row["musico"]." - ".$row["genero"]." - ".$row["votos"]."</div></li>";
+				echo "<li><div class='ranking-img'><img src='img/".$row["imagen"]."'></div><div class='ranking-data'>".$row["musico"]." - ".$row["genero"]." - ".$row["votos"]."</div></li>";
 			}
 			?>
 			</ul>
