@@ -5,6 +5,7 @@
 
 .form-crt-row-sub {
 	width: 50%;
+	position: relative;
 }
 
 #create label {
@@ -17,7 +18,7 @@
 	padding: 4px 0;
 }
 
-#create input[type="text"], select {
+#create input[type="text"], #create select {
 	font-family: inherit;
 	font-size: inherit;
 	height: 30px;
@@ -34,12 +35,11 @@
 	padding: 0 6px;
 }
 
-#create input[type="text"]:focus, input[type="date"]:focus,
-input[type="time"]:focus, select:focus {
+#create input[type="text"]:focus, #create select:focus {
 	border: 1px solid #4cb1ff;
 }
 
-#pending th:last-child, #pending td:nth-child(6),
+#pending th:last-child, #pending td:nth-child(7),
 #pending td:last-child, #assigned th:last-child,
 #assigned td:nth-child(7), #assigned td:last-child {
 	text-align: center;
@@ -50,6 +50,57 @@ input[type="time"]:focus, select:focus {
 	margin-left: 16px;
 	width: 80px;
 	padding: 4px 12px;
+}
+
+.act-del {
+	color: #3b5998;
+}
+
+.act-del:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+span.error {
+	position: absolute;
+	top: 0;
+	left: 220px;
+	font-size: 12px;
+	padding: 6px 8px;
+	z-index: 10;
+	background: #efe7e3;
+	border: 1px solid #f58484;
+	border-radius: 3px;
+}
+
+span.error:after, span.error:before {
+	top: 50%;
+	right: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	
+}
+
+span.error:after {
+	border-color: rgba(213, 200, 205, 0);
+	border-right-color: #efe7e3;
+	border-width: 5px;
+	margin-top: -5px;
+}
+
+span.error:before {
+	border-color: rgba(245, 132, 132, 0);
+	border-right-color: #f58484;
+	border-width: 6px;
+	margin-top: -6px;
+}
+
+.inputError {
+	box-shadow: 0 0 4px red;
 }
 
 @media screen and (max-width: 1080px) {

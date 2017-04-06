@@ -7,7 +7,7 @@ $(document).ready(function() {
 			type : "POST",
 			url : "municipios.php",
 			dataType : "json",
-			data: {id: $("#concertdate").val()},
+			data: {id: $(".provincia").val()},
 			success: function(data) {
 				$(".ciudad option").remove();
 				$.each(data, function() {

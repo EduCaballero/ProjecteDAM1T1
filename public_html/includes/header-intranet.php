@@ -72,5 +72,5 @@ if ($_SESSION["tipo"]=="L"){
 	</nav>
 </div>
 </div>
-'; ?>
+
 

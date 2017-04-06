@@ -23,7 +23,7 @@ $(document).ready(function() {
 			name: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
+				regex: /^[-!$@%/ºª?&*,.()_+=\s\w.]+$/
 			},
 			seating: {
 				required: true,
@@ -34,7 +34,7 @@ $(document).ready(function() {
 			addr: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
+				regex: /^[-!$@%/ºª?&*,.()_+=\s\w.]+$/
 			},
 			tlf: {
 				digits: true,
@@ -58,7 +58,7 @@ $(document).ready(function() {
 			currentPass: {
 				maxlength: 100,
 				minlength: 4,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/,
+				regex: /^[-!$@%/ºª?&*,.()_+=\w.]+$/,
 				remote: {
 				 	url: "../validatePass.php",
                     type: "post",
@@ -72,7 +72,12 @@ $(document).ready(function() {
 			newPass: {
 				maxlength: 100,
 				minlength: 4,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%/ºª?&*,.()_+=\w.]+$/,
+				required: {
+					depends: function() {
+        				return $("#currentPass").val()!="";
+					}
+				}
 			},
 			confirmNewPass: {
 				equalTo: "#newPass"

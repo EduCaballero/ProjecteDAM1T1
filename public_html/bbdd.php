@@ -198,6 +198,31 @@ function selectMunicipiosByProv($provincia) {
 ///////////////
 
 
+
+function lastCreatedConcert($id) {
+    $con = connect("proyecto");
+    $query = "select concierto.id_concierto, date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, genero.nombre as genero, concierto.pago, count(propuesta.musico) as inscritos
+    from concierto 
+    left join propuesta on propuesta.concierto = concierto.id_concierto
+    join usuario on concierto.local = usuario.id_usuario
+    join genero on concierto.genero = genero.id_genero
+    where concierto.asignado = 0 and usuario.id_usuario = '$id'
+    group by concierto.id_concierto, concierto.dia, concierto.hora, genero.nombre, concierto.pago
+    order by concierto.id_concierto desc limit 1";
+    $res = mysqli_query($con, $query);
+    $concert = mysqli_fetch_array($res);
+    disconnect($con);
+    return $concert;
+}
+
+
+function deleteConcert($id) {
+    $con = connect("proyecto");
+    $delete = "delete from concierto where id_concierto='$id'";
+    mysqli_query($con, $delete);
+    disconnect($con);
+}
+
 function insertConcierto($day,$month,$year,$hour,$min,$pay,$local,$genre) {
     $con = connect("proyecto");
     $insert = "insert into concierto(dia,hora,pago,local,genero,asignado) 
@@ -211,13 +236,13 @@ function insertConcierto($day,$month,$year,$hour,$min,$pay,$local,$genre) {
 
 function concCreatedLoc($id) {
     $con = connect("proyecto");
-    $select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, genero.nombre as genero, concierto.pago, count(propuesta.musico) as inscritos
+    $select = "select concierto.id_concierto, date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, genero.nombre as genero, concierto.pago, count(propuesta.musico) as inscritos
     from concierto 
     left join propuesta on propuesta.concierto = concierto.id_concierto
     join usuario on concierto.local = usuario.id_usuario
     join genero on concierto.genero = genero.id_genero
     where concierto.asignado = 0 and usuario.id_usuario = '$id'
-    group by concierto.dia, concierto.hora, genero.nombre, concierto.pago
+    group by concierto.id_concierto, concierto.dia, concierto.hora, genero.nombre, concierto.pago
     order by concierto.dia asc limit 7";
     $result = mysqli_query($con, $select);
     disconnect($con);
@@ -413,6 +438,25 @@ function getMunicipioById($id) {
  //   EDITAR PERFIL   //
 ///////////////////////
 
+function updateUserEmail($id, $email) {
+    $con = connect("proyecto");
+    $update = "update usuario set mail = '$email' where id_usuario='$id'";
+    if (!mysqli_query($con, $update)) {
+        echo mysqli_error($con);
+    }
+    disconnect($con);
+}
+
+function updateUserPass($id, $pass) {
+    $con = connect("proyecto");
+    $update = "update usuario set password = '$pass' where id_usuario='$id'";
+    if (!mysqli_query($con, $update)) {
+        echo mysqli_error($con);
+    }
+    disconnect($con);
+}
+
+
 function updateProfileImage($filename,$id) {
     $con = connect("proyecto");
     $update = "update usuario set imagen = '$filename' where id_usuario='$id'";
@@ -466,10 +510,11 @@ function getLocalDataById($id) {
 function updateLocalProfile($id, $nombre, $aforo, $ciudad, $dir, $tlf, $web) {
     $con = connect("proyecto");
     $tlf = ($tlf == '' ? "NULL" : $tlf);
-    $web = ($tlf == '' ? "NULL" : $web);
-    $update = "update usuario set nombre = '$nombre', ciudad = '$ciudad', telefono = $tlf, web = $web
-    where id_usuario='$id'";
-    mysqli_query($con,$update);
+    $web = ($tlf == '' ? "NULL" : "'".$web."'");
+    $update = "update usuario set nombre = '$nombre', ciudad = $ciudad, telefono = $tlf, web = $web where id_usuario='$id'";
+    if (!mysqli_query($con,$update)) {
+         echo mysqli_error($con);
+    }
     $update = "update local set aforo = '$aforo', direccion = '$dir' where id_local = '$id'";
     mysqli_query($con,$update);
     disconnect($con);

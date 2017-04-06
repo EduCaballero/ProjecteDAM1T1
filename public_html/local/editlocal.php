@@ -6,6 +6,13 @@ if (isset($_SESSION["id"])) {
 		if (isset($_POST["update"])) {
 			require_once '../upload-profile-img.php';
 			updateLocalProfile($_SESSION["id"], $_POST["name"], $_POST["seating"], $_POST["city"], $_POST["addr"], $_POST["tlf"], $_POST["web"]);
+			
+			if ($_POST["email"] !== '') {
+				updateUserEmail($_SESSION["id"], $_POST["email"]);
+			}
+			if ($_POST["newPass"] !== '') {
+				updateUserPass($_SESSION["id"], $_POST["newPass"]);
+			}
 		}
 		$userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
 		$localData = mysqli_fetch_array(getLocalDataById($_SESSION["id"]));
@@ -55,7 +62,7 @@ if (isset($_SESSION["id"])) {
 						</div>
 						<div class="form-row">
 							<label>Provincia</label><div class="input-wrap">
-							<select class="provincia" name="province" required>
+							<select class="provincia" name="province">
 								<?php
 								$provincias=selectProvincias();
 								$provLocal = getProvIdByMunicipioId($userData["ciudad"]);
@@ -70,7 +77,7 @@ if (isset($_SESSION["id"])) {
 						</div>
 						<div class="form-row">
 							<label>Municipio</label><div class="input-wrap">
-							<select class="ciudad" name="city" required>
+							<select class="ciudad" name="city">
 								<?php 
 								$municipios = getMunicipiosByProvId($provLocal);
 								while ($row = mysqli_fetch_array($municipios)) {
@@ -104,7 +111,7 @@ if (isset($_SESSION["id"])) {
 						</div>
 						<div class="form-row">
 							<label>Contraseña actual</label><div class="input-wrap">
-							<input type="password" name="currentPass"></div>
+							<input type="password" id="currentPass" name="currentPass"></div>
 						</div>
 						<div class="form-row">
 							<label>Nueva contraseña</label><div class="input-wrap">
