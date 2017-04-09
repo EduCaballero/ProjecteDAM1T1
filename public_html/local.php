@@ -4,15 +4,6 @@ session_start();
 if (isset($_SESSION["id"])) {
 	if ($_SESSION["tipo"]=="L") {
 		$userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
-		/*
-		if (isset($_POST["create"])) {
-			$date = explode("-",$_POST["concert-date"]);
-			$hour = explode(":",$_POST["concert-time"]);
-			$genre = $_POST["genre"];
-			$pago = $_POST["pago"];
-			insertConcierto($date[0],$date[1],$date[2],$hour[0],$hour[1],$pago,$_SESSION["id"],$genre);
-		}
-		*/
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +16,7 @@ if (isset($_SESSION["id"])) {
 	<link rel="stylesheet" href="css/intranet.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
 	<script src="js/src/jquery-3.1.1.min.js"></script>
+	<script src="js/src/modal.js"></script>
 	<script src="js/src/mobile.js"></script>
 	<script src="js/src/local.js"></script>
 </head>
@@ -66,6 +58,10 @@ if (isset($_SESSION["id"])) {
 		</form>
 	</div>
 </div>
+<?php 
+	require_once 'includes/modal-update-pending.php';
+	require_once 'includes/modal-inscritos.php';
+?>
 <div id="pending" class="content">
 	<div class="content-container">
 		<h2><span class="fa fa-calendar"></span>Conciertos pendientes de asignar</h2>
@@ -77,7 +73,7 @@ if (isset($_SESSION["id"])) {
 					<th width="45%">Género</th>
 					<th>Pago</th>
 					<th>Inscritos</th>
-					<th colspan="2" width="25%">Acciones</th>
+					<th colspan="3" width="25%">Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -87,14 +83,15 @@ if (isset($_SESSION["id"])) {
 				//<td style='display: none'>".$row["id_concierto"]."</td>
 				echo "
 				<tr>
-					<input type='hidden' class='idconc' value='".$row["id_concierto"]."'>	
+					<input type='hidden' value='".$row["id_concierto"]."'>	
 					<td>".$row["dia"]."</td>
 					<td>".$row["hora"]."</td>
 					<td>".$row["genero"]."</td>
 					<td>".$row["pago"]."</td>
 					<td>".$row["inscritos"]."</td>
 					<td><span class='act-del'>Eliminar</span></td>
-					<td><span class='act-upd'>Modificar</span></td>
+					<td><span class='act-upd-pending'>Modificar</span></td>
+					<td><span class='act-ins'>Ver inscritos</span></td>
 				</tr>";
 			} ?>
 			</tbody>
@@ -104,13 +101,13 @@ if (isset($_SESSION["id"])) {
 <div id="assigned" class="content">
 	<div class="content-container">
 		<h2><span class="fa fa-calendar-check-o"></span>Conciertos asignados</h2>
-		<table class="contentTable">
+		<table id="assigned-conc" class="contentTable">
 			<thead>
 				<tr>
 					<th>Fecha</th>
 					<th>Hora</th>
 					<th width="18%">Género</th>
-					<th width="30%">Musico/Grupo</th>
+					<th width="30%">Músico/Grupo</th>
 					<th>Pago</th>
 					<th>Votos</th>
 					<th colspan="2" width="25%" >Acciones</th>
@@ -122,14 +119,16 @@ if (isset($_SESSION["id"])) {
 			while ($row = mysqli_fetch_array($concAssign)) {
 				echo "
 				<tr>
+					<input type='hidden' value='".$row["concierto"]."'>
+					<input type='hidden' value='".$row["idmusico"]."'>
 					<td>".$row["dia"]."</td>
 					<td>".$row["hora"]."</td>
 					<td>".$row["genero"]."</td>
 					<td>".$row["musico"]."</td>
 					<td>".$row["pago"]."</td>
 					<td>".$row["votos"]."</td>
-					<td><a href=''>Eliminar</a></td>
-					<td><a href=''>Modificar</a></td>
+					<td><span class='act-del'>Eliminar</span></td>
+					<td><span class='act-drop'>Dar de baja</span></td>
 				</tr>";
 			} ?>
 			</tbody>

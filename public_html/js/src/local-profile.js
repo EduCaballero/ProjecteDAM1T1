@@ -1,4 +1,4 @@
-$(document).ready(function() { 
+$(document).ready(function() {
 	$(".provincia").change(function() {
 		$.ajax({
 			type : "POST",

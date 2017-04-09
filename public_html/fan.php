@@ -108,7 +108,7 @@ if (isset($_SESSION["id"])) {
 						<thead>
 							<tr>
 								<th colspan="2">Músico / Grupo</th>
-								<th  width="25%">Género</th>
+								<th width="25%">Género</th>
 								<th>Votos</th>
 								<th>Vota</th>
 							</tr>

@@ -29,23 +29,25 @@ if (isset($_SESSION["id"])) {
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
 	<script src="../js/src/jquery-3.1.1.min.js"></script>
 	<script src="../js/src/jquery.validate.min.js"></script>
-	<script src="../js/src/menu.js"></script>
+	<script src="../js/src/mobile.js"></script>
 	<script src="../js/src/local-profile.js"></script>
-	<script src="../js/src/modal-profile.js"></script>
+	<script src="../js/src/modal.js"></script>
 </head>
 <body>
 	<header>
 		<?php require_once '../includes/header-intranet.php'; ?>
 	</header>
-	<!-- Si hay un error se muestra con un modal -->
-	<?php if (isset($error_msg)) { 
-		require_once '../includes/img-error-modal.html';
-	} ?>
 	<div id="container">
 		<div id="profile">
 			<?php require_once '../includes/local-profile.php'; ?>
 		</div>
 		<div id="main">
+		<?php 
+			require_once '../includes/img-error-modal.php'; 
+			if (isset($error_msg)) {
+				echo "<script>enableModal('#img-error-modal')</script>";
+			}
+		?>
 			<div id="form-container" class="content">
 				<div class="content-container">
 					<h2><span class="fa fa-pencil"></span>Información personal</h2>
