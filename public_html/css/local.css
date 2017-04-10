@@ -39,9 +39,11 @@ form input[type="text"]:focus, form select:focus {
 	border: 1px solid #4cb1ff;
 }
 
-#pending th:last-child, #pending td:nth-child(7),
-#pending td:last-child, #assigned th:last-child,
-#assigned td:nth-child(7), #assigned td:last-child {
+#pending th:last-child, #pending td:nth-child(5),
+#pending td:nth-child(6), #pending td:nth-child(7), 
+#pending td:last-child, #assigned th:last-child, 
+#assigned td:nth-child(8), #assigned td:nth-child(9), 
+#assigned td:last-child {
 	text-align: center;
 }
 

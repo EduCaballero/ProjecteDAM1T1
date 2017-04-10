@@ -285,6 +285,19 @@ function concAssignLoc($id) {
  //   MUSICO   //
 ////////////////
 
+function addMusicProp($musicId,$conId) {
+    $con = connect("proyecto");
+    $insert = "insert into propuesta values('$conId','$musicId',0)";
+    mysqli_query($con, $insert);
+    disconnect($con);
+}
+
+function delMusicProp($musicId,$conId) {
+    $con = connect("proyecto");
+    $delete = "delete from propuesta where concierto='$conId' and musico='$musicId'";
+    mysqli_query($con, $delete);
+    disconnect($con);
+}
 
 function getMusicGeneroById($id) {
     $con = connect("proyecto");
@@ -297,10 +310,19 @@ function getMusicGeneroById($id) {
     return $row["nombre"];
 }
 
+function musicSignedUp($musicId,$conId) {
+    $con = connect("proyecto");
+    $query = "select musico,concierto from propuesta where musico='$musicId' and concierto='$conId'";
+    $res = mysqli_query($con, $query);
+    $row = mysqli_num_rows($res);
+    disconnect($con);  
+    if ($row > 0) return true;
+    else return false;      
+}
 
 function MusicoPendienteAsignar() {
     $con = connect("proyecto");
-    $select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio as ciudad, usuario.nombre as local, 
+    $select = "select concierto.id_concierto, date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio as ciudad, usuario.nombre as local, 
     genero.nombre as genero, concierto.pago, count(propuesta.musico) as inscritos
     from propuesta
     join concierto on propuesta.concierto=concierto.id_concierto
@@ -368,7 +390,7 @@ function FanVotaMusicos() {
     inner join usuario on usuario.id_usuario=musico.id_musico
     left join voto_musico on voto_musico.musico=usuario.id_usuario
     group by usuario.id_usuario
-    order by votos desc limit 7";
+    order by votos desc, usuario.nombre asc limit 7";
     // Ejecutamos la consulta y recogemos el resultado
     $resultado = mysqli_query($con, $select);
     disconnect($con);

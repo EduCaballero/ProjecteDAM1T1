@@ -16,7 +16,8 @@ if (isset($_SESSION["id"])) {
 	<link rel="stylesheet" href="css/intranet.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
 	<script src="js/src/jquery-3.1.1.min.js"></script>
-	<script src="js/src/menu.js"></script>
+	<script src="js/src/mobile.js"></script>
+	<script src="js/src/musico.js"></script>
 </head>
 <body>
 	<header>
@@ -30,7 +31,7 @@ if (isset($_SESSION["id"])) {
 			<div id="pending" class="content">
 				<div class="content-container">
 					<h2><span class="fa fa-calendar"></span>Conciertos pendientes de asignar</h2>
-					<table class="contentTable">
+					<table id='pending-table' class="contentTable">
 						<thead>
 							<tr>
 								<th>Fecha</th>
@@ -40,28 +41,41 @@ if (isset($_SESSION["id"])) {
 								<th width="18%">Género</th>
 								<th>Pago</th>
 								<th>Inscritos</th>
-								<th>Acción</th>
+								<th colspan="2">Acción</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php 
-								//Llamamos a la funcion de la tabla 1 de musicos
-								$MusicoPendienteAsignar = MusicoPendienteAsignar();
-								//Extraccion de datos
-								while ($fila = mysqli_fetch_array($MusicoPendienteAsignar)) {
-                                    extract($fila);
+								$pending = MusicoPendienteAsignar();
+								while ($row = mysqli_fetch_array($pending)) {
                                     echo "
                                     <tr>
-                                    	<td>$dia</td>
-                                    	<td>$hora</td>
-                                    	<td>$ciudad</td>
-                                    	<td>$local</td>
-                                    	<td>$genero</td>
-                                    	<td>$pago</td>
-                                    	<td>$inscritos</td>
-                                    	<td><a href=''>Inscribirse </a></td>
-                                    </tr>";
-                                } ?>
+										<input type='hidden' value='".$row["id_concierto"]."'>
+                                    	<td>".$row["dia"]."</td>
+                                    	<td>".$row["hora"]."</td>
+                                    	<td>".$row["ciudad"]."</td>
+                                    	<td>".$row["local"]."</td>
+                                    	<td>".$row["genero"]."</td>
+                                    	<td>".$row["pago"]."</td>
+                                    	<td>".$row["inscritos"]."</td>";
+                                    if (musicSignedUp($_SESSION["id"],$row["id_concierto"])) {
+	                                    echo "<td>
+	                                    		<span class='disabled'>Inscribirse</span>
+	                                    	</td>
+	                                    	<td>
+	                                    		<span class='enabled'>Baja</span>
+	                                    	</td>
+	                                    </tr>";
+	                               	} else {
+	                               		 echo "<td>
+	                                    		<span class='signup enabled'>Inscribirse</span>
+	                                    	</td>
+	                                    	<td>
+	                                    		<span class='disabled'>Baja</span>
+	                                    	</td>
+	                                    </tr>";
+	                               	} 
+	                            } ?>
 						</tbody>
 					</table>
 				</div>
@@ -69,7 +83,7 @@ if (isset($_SESSION["id"])) {
 			<div id="assigned" class="content">
 				<div class="content-container">
 					<h2><span class="fa fa-calendar-check-o"></span>Conciertos asignados</h2>
-					<table class="contentTable">
+					<table id='assigned-table' class="contentTable">
 						<thead>
 							<tr>
 								<th>Fecha</th>
@@ -77,25 +91,24 @@ if (isset($_SESSION["id"])) {
 								<th width="18%">Ciudad</th>
 								<th width="23%">Local</th>
 								<th width="36%">Dirección</th>
-								<th>Pago</th>
+								<th width="10%">Pago</th>
 							</tr>
 						</thead>
 						<tbody>
 
 							<?php 
 								//Llamamos a la funcion de la tabla 2 de musicos
-								$MusicoAsignado = MusicoAsignado($_SESSION["id"]);
+								$assigned = MusicoAsignado($_SESSION["id"]);
 								//Extraccion de datos
-								while ($fila = mysqli_fetch_array($MusicoAsignado)) {
-                                    extract($fila);
+								while ($row = mysqli_fetch_array($assigned)) {
                                     echo "
                                     <tr>
-                                    	<td>$dia</td>
-                                    	<td>$hora</td>
-                                    	<td>$ciudad</td>
-                                    	<td>$loc</td>
-                                    	<td>$direccion</td>
-                                    	<td>$pago</td>
+                                    	<td>".$row["dia"]."</td>
+                                    	<td>".$row["hora"]."</td>
+                                    	<td>".$row["ciudad"]."</td>
+                                    	<td>".$row["loc"]."</td>
+                                    	<td>".$row["direccion"]."</td>
+                                    	<td>".$row["pago"]."</td>
                                     </tr>";
                                 } ?>
 						</tbody>

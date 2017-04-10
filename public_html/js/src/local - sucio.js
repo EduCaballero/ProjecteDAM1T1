@@ -9,13 +9,58 @@ $(document).ready(function() {
 	});
 
 	$('#create-concert input[type="submit"]').click(function() {
-		// Indico que accion hacemos en un array
-		// y lo paso a la funcion de validar concierto
-		// donde se colocaran mas datos en ese array
+		// resetErrors();
+		// Coloco el nombre y los valores de los inputs en un array
+		// excepto el de tipo submit, para validarlo con ajax
 		var data = {};
 		data["action"] = "new";
 		validateConcert(data);
-		// Retorno false para que no se envie el formulario y recargue la pagina
+		/*
+		$.each($('#create-concert input, #create-concert select'), function(i, v) {
+     		if (v.type !== 'submit') {
+        		data[v.name] = v.value;
+      		}
+      	});
+      	// al procesar la validacion en el php 
+      	// le indico que es un nuevo concierto
+      	// con el campo action = new
+      	data["action"] = "new";
+		$.ajax({
+      		dataType: 'json',
+      		type: 'POST',
+      		url: 'validateConcert.php',
+      		data: data,
+     		success: function(resp) {
+     			// si la validacion tiene exito
+     			if (resp.validation === true) {
+     				// reseteo el formulario
+     				$('#create-concert').trigger('reset');
+     				// recargo la tabla
+     				$('#pending-conc').html(resp.table);
+     				$('.act-del').click(deleteConcert);
+     				$('.act-upd').click(updateConcert);
+     				return false;
+     			} else {
+         			$.each(resp, function(k, v) {
+         				// k = indice/key, v = valor/value
+	          			console.log(k + " => " + v); // ver los mensajes de error en la consola
+	          			var error_msg = '<span class="error">'+v+'</span>';
+	          			//al input con error le añado una clase y despues el mensaje de error
+            			$('#create-concert input[name="' + k + '"], #create-concert select[name="' + k + '"]').addClass('inputError').after(error_msg);
+     				});
+     				// recojo el nombre de los campos con errores
+     				// para seleccionar el primer input o select con error
+     				var keys = Object.keys(resp);
+     				$('#create-concert input[name="'+keys[1]+'"], #create-concert select[name="'+keys[1]+'"]').focus();
+     			}
+     			return false;
+     		},
+     	    error: function() {
+        		console.log('Algo ha hecho kaput');
+      		}
+		});
+		*/
+		// retorno false para que no se envie el formulario y recargue la pagina
 		return false;
 	});
 
@@ -23,12 +68,58 @@ $(document).ready(function() {
 		var data = {};
 		data["action"] = "update pending";
 		validateConcert(data);
+		/*
+		resetErrors();
+		var data = {};
+		$.each($('#update-concert input, #update-concert select'), function(i, v) {
+        	data[v.name] = v.value;
+      	});
+      	data["action"] = "update";
+		$.ajax({
+      		dataType: 'json',
+      		type: 'POST',
+      		url: 'validateConcert.php',
+      		data: data,
+     		success: function(resp) {
+     			if (resp.validation === true) {
+     				$('#pending-conc').html(resp.table);
+     				$('.act-del').click(deleteConcert);
+     				$('.act-upd').click(updateConcert);
+     				disableModal("#update-modal")
+     				return false;
+     			} else {
+         			$.each(resp, function(k, v) {
+	          			console.log(k + " => " + v); 
+	          			var error_msg = '<span class="error">'+v+'</span>';
+            			$('#update-concert input[name="' + k + '"], #update-concert select[name="' + k + '"]').addClass('inputError').after(error_msg);
+     				});
+     				// no puedo usar esto por el maldito focusout
+     				// ganas de matar aumentando
+     				//var keys = Object.keys(resp);
+     				//$('input[name="'+keys[1]+'"]').focus();
+     			}
+     			return false;
+     		},
+     	    error: function() {
+        		console.log('Algo ha hecho kaput');
+      		}
+		});
+		*/
 		return false;
 	});
+
+
+
+	/*
+	$('#submit-update-assigned').click(function() {
+		var data = {};
+		data["action"] = "update assigned";
+		validateConcert(data);
+	});
+	*/
 });
 
 function verInscritos(elem) {
-	// Recojo la id del concierto que esta en un input hidden en la misma fila
 	var id = $(elem).closest('tr').children('input').val();	
 	$.ajax({
 		type: "post",
@@ -46,7 +137,6 @@ function verInscritos(elem) {
 }
 
 function assignConcert(elem, assigned) {
-	// .eq() Reduce the set of matched elements to the one at the specified index.
 	var concert = $(elem).closest('tr').children('input').eq(0).val();
 	var music = $(elem).closest('tr').children('input').eq(1).val();
 	$.ajax({
@@ -73,6 +163,7 @@ function assignConcert(elem, assigned) {
 	});
 }
 
+
 function deleteConcert() {
 	var row = $(this).closest('tr');
 	var id = $(row).children('input').val();	
@@ -86,14 +177,15 @@ function deleteConcert() {
 	});
 }
 
+
 function updatePendingConcert() {
-	// Borro los datos del body de la tabla
+	// borro los datos del body de la tabla
 	$('#update-pending-table tbody').children().remove();
-	// Añado las 4 primeras celdas de la columna seleccionada 
+	// añado las 4 primeras celdas de la columna seleccionada 
 	$(this).closest('tr').children('td').each(function(i) {
 		if (i<4) $(this).clone().appendTo('#update-pending-table tbody');
 	});
-	// Relleno los campos del formulario con los valores actuales
+	// relleno los campos del formulario con los valores actuales
 	$('#update-pending-concert-id').val($(this).closest('tr').children('input').val());
 	$('#update-pending-date').val($('#update-pending-table td').eq(0).text());
 	$('#update-pending-time').val($('#update-pending-table td').eq(1).text());
@@ -102,6 +194,24 @@ function updatePendingConcert() {
 	$('#update-pending-pay').val($('#update-pending-table td').eq(3).text());
 	enableModal("#update-pending-modal");
 }
+
+// Quizas lo uso, o quizas no.
+/*
+function updateAssignedConcert() {
+	$('#update-assigned-table tbody').children().remove();
+	$(this).closest('tr').children('td').each(function(i) {
+		if (i<5) $(this).clone().appendTo('#update-assigned-table tbody');
+	});
+	$('<td><span id="act-drop">Baja</span></td>').appendTo('#update-assigned-table tbody');
+	$('#update-assigned-concert-id').val($(this).closest('tr').children('input').val());
+	$('#update-assigned-date').val($('#update-assigned-table td').eq(0).text());
+	$('#update-assigned-time').val($('#update-assigned-table td').eq(1).text());
+	$("#update-assigned-genre :selected").attr('selected', false);
+	$("#update-assigned-genre option:contains(" + $('#update-assigned-table td').eq(2).text() + ")").attr('selected', true);
+	$('#update-assigned-pay').val($('#update-assigned-table td').eq(3).text());
+	enableModal("#update-assigned-modal");
+}
+*/
 
 function validateConcert(data) {
 	resetErrors();
@@ -128,9 +238,9 @@ function validateConcert(data) {
 		url: 'validateConcert.php',
 		data: data,
 		success: function(resp) {
-     	// Si la validacion tiene exito
+     	// si la validacion tiene exito
      	if (resp.validation === true) {
-	     	// Recargamos la tabla de conciertos pendientes
+	     	// recargamos la tabla de conciertos pendientes
 	     	// y enlazamos los eventos de nuevo a las acciones
 	     	$('#pending-conc tbody').html(resp.pendingTable);
 	     	$('#pending-conc .act-del').click(deleteConcert);
@@ -138,16 +248,16 @@ function validateConcert(data) {
 	     	$('#pending-conc .act-ins').click(function() {
 	     		verInscritos($(this));
 	     	});
-	     	// Depende de la accion que hayamos hecho
+	     	// depende de la accion que hayamos hecho
 	     	// haremos una cosa u otra
 	     	switch (data["action"]) {
 	     		case "new": 
-	     			// Reseteo el formulario
+	     			// reseteo el formulario
 	     			$('#create-concert').trigger('reset');
 	     			break;
 
      				case "update pending":
-     				// Cierro el modal
+     				// cierro el modal
      				disableModal("#update-pending-modal");
      				break;
      			}	
@@ -159,9 +269,9 @@ function validateConcert(data) {
        			var error_msg = '<span class="error">'+v+'</span>';
        			switch (data["action"]) {
        				case "new": 
-	         			// Al input con error le añado una clase y despues el mensaje de error
+	         			//al input con error le añado una clase y despues el mensaje de error
 	         			$('#create-concert input[name="' + k + '"], #create-concert select[name="' + k + '"]').addClass('inputError').after(error_msg);
-						// Recojo el nombre de los campos con errores
+						// recojo el nombre de los campos con errores
 	    				// para seleccionar el primer input o select con error
 	    				var keys = Object.keys(resp);
 	    				$('#create-concert input[name="'+keys[1]+'"], #create-concert select[name="'+keys[1]+'"]').focus();
@@ -169,7 +279,7 @@ function validateConcert(data) {
 
 	    				case "update pending":
 	    				$('#update-pending-concert input[name="' + k + '"], #update-pending-concert select[name="' + k + '"]').addClass('inputError').after(error_msg);
-						// No puedo usar el focus por que me salta el focusout en el modal...
+						// no puedo usar el focus por que me salta el focusout en el modal...
 						break;
 					}	
 				}); 

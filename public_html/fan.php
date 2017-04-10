@@ -15,31 +15,11 @@ if (isset($_SESSION["id"])) {
 	<link rel="stylesheet" href="css/intranet.css">
 	<link rel="stylesheet" href="css/fan.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
-	<script src="js/src/menu.js"></script>
+	<script src="js/src/jquery-3.1.1.min.js"></script>	
+	<script src="js/src/mobile.js"></script>
+	<script src="js/src/fan.js"></script>
 </head>
 <body>
-	<?php 
-		if (isset($_POST["vote"])) {
-			switch ($_POST["vote"]) {
-				case "voteConcert":
-					$conId = $_POST["conId"];
-					addConVote($_SESSION["id"],$conId);
-					break;
-				case "delVoteConcert":
-					$conId = $_POST["conId"];
-					delConVote($_SESSION["id"],$conId);
-					break;
-				case "voteMusic":
-					$musicId = $_POST["musicId"];
-					addMusicVote($_SESSION["id"],$musicId);
-					break;
-				case "delVoteMusic":
-					$musicId = $_POST["musicId"];
-					delMusicVote($_SESSION["id"],$musicId);
-					break;
-			}
-		}
-	?>
 	<header>
 		<?php require_once 'includes/header-intranet.php'; ?>
 	</header>
@@ -60,40 +40,40 @@ if (isset($_SESSION["id"])) {
 								<th width="26%">Local</th>
 								<th width="26%">Músico</th>
 								<th>Votos</th>
-								<th>Vota</th>
+								<th colspan="2">Vota</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php 
 								//Llamamos a la funcion de la tabla 1 de fans
-							$FanVotaConciertos = FanVotaConciertos();
+							$concerts = FanVotaConciertos();
 								//Extraccion de datos
-							while ($fila = mysqli_fetch_array($FanVotaConciertos)) {
-								extract($fila);
+							while ($row = mysqli_fetch_array($concerts)) {
 								echo "<tr>
-										<td>$dia</td>
-										<td>$hora</td>
-										<td>$municipio</td>
-										<td>$local</td>
-										<td>$musico</td>
-										<td>$votos</td>";
+										<input type='hidden' value='".$row["id_concierto"]."'>
+										<td>".$row["dia"]."</td>
+										<td>".$row["hora"]."</td>
+										<td>".$row["municipio"]."</td>
+										<td>".$row["local"]."</td>
+										<td>".$row["musico"]."</td>
+										<td>".$row["votos"]."</td>";
 								// Comprobamos si el fan ha votado a este concierto
 								// Si ha votado puede retirar el voto, si no ha votado puede votar.
-								if (fanVoteConcert($id_concierto,$_SESSION["id"])) {
+								if (fanVoteConcert($row["id_concierto"],$_SESSION["id"])) {
 									echo "<td>
-									<form action='' method='post'>
-									<input type='hidden' name='conId' value='$id_concierto'>
-									<button name='vote' value='delVoteConcert' class='fa fa-lg fa-thumbs-o-down thumbsdown' title='-1'>
-									</form>
-									</td>
+											<i class='fa fa-lg fa-thumbs-o-up disabled'/>
+										</td>
+										<td>
+											<button class='fa fa-lg fa-thumbs-o-down enabled' title='-1'>
+										</td>
 									</tr>";
 								} else {
 								echo "<td>
-									<form action='' method='post'>
-									<input type='hidden' name='conId' value='$id_concierto'>
-									<button name='vote' value ='voteConcert' class='fa fa-lg fa-thumbs-o-up thumbsup' title='+1'>
-									</form>
-									</td>
+									<button class='fa fa-lg fa-thumbs-o-up enabled' title='+1'>
+										</td>
+										<td>
+											<i class='fa fa-lg fa-thumbs-o-down disabled'/>
+										</td>
 									</tr>";
 								}
 							} ?>
@@ -110,38 +90,38 @@ if (isset($_SESSION["id"])) {
 								<th colspan="2">Músico / Grupo</th>
 								<th width="25%">Género</th>
 								<th>Votos</th>
-								<th>Vota</th>
+								<th colspan="2">Vota</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php 
 								//Llamamos a la funcion de la tabla 2 de fans
-							$FanVotaMusicos = FanVotaMusicos();
+							$musics = FanVotaMusicos();
 								//Extraccion de datos
-							while ($fila = mysqli_fetch_array($FanVotaMusicos)) {
-								extract($fila);
+							while ($row = mysqli_fetch_array($musics)) {
 								echo "<tr>
-										<td><img src='img/".$imagen."' alt=''></td>
-										<td width='60%'>$nombre</td>
-										<td>$genero</td>
-										<td>$votos</td>";
+										<input type='hidden' value='".$row["musico"]."'>
+										<td><img src='img/".$row["imagen"]."' alt=''></td>
+										<td width='60%'>".$row["nombre"]."</td>
+										<td>".$row["genero"]."</td>
+										<td>".$row["votos"]."</td>";
 								// Comprobamos si el fan ha votado a este musico
 								// Si ha votado puede retirar el voto, si no ha votado puede votar.		
-								if (fanVoteMusic($musico,$_SESSION["id"])) {
+								if (fanVoteMusic($row["musico"],$_SESSION["id"])) {
 									echo "<td>
-									<form action='' method='post'>
-									<input type='hidden' name='musicId' value='$musico'>
-									<button name='vote' value='delVoteMusic' class='fa fa-lg fa-thumbs-o-down thumbsdown' title='-1'>
-									</form>
-									</td>
+											<i class='fa fa-lg fa-thumbs-o-up disabled'/>
+										</td>
+										<td>
+											<button class='fa fa-lg fa-thumbs-o-down enabled' title='-1'>
+										</td>
 									</tr>";
 								} else {
 								echo "<td>
-									<form action='' method='post'>
-									<input type='hidden' name='musicId' value='$musico'>
-									<button name='vote' value ='voteMusic' class='fa fa-lg fa-thumbs-o-up thumbsup' title='+1'>
-									</form>
-									</td>
+									<button class='fa fa-lg fa-thumbs-o-up enabled' title='+1'>
+										</td>
+										<td>
+											<i class='fa fa-lg fa-thumbs-o-down disabled'/>
+										</td>
 									</tr>";
 								}
 							} ?>

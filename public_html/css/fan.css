@@ -1,29 +1,38 @@
-#vote-music .contentTable td:first-child {
+#vote-concert .contentTable td:nth-child(7),
+#vote-concert .contentTable td:nth-child(8),
+#vote-music .contentTable td:nth-child(5),
+#vote-music .contentTable td:nth-child(6),
+.contentTable th:last-child,
+.contentTable td:last-child {
+	text-align: center;
+}
+
+
+#vote-music .contentTable td:nth-child(2) {
 	padding: 4px 6px;
 }
 
-#vote-music .contentTable td:first-child img {
+#vote-music .contentTable td:nth-child(2) img {
 	width: 30px;
 	height: 30px;
 	vertical-align: middle;
 }
 
-#vote-music .contentTable td:first-child, .contentTable td:last-child {
-	text-align: center;
-}
-
-button {
+#vote-concert button,
+#vote-music button {
 	background-color: transparent;
 	border: 0;
 	cursor: pointer;
+	padding: 0 8px;
 }
 
-.thumbsup {
+.enabled {
 	color: #3b5998;
 }
 
-.thumbsdown {
+.disabled {
 	color: #9c9c9c;
+	padding: 0 11px;
 }
 
 @media screen and (max-width: 1080px) {
