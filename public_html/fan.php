@@ -2,7 +2,7 @@
 require_once 'bbdd.php';
 session_start();
 if (isset($_SESSION["id"])) {
-	if($_SESSION["tipo"]=="F") {
+	if ($_SESSION["tipo"]=="F") {
 		$userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
     ?>
 <!DOCTYPE html>

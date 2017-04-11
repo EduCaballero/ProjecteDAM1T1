@@ -35,13 +35,13 @@ if (isset($_SESSION["id"])) {
 					<form id='create-concert'>
 						<div class="form-crt-row">
 							<div class="form-crt-row-sub">
-								<label>Fecha</label><input type="text" id="concert-date" name="concert-date" placeholder="dd-mm-aaaa" required/>
+								<label>Fecha</label><input type="text" id="concert-date" name="concert-date" placeholder="dd-mm-aaaa">
 							</div><div class="form-crt-row-sub">				
-							<label>Hora</label><input type="text" id="concert-time" name="concert-time" placeholder="hh:mm" required/> 
+							<label>Hora</label><input type="text" id="concert-time" name="concert-time" placeholder="hh:mm"> 
 						</div>
 					</div><div class="form-crt-row">
 					<div class="form-crt-row-sub">
-						<label>Género</label><select name="genre" required>
+						<label>Género</label><select name="genre">
 							<option value="">Elige un género</option>
 						<?php
 						$generos = AllGeneros();
@@ -52,7 +52,7 @@ if (isset($_SESSION["id"])) {
     					?>
 					</select>
 				</div><div class="form-crt-row-sub">
-				<label>Pago</label><input type="text" name="pay" placeholder="€" required/></div>
+				<label>Pago</label><input type="text" name="pay" placeholder="€"></div>
 			</div>
 			<input type="submit" value="Crear" name="create" class="btn btn-submit"/>
 		</form>

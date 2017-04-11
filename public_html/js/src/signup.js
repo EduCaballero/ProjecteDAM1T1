@@ -24,15 +24,15 @@ $(document).ready(function() {
 				maxlength: 80,
 				email: true,
 				remote: {
-				 	url: "validateEmail.php",
-                    type: "post"
+				    type: "post",
+				 	url: "validateEmail.php"
 				}
 			},
 			password: {
 				required: true,
 				maxlength: 32,
 				minlength: 4,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\w.]+$/
+				regex: /^[-!$@%/º~ª?&*,.()_+=\w.]+$/
 			},
 			confirm_password: {
 				required: true,
@@ -68,13 +68,13 @@ $(document).ready(function() {
 			nombre_local: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
+				regex: /^[-!$@%/º~ª?&*,.()_+=\s\w.]+$/
 			},
 			ciudad_local: "required",
 			dir_local: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
+				regex: /^[-!$@%/º~ª?&*,.()_+=\s\w.]+$/
 			},
 			aforo: {
 				required: true,
@@ -127,7 +127,7 @@ $(document).ready(function() {
 			nombre_musico: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
+				regex: /^[-!$@%/º~ª?&*,.()_+=\s\w.]+$/
 			},
 			ciudad_local: "required",
 			genero: "required",
@@ -180,12 +180,12 @@ $(document).ready(function() {
 			nombre_fan: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
+				regex: /^[-!$@%/º~ª?&*,.()_+=\s\w.]+$/
 			},
 			apellidos_fan: {
 				required: true,
 				maxlength: 60,
-				regex: /^[-!$@%<>/ºª?&*,.()_+=\s\w.]+$/
+				regex: /^[-!$@%/º~ª?&*,.()_+=\s\w.]+$/
 			},
 			telefono_fan: {
 				digits: true,

@@ -36,7 +36,7 @@ function verInscritos(elem) {
 		url: 'inscritos-concierto.php',
 		data: {concert: id},
 		success: function(resp) {
-			$('#inscritos-modal .modal-body').html(resp.table);
+			$('#inscritos-modal .modal-body').html(resp);
 			enableModal("#inscritos-modal");
 			$('.act-accept').click(function(){
 				assignConcert($(this), 1);
@@ -150,9 +150,10 @@ function validateConcert(data) {
      				// Cierro el modal
      				disableModal("#update-pending-modal");
      				break;
-     			}	
-     			return false;
+     		}	
+     		return false;
      		} else {
+     			var keys = Object.keys(resp);
      			$.each(resp, function(k, v) {
  				// k = indice/key, v = valor/value
        			console.log(k + " => " + v); // ver los mensajes de error en la consola
@@ -163,13 +164,12 @@ function validateConcert(data) {
 	         			$('#create-concert input[name="' + k + '"], #create-concert select[name="' + k + '"]').addClass('inputError').after(error_msg);
 						// Recojo el nombre de los campos con errores
 	    				// para seleccionar el primer input o select con error
-	    				var keys = Object.keys(resp);
 	    				$('#create-concert input[name="'+keys[1]+'"], #create-concert select[name="'+keys[1]+'"]').focus();
 	    				break;
 
-	    				case "update pending":
+	    			case "update pending":
 	    				$('#update-pending-concert input[name="' + k + '"], #update-pending-concert select[name="' + k + '"]').addClass('inputError').after(error_msg);
-						// No puedo usar el focus por que me salta el focusout en el modal...
+						$('#update-pending-concert input[name="'+keys[1]+'"], #update-pending-concert select[name="'+keys[1]+'"]').focus();
 						break;
 					}	
 				}); 

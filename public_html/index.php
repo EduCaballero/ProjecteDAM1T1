@@ -9,32 +9,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Open+Sans|Roboto" rel="stylesheet"> 
 	<script src="js/src/jquery-3.1.1.min.js"></script>
 	<script src="js/src/mobile.js"></script>
+	<script src="js/src/modal.js"></script>
 	<script src="js/src/index.js"></script>
 </head>
 <body>
-	<?php require_once 'bbdd.php'; 
-    if (isset($_POST["entrar"])) {
-    	$user = $_POST["email"];
-        $pass = $_POST["password"];
-        if (validateUser($user, $pass)) {
-        	session_start();
-            $_SESSION["user"] = $user;
-            $tipo = getTypeByUser($user);
-            $_SESSION["tipo"] = $tipo;
-            $id = getIdByUser($user);
-            $_SESSION["id"] = $id;
-            if ($tipo == "M") {
-            	header("Location: musico.php");
-            } else if($tipo == "L") {
-	            header("Location: local.php");
-	        } else if($tipo == "F") {
-			    header("Location: fan.php");
-	        }
-	    } else {
-			// Mensaje de error
-		}
-	}
-	?>
+<?php require_once 'bbdd.php'; ?>
 	<header>
 		<nav id="mobile-menu" class="mobile-menu">
 			<div class="mobile-menu-top">ConcertPush</div>
@@ -69,33 +48,13 @@
 				</ul>
 			</div><div class="signin-signup">
 			<ul>
-				<li class="user-menu-item"><div class="user-menu-link signin">INICIAR SESIÓN</div></li><li class="user-menu-item"><a href="signup.php" class="user-menu-link">REGÍSTRATE</a></li>
+				<li class="user-menu-item"><div id="signin" class="user-menu-link">INICIAR SESIÓN</div></li><li class="user-menu-item"><a href="signup.php" class="user-menu-link">REGÍSTRATE</a></li>
 			</ul>
 		</div>
 	</nav>
-	<div id="modal-container">
-		<div id="modal-content">
-			<div id="modal-header">
-				<h3>Inicia sesión en ConcertPush</h3>
-			</div>
-			<div id="login-form">
-				<form action="" method="post">
-					<input type="email" name="email" placeholder="Email" maxlength="80" required>
-					<input type="password" name="password" placeholder="Contraseña" maxlength="32" required>
-					<input type="checkbox" name="remember" value="1">
-					<span>Recordar mis datos</span>
-					<a href="">¿Olvidaste tu contraseña?</a>
-					<input type="submit" class="btn-submit" name="entrar" value="Iniciar sesión">
-				</form>
-			</div>
-			<div id="modal-footer">
-				¿Nuevo en ConcertPush? <a href="signup.php">Regístrate »</a>
-			</div>
-			<button type="button" class="fa fa-lg fa-close btn-close close-modal"></button>	
-		</div>
-	</div>
 </div>
 </header>
+<?php require_once 'includes/modal-login.php'; ?>
 <div id="slider">
 	<div id="slider-content">
 		<h1>ConcertPush</h1>

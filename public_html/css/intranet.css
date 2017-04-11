@@ -180,6 +180,10 @@ h2 {
 	background-color: #3e445a;
 }
 
+#signin:hover {
+	cursor: pointer;
+}
+
 /* 
 -----------------------------------------------------------------------------
 
@@ -533,9 +537,8 @@ table.contentTable {
 
 .modal-container {
 	position: relative;
-	top: 10%;
 	width: 600px;
-	margin: auto;
+	margin: 30px auto;
 	z-index: 110;
 	display: block;
 	outline: 0;
@@ -600,6 +603,7 @@ table.contentTable {
 
 .modal {
 	position: fixed;
+	overflow-y: auto;
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -745,6 +749,11 @@ table.contentTable {
 @media screen and (max-width: 768px) {
 	body {
 		font-size: 0.85em;
+	}
+
+	.modal-container {
+		margin: 10px;
+		width: auto;
 	}
 
 	#profileImg {

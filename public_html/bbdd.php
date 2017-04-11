@@ -40,19 +40,24 @@ function ranking() {
  //    LOGIN    //
 /////////////////
 
-
-function validateUser($user, $pass) {
+function userExists($email) {
     $con = connect("proyecto");
-    $query = "select * from usuario where mail='$user' 
-    and password='$pass'";
-    $resultado = mysqli_query($con, $query);
-    $filas = mysqli_num_rows($resultado);
+    $query = "select id_usuario from usuario where mail='$email'";
+    $res = mysqli_query($con, $query);
+    $rows = mysqli_num_rows($res);
     disconnect($con);
-    if ($filas > 0) {
-        return true;
-    } else { 
-        return false;
-    }
+    if ($rows > 0) return true;
+    else return false;
+}
+
+function validateUser($email, $pass) {
+    $con = connect("proyecto");
+    $query = "select id_usuario from usuario where mail='$email' and password='$pass'";
+    $res = mysqli_query($con, $query);
+    $rows = mysqli_num_rows($res);
+    disconnect($con);
+    if ($rows > 0) return true;
+    else return false;
 }
 
 
@@ -171,14 +176,6 @@ function AllGeneros() {
 function selectProvincias() {
     $con = connect("proyecto");
     $select = "select id, provincia from provincias";
-    $res = mysqli_query($con,$select);
-    disconnect($con);
-    return $res;
-}
-
-function checkEmail($reqEmail) {
-    $con = connect("proyecto");
-    $select = "select mail from usuario where mail = '$reqEmail'";
     $res = mysqli_query($con,$select);
     disconnect($con);
     return $res;
@@ -525,12 +522,14 @@ function getMunicipiosByProvId($id) {
     return $res;
 }
 
-function checkPass($reqPass, $id) {
+function checkPass($pass, $id) {
     $con = connect("proyecto");
-    $select = "select password from usuario where password = '$reqPass' and id_usuario = '$id'";
+    $select = "select password from usuario where password = '$pass' and id_usuario = '$id'";
     $res = mysqli_query($con,$select);
+    $rows = mysqli_num_rows($res);
     disconnect($con);
-    return $res;
+    if ($rows > 0) return true;
+    else return false;
 }
 
 //
