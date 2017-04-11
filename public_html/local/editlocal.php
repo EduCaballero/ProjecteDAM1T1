@@ -32,6 +32,7 @@ if (isset($_SESSION["id"])) {
 	<script src="../js/src/mobile.js"></script>
 	<script src="../js/src/local-profile.js"></script>
 	<script src="../js/src/modal.js"></script>
+	<script src="../js/src/profile.js"></script>
 </head>
 <body>
 	<header>
@@ -124,8 +125,16 @@ if (isset($_SESSION["id"])) {
 							<input type="password" name="confirmNewPass"></div>
 						</div>
 						<div class="form-row">
-							<label>Imagen de perfil </label><div class="input-wrap">
-							<input type="file" name="profileImg"></div>
+							<label>Imagen de perfil </label><div class="input-file-wrap">
+							<div class="btn btn-file">
+								<i class="fa fa-file-image-o"></i>
+								<span>Examinar …</span> 
+								<input type="file" accept="image/*" name="profileImg">
+							</div>
+							<div class="img-caption">
+								<div class="img-caption-name"></div>
+							</div>
+							</div>
 						</div>
 						<div class="form-row">
 							<label></label><div class="input-wrap">
