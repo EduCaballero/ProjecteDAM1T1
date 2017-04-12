@@ -12,7 +12,7 @@ function enableModal(id) {
 	// no hace la transicion de opacidad
 	setTimeout(function() { $('.modal-background').addClass('in'); }, 10);
 	// si clico fuera del modal, se cierra
-	$('.modal').click(function(e) {
+	$(id).click(function(e) {
 		if (e.target == $(id).get(0)) disableModal(id);
 	});
 } 

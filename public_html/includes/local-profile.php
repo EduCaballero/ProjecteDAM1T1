@@ -23,7 +23,7 @@ echo '
 				$url = explode("://",$userData["web"],2);
 				echo '
 				<li>
-					<span class="fa fa-link icon-profile"></span><a href=""><span>'.$url[1].'</span></a>
+					<span class="fa fa-link icon-profile"></span><a href="'.$userData["web"].'"><span>'.$url[1].'</span></a>
 				</li>';
 			}
 		echo '

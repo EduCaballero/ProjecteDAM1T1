@@ -43,7 +43,9 @@ form input[type="text"]:focus, form select:focus {
 #pending td:nth-child(6), #pending td:nth-child(7), 
 #pending td:last-child, #assigned th:last-child, 
 #assigned td:nth-child(8), #assigned td:nth-child(9), 
-#assigned td:last-child {
+#assigned td:last-child, #inscritos-table th:last-child,
+#inscritos-table td:nth-child(3), #inscritos-table td:nth-child(6), 
+#inscritos-table td:last-child {
 	text-align: center;
 }
 
@@ -85,13 +87,6 @@ form input.btn {
 	vertical-align: middle;
 	display: inline-block;
 }
-
-#inscritos-table th:last-child,
-#inscritos-table td:first-child,
-#inscritos-table td:last-child {
-	text-align: center;
-}
-
 
 #update-assigned-modal {
 	display: none;
