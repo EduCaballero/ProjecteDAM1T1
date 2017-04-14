@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-  ///////////////
- //   INDEX   //
+///////////////
+//   INDEX   //
 ///////////////
 
 
@@ -35,9 +35,8 @@ function ranking() {
     return $result;
 }
 
-
-  /////////////////
- //    LOGIN    //
+/////////////////
+//    LOGIN    //
 /////////////////
 
 function userExists($email) {
@@ -46,8 +45,10 @@ function userExists($email) {
     $res = mysqli_query($con, $query);
     $rows = mysqli_num_rows($res);
     disconnect($con);
-    if ($rows > 0) return true;
-    else return false;
+    if ($rows > 0)
+        return true;
+    else
+        return false;
 }
 
 function validateUser($email, $pass) {
@@ -56,17 +57,18 @@ function validateUser($email, $pass) {
     $res = mysqli_query($con, $query);
     $rows = mysqli_num_rows($res);
     disconnect($con);
-    if ($rows > 0) return true;
-    else return false;
+    if ($rows > 0)
+        return true;
+    else
+        return false;
 }
 
-
-  //////////////////
- //    SIGNUP    //
+//////////////////
+//    SIGNUP    //
 //////////////////
 
 
-function altaUsuario($email,$pass,$user,$ciudad,$telefono,$web,$nombre) {
+function altaUsuario($email, $pass, $user, $ciudad, $telefono, $web, $nombre) {
     $con = connect("proyecto");
     $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,imagen) values('$nombre','$email','$pass','$user','$ciudad','$telefono', 'img/default_profile.jpg')";
     if (mysqli_query($con, $insert)) {
@@ -82,10 +84,10 @@ function altaUsuario($email,$pass,$user,$ciudad,$telefono,$web,$nombre) {
     disconnect($con);
 }
 
-function altaFan($sex,$apellidos,$day,$month,$year) {
+function altaFan($sex, $apellidos, $day, $month, $year) {
     $con = connect("proyecto");
-    $idsel = mysqli_query($con,"select id_usuario from usuario order by id_usuario desc limit 1");
-    $id = mysqli_fetch_array($idsel,MYSQLI_NUM);
+    $idsel = mysqli_query($con, "select id_usuario from usuario order by id_usuario desc limit 1");
+    $id = mysqli_fetch_array($idsel, MYSQLI_NUM);
     $insert = "insert into fan(id_fan,apellidos,sexo,fecha_nac) 
     values('$id[0]','$apellidos','$sex','$year-$month-$day')";
     if (!mysqli_query($con, $insert)) {
@@ -95,10 +97,10 @@ function altaFan($sex,$apellidos,$day,$month,$year) {
     disconnect($con);
 }
 
-function altaMusico($numMiembros,$generoMusico) {
+function altaMusico($numMiembros, $generoMusico) {
     $con = connect("proyecto");
-    $idsel = mysqli_query($con,"select id_usuario from usuario order by id_usuario desc limit 1");
-    $id = mysqli_fetch_array($idsel,MYSQLI_NUM);
+    $idsel = mysqli_query($con, "select id_usuario from usuario order by id_usuario desc limit 1");
+    $id = mysqli_fetch_array($idsel, MYSQLI_NUM);
     $insert = "insert into musico(id_musico,n_componentes,genero)
     values('$id[0]',$numMiembros,$generoMusico)";
     if (!mysqli_query($con, $insert)) {
@@ -107,21 +109,20 @@ function altaMusico($numMiembros,$generoMusico) {
     disconnect($con);
 }
 
-function altaLocal($dir,$aforo) {
+function altaLocal($dir, $aforo) {
     $con = connect("proyecto");
-    $idsel = mysqli_query($con,"select id_usuario from usuario order by id_usuario desc limit 1");
-    $id = mysqli_fetch_array($idsel,MYSQLI_NUM);
+    $idsel = mysqli_query($con, "select id_usuario from usuario order by id_usuario desc limit 1");
+    $id = mysqli_fetch_array($idsel, MYSQLI_NUM);
     $insert = "insert into local(id_local,aforo,direccion) 
     values('$id[0]',$aforo,'$dir')";
-    if (!mysqli_query($con, $insert)) {      
+    if (!mysqli_query($con, $insert)) {
         echo mysqli_error($con);
     }
     disconnect($con);
 }
 
-
-  ///////////////////////////////////
- //   RECOGIDA DE DATOS DEL USER  //
+///////////////////////////////////
+//   RECOGIDA DE DATOS DEL USER  //
 ///////////////////////////////////
 
 
@@ -159,16 +160,15 @@ function getUserDataById($id) {
     return $res;
 }
 
-
-  /////////////////////////////
- //   FORMULARIOS COMUNES   //
+/////////////////////////////
+//   FORMULARIOS COMUNES   //
 /////////////////////////////
 
 
 function AllGeneros() {
     $con = connect("proyecto");
     $select = "select * from genero";
-    $res = mysqli_query($con,$select);
+    $res = mysqli_query($con, $select);
     disconnect($con);
     return $res;
 }
@@ -176,7 +176,7 @@ function AllGeneros() {
 function selectProvincias() {
     $con = connect("proyecto");
     $select = "select id, provincia from provincias";
-    $res = mysqli_query($con,$select);
+    $res = mysqli_query($con, $select);
     disconnect($con);
     return $res;
 }
@@ -184,24 +184,22 @@ function selectProvincias() {
 function selectMunicipiosByProv($provincia) {
     $con = connect("proyecto");
     $select = "select id, municipio from municipios where provincia_id='$provincia'";
-    $res = mysqli_query($con,$select);
+    $res = mysqli_query($con, $select);
     disconnect($con);
     return $res;
 }
 
-
-  ///////////////
- //   LOCAL   //
+///////////////
+//   LOCAL   //
 ///////////////
 
-function updateConcert($day,$month,$year,$hour,$min,$pay,$genre,$id) {
+function updateConcert($day, $month, $year, $hour, $min, $pay, $genre, $id) {
     $con = connect("proyecto");
     $update = "update concierto set dia='$year-$month-$day', hora ='$hour:$min:00', pago = '$pay', genero = '$genre'
     where id_concierto = '$id'";
-    mysqli_query($con,$update);
+    mysqli_query($con, $update);
     disconnect($con);
 }
-
 
 function deleteConcert($id) {
     $con = connect("proyecto");
@@ -230,13 +228,13 @@ function assignConcert($concert, $music, $assign) {
     $con = connect("proyecto");
     $update = "update propuesta set aceptado='$assign'
     where concierto='$concert' and musico='$music'";
-    mysqli_query($con,$update);
+    mysqli_query($con, $update);
     $update = "update concierto set asignado ='$assign' where id_concierto='$concert'";
-    mysqli_query($con,$update);
+    mysqli_query($con, $update);
     disconnect($con);
 }
 
-function insertConcierto($day,$month,$year,$hour,$min,$pay,$local,$genre) {
+function insertConcierto($day, $month, $year, $hour, $min, $pay, $local, $genre) {
     $con = connect("proyecto");
     $insert = "insert into concierto(dia,hora,pago,local,genero,asignado) 
     values('$year-$month-$day','$hour:$min:00',$pay,$local,$genre,0)";
@@ -245,7 +243,6 @@ function insertConcierto($day,$month,$year,$hour,$min,$pay,$local,$genre) {
     }
     disconnect($con);
 }
-
 
 function concCreatedLoc($id) {
     $con = connect("proyecto");
@@ -277,19 +274,18 @@ function concAssignLoc($id) {
     return $result;
 }
 
-
-  ////////////////
- //   MUSICO   //
+////////////////
+//   MUSICO   //
 ////////////////
 
-function addMusicProp($musicId,$conId) {
+function addMusicProp($musicId, $conId) {
     $con = connect("proyecto");
     $insert = "insert into propuesta values('$conId','$musicId',0)";
     mysqli_query($con, $insert);
     disconnect($con);
 }
 
-function delMusicProp($musicId,$conId) {
+function delMusicProp($musicId, $conId) {
     $con = connect("proyecto");
     $delete = "delete from propuesta where concierto='$conId' and musico='$musicId'";
     mysqli_query($con, $delete);
@@ -300,21 +296,23 @@ function getMusicGeneroById($id) {
     $con = connect("proyecto");
     $query = "select genero.nombre from genero
     join musico on musico.genero = genero.id_genero
-    where musico.id_musico = 1";
+    where musico.id_musico = '$id'";
     $res = mysqli_query($con, $query);
     $row = mysqli_fetch_array($res);
     disconnect($con);
     return $row["nombre"];
 }
 
-function musicSignedUp($musicId,$conId) {
+function musicSignedUp($musicId, $conId) {
     $con = connect("proyecto");
     $query = "select musico,concierto from propuesta where musico='$musicId' and concierto='$conId'";
     $res = mysqli_query($con, $query);
     $row = mysqli_num_rows($res);
-    disconnect($con);  
-    if ($row > 0) return true;
-    else return false;      
+    disconnect($con);
+    if ($row > 0)
+        return true;
+    else
+        return false;
 }
 
 function MusicoPendienteAsignar() {
@@ -353,9 +351,8 @@ function MusicoAsignado($id) {
     return $resultado;
 }
 
-
-  /////////////
- //   FAN   //
+/////////////
+//   FAN   //
 /////////////
 
 
@@ -378,7 +375,6 @@ function FanVotaConciertos() {
     return $resultado;
 }
 
-
 function FanVotaMusicos() {
     $con = connect("proyecto");
     $select = "select usuario.imagen, usuario.nombre, genero.nombre as genero, count(voto_musico.fan) as votos, usuario.id_usuario as musico
@@ -395,31 +391,35 @@ function FanVotaMusicos() {
     return $resultado;
 }
 
-function fanVoteConcert($concertId,$fanId) {
+function fanVoteConcert($concertId, $fanId) {
     $con = connect("proyecto");
     $select = "select voto_concierto.fan
     from voto_concierto
     where voto_concierto.concierto = '$concertId' and voto_concierto.fan = '$fanId'";
     $res = mysqli_query($con, $select);
     $row = mysqli_num_rows($res);
-    disconnect($con);  
-    if ($row > 0) return true;
-    else return false;      
+    disconnect($con);
+    if ($row > 0)
+        return true;
+    else
+        return false;
 }
 
-function fanVoteMusic($musicId,$fanId) {
+function fanVoteMusic($musicId, $fanId) {
     $con = connect("proyecto");
     $select = "select voto_musico.fan
     from voto_musico
     where voto_musico.musico = '$musicId' and voto_musico.fan = '$fanId'";
     $res = mysqli_query($con, $select);
-    disconnect($con);  
+    disconnect($con);
     $row = mysqli_num_rows($res);
-    if ($row > 0) return true;
-    else return false;
+    if ($row > 0)
+        return true;
+    else
+        return false;
 }
 
-function addConVote($fanId,$conId) {
+function addConVote($fanId, $conId) {
     $con = connect("proyecto");
     $insert = "insert into voto_concierto values('$fanId','$conId')";
     if (!mysqli_query($con, $insert)) {
@@ -428,7 +428,7 @@ function addConVote($fanId,$conId) {
     disconnect($con);
 }
 
-function delConVote($fanId,$conId) {
+function delConVote($fanId, $conId) {
     $con = connect("proyecto");
     $delete = "delete from voto_concierto where fan='$fanId' and concierto='$conId'";
     if (!mysqli_query($con, $delete)) {
@@ -437,7 +437,7 @@ function delConVote($fanId,$conId) {
     disconnect($con);
 }
 
-function addMusicVote($fanId,$musicId) {
+function addMusicVote($fanId, $musicId) {
     $con = connect("proyecto");
     $insert = "insert into voto_musico values('$fanId','$musicId')";
     if (!mysqli_query($con, $insert)) {
@@ -446,7 +446,7 @@ function addMusicVote($fanId,$musicId) {
     disconnect($con);
 }
 
-function delMusicVote($fanId,$musicId) {
+function delMusicVote($fanId, $musicId) {
     $con = connect("proyecto");
     $delete = "delete from voto_musico where fan='$fanId' and musico='$musicId'";
     if (!mysqli_query($con, $delete)) {
@@ -468,9 +468,8 @@ function getMunicipioById($id) {
     return $row["municipio"];
 }
 
-
-  ///////////////////////
- //   EDITAR PERFIL   //
+///////////////////////
+//   EDITAR PERFIL   //
 ///////////////////////
 
 function updateUserEmail($id, $email) {
@@ -491,8 +490,7 @@ function updateUserPass($id, $pass) {
     disconnect($con);
 }
 
-
-function updateProfileImage($filename,$id) {
+function updateProfileImage($filename, $id) {
     $con = connect("proyecto");
     $update = "update usuario set imagen = '$filename' where id_usuario='$id'";
     if (!mysqli_query($con, $update)) {
@@ -525,11 +523,13 @@ function getMunicipiosByProvId($id) {
 function checkPass($pass, $id) {
     $con = connect("proyecto");
     $select = "select password from usuario where password = '$pass' and id_usuario = '$id'";
-    $res = mysqli_query($con,$select);
+    $res = mysqli_query($con, $select);
     $rows = mysqli_num_rows($res);
     disconnect($con);
-    if ($rows > 0) return true;
-    else return false;
+    if ($rows > 0)
+        return true;
+    else
+        return false;
 }
 
 //
@@ -547,17 +547,15 @@ function getLocalDataById($id) {
 function updateLocalProfile($id, $nombre, $aforo, $ciudad, $dir, $tlf, $web) {
     $con = connect("proyecto");
     $tlf = ($tlf == '' ? "NULL" : $tlf);
-    $web = ($tlf == '' ? "NULL" : "'".$web."'");
+    $web = ($tlf == '' ? "NULL" : "'" . $web . "'");
     $update = "update usuario set nombre = '$nombre', ciudad = $ciudad, telefono = $tlf, web = $web where id_usuario='$id'";
-    if (!mysqli_query($con,$update)) {
-       echo mysqli_error($con);
-   }
-   $update = "update local set aforo = '$aforo', direccion = '$dir' where id_local = '$id'";
-   mysqli_query($con,$update);
-   disconnect($con);
+    if (!mysqli_query($con, $update)) {
+        echo mysqli_error($con);
+    }
+    $update = "update local set aforo = '$aforo', direccion = '$dir' where id_local = '$id'";
+    mysqli_query($con, $update);
+    disconnect($con);
 }
-
-
 
 //////////////////////////////////////////////
 
@@ -565,20 +563,20 @@ function updateLocalProfile($id, $nombre, $aforo, $ciudad, $dir, $tlf, $web) {
 function selectEmail($email) {
     $con = connect("proyecto");
     $select = "select mail from usuario where mail = '$email'";
-    $res = mysqli_query($con,$select);
+    $res = mysqli_query($con, $select);
     disconnect($con);
     return $res;
 }
 
-
 function connect($database) {
-	$con = mysqli_connect("localhost", "root", "", $database)
-	or die("No se ha podido conectar a la BBDD");
-	mysqli_set_charset($con,"utf8");        
-	return $con;
+    $con = mysqli_connect("localhost", "root", "", $database)
+            or die("No se ha podido conectar a la BBDD");
+    mysqli_set_charset($con, "utf8");
+    return $con;
 }
 
 function disconnect($con) {
-	mysqli_close($con);
+    mysqli_close($con);
 }
+
 ?>
