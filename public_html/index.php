@@ -59,8 +59,8 @@
             <div id="slider-content">
                 <h1>ConcertPush</h1>
                 <h6>LA PLATAFORMA PARA LOS AMANTES DE LA MÚSICA EN DIRECTO</h6>
-                <form class="search-box" action="" method="get">
-                    <input type="search" id="search-field" name="buscar" placeholder="Busca locales, músicos, géneros..."><button type="submit" class="  btn-search"><i class="fa fa-lg fa-search search-icon"></i></button>
+                <form class="search-box" action="search.php" method="get">
+                    <input type="search" id="search-field" name="search" placeholder="Busca en ConcertPush"><button type="submit" class="btn-search"><i class="fa fa-lg fa-search search-icon"></i></button>
                 </form>
             </div>
         </div>

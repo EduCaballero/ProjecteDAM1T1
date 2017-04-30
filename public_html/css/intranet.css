@@ -74,16 +74,6 @@ h2 {
     text-decoration: none;
 }
 
-/*
-.logo-link>div {
-        width: 126px;
-        height: 44px;
-        background-image: url(../img/logo.png);
-        background-repeat: no-repeat;
-        background-size: contain;
-}
-*/
-
 .search-box {
     display: inline-block;
     max-width: 400px;
@@ -178,10 +168,6 @@ h2 {
 .user-menu-item:hover {
     border-bottom: 3px solid #fff;
     background-color: #3e445a;
-}
-
-#signin:hover {
-    cursor: pointer;
 }
 
 /* 

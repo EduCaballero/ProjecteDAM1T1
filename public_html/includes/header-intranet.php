@@ -53,10 +53,10 @@ if ($_SESSION["tipo"] == "L") {
         </div><div id="mobile-button-container">
             <div class="mobile-menu-button" title="Abrir menú">
                 <span class="fa fa-bars"></span></div>
-        </div><form class="search-box" action="" method="GET">
+        </div><form class="search-box" action="search.php" method="GET">
             <div id="inner-search-wrap">
                 <i class="fa fa-search search-icon"></i>
-                <input id="search-field" type="search" placeholder="Busca locales, músicos, géneros..." name="buscar"><button id="search-submit" type="button" name="buscar" value=""><span class="fa fa-search"></span></button>
+                <input id="search-field" type="search" placeholder="Busca en ConcertPush" name="search"><button id="search-submit" type="input"><span class="fa fa-search"></span></button>
             </div>
         </form>
         <nav id="user-menu">

@@ -35,6 +35,83 @@ function ranking() {
     return $result;
 }
 
+////////////////////
+//    BUSCADOR    //
+////////////////////
+
+function getQueryMusic($input) {
+    $con = connect("proyecto");
+    $query = "select id_usuario from usuario where nombre like '%$input%' and tipo='M'";
+    $res = mysqli_query($con, $query);
+    disconnect($con);
+    return $res;
+}
+
+function getMusicSearch($id) {
+    $con = connect("proyecto");
+    $query = "select usuario.imagen, usuario.nombre , genero.nombre genero
+    from usuario
+    join musico on musico.id_musico = usuario.id_usuario
+    join genero on musico.genero = genero.id_genero
+    where usuario.id_usuario = '$id'";
+    $res = mysqli_query($con, $query);
+    disconnect($con);
+    return $res;
+}
+
+function getQueryLocal($input) {
+    $con = connect("proyecto");
+    $query = "select id_usuario from usuario where nombre like '%$input%' and tipo='L'";
+    $res = mysqli_query($con, $query);
+    disconnect($con);
+    return $res;
+}
+
+function getLocalSearch($id) {
+    $con = connect("proyecto");
+    $query = "select usuario.imagen, usuario.nombre , municipios.municipio, local.direccion, usuario.mail, usuario.web, usuario.telefono
+    from usuario
+    join local on local.id_local = usuario.id_usuario
+    join municipios on usuario.ciudad = municipios.id
+    where usuario.id_usuario = '$id'";
+    $res = mysqli_query($con, $query);
+    disconnect($con);
+    return $res;
+}
+
+function getFirstGen() {
+    $con = connect("proyecto");
+    $select = "select id_genero, nombre from genero order by nombre limit 5";
+    $res = mysqli_query($con, $select);
+    disconnect($con);
+    return $res;
+}
+ 
+function getRestGen() {
+    $con = connect("proyecto");
+    // Limit 5 , 2000 (el 2000 por si se van añadiendo mas generos, no tener que ir incrementando el limit)
+    $select = "select id_genero, nombre from genero order by nombre asc limit 5, 2000";
+    $res = mysqli_query($con, $select);
+    disconnect($con);
+    return $res;
+}
+
+function getFirstProv() {
+    $con = connect("proyecto");
+    $select = "select id, provincia from provincias limit 5";
+    $res = mysqli_query($con, $select);
+    disconnect($con);
+    return $res;
+}
+
+function getRestProv() {
+    $con = connect("proyecto");
+    $select = "select id, provincia from provincias order by id asc limit 5, 52";
+    $res = mysqli_query($con, $select);
+    disconnect($con);
+    return $res;
+}
+
 /////////////////
 //    LOGIN    //
 /////////////////
@@ -547,7 +624,7 @@ function getLocalDataById($id) {
 function updateLocalProfile($id, $nombre, $aforo, $ciudad, $dir, $tlf, $web) {
     $con = connect("proyecto");
     $tlf = ($tlf == '' ? "NULL" : $tlf);
-    $web = ($tlf == '' ? "NULL" : "'" . $web . "'");
+    $web = ($web == '' ? "NULL" : "'" . $web . "'");
     $update = "update usuario set nombre = '$nombre', ciudad = $ciudad, telefono = $tlf, web = $web where id_usuario='$id'";
     if (!mysqli_query($con, $update)) {
         echo mysqli_error($con);
