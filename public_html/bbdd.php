@@ -59,6 +59,17 @@ function getMusicSearch($id) {
     return $res;
 }
 
+function getFilteredMusic($search, $type, $genre) {
+    $con = connect("proyecto");
+    $query = "select id_usuario from usuario 
+    join musico on musico.id_musico = usuario.id_usuario
+    join genero on musico.genero = genero.id_genero
+    where usuario.nombre like '%$search%' $type $genre";
+    $res = mysqli_query($con, $query);
+    disconnect($con);
+    return $res;
+}
+
 function getQueryLocal($input) {
     $con = connect("proyecto");
     $query = "select id_usuario from usuario where nombre like '%$input%' and tipo='L'";
@@ -79,14 +90,25 @@ function getLocalSearch($id) {
     return $res;
 }
 
+function getFilteredLocal($search, $type, $prov) {
+    $con = connect("proyecto");
+    $query = "select id_usuario from usuario
+    join local on local.id_local = usuario.id_usuario 
+    join municipios on usuario.ciudad = municipios.id
+    where usuario.nombre like '%$search%' $type $prov";
+    $res = mysqli_query($con, $query);
+    disconnect($con);
+    return $res;
+}
+
 function getFirstGen() {
     $con = connect("proyecto");
-    $select = "select id_genero, nombre from genero order by nombre limit 5";
+    $select = "select id_genero, nombre from genero order by nombre asc limit 5";
     $res = mysqli_query($con, $select);
     disconnect($con);
     return $res;
 }
- 
+
 function getRestGen() {
     $con = connect("proyecto");
     // Limit 5 , 2000 (el 2000 por si se van añadiendo mas generos, no tener que ir incrementando el limit)
@@ -98,7 +120,7 @@ function getRestGen() {
 
 function getFirstProv() {
     $con = connect("proyecto");
-    $select = "select id, provincia from provincias limit 5";
+    $select = "select id, provincia from provincias order by id asc limit 5";
     $res = mysqli_query($con, $select);
     disconnect($con);
     return $res;

@@ -6,7 +6,7 @@
                 <button type="button" class="fa fa-lg fa-close btn-close close-modal"></button>	
             </div>
             <div class="modal-body">
-                <form id="login-form" action="process-login" method="post">
+                <form id="login-form" action="process-login.php" method="post">
                     <input type="email" name="email" placeholder="Email" maxlength="80">
                     <input type="password" name="password" placeholder="Contraseña" maxlength="32">
                     <div style="display: block;">

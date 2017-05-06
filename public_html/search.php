@@ -43,7 +43,7 @@
                     </div><form class="search-box" action="" method="GET">
                         <div id="inner-search-wrap">
                             <i class="fa fa-search search-icon"></i>
-                            <input id="search-field" type="search" placeholder="Buscar en ConcertPush" name="buscar"><button id="search-submit" type="submit"><span class="fa fa-search"></span></button>
+                            <input id="search-field" type="search" placeholder="Buscar en ConcertPush" name="search"><button id="search-submit" type="submit"><span class="fa fa-search"></span></button>
                         </div>
                     </form>
                     <nav id="user-menu">
@@ -63,7 +63,7 @@
                     </nav>
                 </div>
             </header>
-        <?php
+            <?php
         }
         if (isset($_GET["search"])) {
             ?>
@@ -75,12 +75,30 @@
                     </div>
                     <div class="opt-body">
                         <ul>
-                            <li>
-                                <input id="chbx-m" type="checkbox" name="type[]" value="M"> <label for="chbx-m">Musico</label>
-                            </li>
-                            <li>
-                                <input id="chbx-l" type="checkbox" name="type[]" value="L"> <label for="chbx-l">Local</label>
-                            </li>
+                            <?php
+                            if (isset($_GET["type"]) && in_array("M", $_GET["type"])) {
+                                echo '
+                                <li>
+                                    <input id="chbx-m" type="checkbox" name="type[]" value="M" checked><label for="chbx-m">Musico</label>
+                                </li>';
+                            } else {
+                                echo '
+                                <li>
+                                    <input id="chbx-m" type="checkbox" name="type[]" value="M"><label for="chbx-m">Musico</label>
+                                </li>';
+                            }
+                            if (isset($_GET["type"]) && in_array("L", $_GET["type"])) {
+                                echo '
+                                <li>
+                                    <input id="chbx-l" type="checkbox" name="type[]" value="L" checked><label for="chbx-l">Local</label>
+                                </li>';
+                            } else {
+                                echo '
+                                <li>
+                                    <input id="chbx-l" type="checkbox" name="type[]" value="L"><label for="chbx-l">Local</label>
+                                </li>';
+                            }
+                            ?>
                         </ul>
                     </div>
                     <div class="opt-title">
@@ -91,10 +109,17 @@
                             <?php
                             $firstGen = getFirstGen();
                             while ($row = mysqli_fetch_array($firstGen)) {
-                                echo ' 
-                             <li>
-                             <input id="chbx-gen-' . $row["id_genero"] . '" type="checkbox" name="genre[]" value="' . $row["id_genero"] . '"> <label for="chbx-gen-' . $row["id_genero"] . '">' . $row["nombre"] . '</label>
-                             </li>';
+                                if (isset($_GET["genre"]) && in_array($row["id_genero"], $_GET["genre"])) {
+                                    echo ' 
+                                    <li>
+                                        <input id="chbx-prov-' . $row["id_genero"] . '" type="checkbox" name="genre[]" value="' . $row["id_genero"] . '" checked> <label for="chbx-prov-' . $row["id_genero"] . '">' . $row["nombre"] . '</label>
+                                    </li>';
+                                } else {
+                                    echo ' 
+                                    <li>
+                                        <input id="chbx-gen-' . $row["id_genero"] . '" type="checkbox" name="genre[]" value="' . $row["id_genero"] . '"> <label for="chbx-gen-' . $row["id_genero"] . '">' . $row["nombre"] . '</label>
+                                    </li>';
+                                }
                             }
                             ?>
                         </ul>
@@ -102,10 +127,17 @@
                             <?php
                             $restGen = getRestGen();
                             while ($row = mysqli_fetch_array($restGen)) {
-                                echo ' 
-                             <li>
-                             <input id="chbx-gen-' . $row["id_genero"] . '" type="checkbox" name="genre[]" value="' . $row["id_genero"] . '"> <label for="chbx-gen-' . $row["id_genero"] . '">' . $row["nombre"] . '</label>
-                             </li>';
+                                if (isset($_GET["genre"]) && in_array($row["id_genero"], $_GET["genre"])) {
+                                    echo ' 
+                                    <li>
+                                        <input id="chbx-prov-' . $row["id_genero"] . '" type="checkbox" name="genre[]" value="' . $row["id_genero"] . '" checked> <label for="chbx-prov-' . $row["id_genero"] . '">' . $row["nombre"] . '</label>
+                                    </li>';
+                                } else {
+                                    echo ' 
+                                    <li>
+                                        <input id="chbx-gen-' . $row["id_genero"] . '" type="checkbox" name="genre[]" value="' . $row["id_genero"] . '"> <label for="chbx-gen-' . $row["id_genero"] . '">' . $row["nombre"] . '</label>
+                                    </li>';
+                                }
                             }
                             ?>
                         </ul>
@@ -120,10 +152,17 @@
                             <?php
                             $firstProv = getFirstProv();
                             while ($row = mysqli_fetch_array($firstProv)) {
-                                echo ' 
-                             <li>
-                             <input id="chbx-prov-' . $row["id"] . '" type="checkbox" name="prov[]" value="' . $row["id"] . '"> <label for="chbx-prov-' . $row["id"] . '">' . $row["provincia"] . '</label>
-                             </li>';
+                                if (isset($_GET["prov"]) && in_array($row["id"], $_GET["prov"])) {
+                                    echo ' 
+                                    <li>
+                                        <input id="chbx-prov-' . $row["id"] . '" type="checkbox" name="prov[]" value="' . $row["id"] . '" checked> <label for="chbx-prov-' . $row["id"] . '">' . $row["provincia"] . '</label>
+                                    </li>';
+                                } else {
+                                    echo ' 
+                                    <li>
+                                        <input id="chbx-prov-' . $row["id"] . '" type="checkbox" name="prov[]" value="' . $row["id"] . '"> <label for="chbx-prov-' . $row["id"] . '">' . $row["provincia"] . '</label>
+                                    </li>';
+                                }
                             }
                             ?>
                         </ul>
@@ -131,10 +170,17 @@
                             <?php
                             $restProv = getRestProv();
                             while ($row = mysqli_fetch_array($restProv)) {
-                                echo ' 
-                             <li>
-                             <input id="chbx-prov-' . $row["id"] . '" type="checkbox" name="prov[]" value="' . $row["id"] . '"> <label for="chbx-prov-' . $row["id"] . '">' . $row["provincia"] . '</label>
-                             </li>';
+                                if (isset($_GET["prov"]) && in_array($row["id"], $_GET["prov"])) {
+                                    echo ' 
+                                    <li>
+                                        <input id="chbx-prov-' . $row["id"] . '" type="checkbox" name="prov[]" value="' . $row["id"] . '" checked> <label for="chbx-prov-' . $row["id"] . '">' . $row["provincia"] . '</label>
+                                    </li>';
+                                } else {
+                                    echo ' 
+                                    <li>
+                                        <input id="chbx-prov-' . $row["id"] . '" type="checkbox" name="prov[]" value="' . $row["id"] . '"> <label for="chbx-prov-' . $row["id"] . '">' . $row["provincia"] . '</label>
+                                    </li>';
+                                }
                             }
                             ?>
                         </ul>
@@ -142,11 +188,58 @@
                         <div id="show-less-prov" class="less"><p>Mostrar menos<i class="fa fa-lg fa-angle-up"></i></p></div>
                     </div>
                     <div id="opt-submit"> 
-                        <input type="submit" value="Filtrar" class="btn btn-opt">
+                        <input type="submit" value="Filtrar" name="filtrar" class="btn btn-opt">
                     </div>
                 </form><div id="card-container">
                     <?php
-                    $musics = getQueryMusic($_GET["search"]);
+                    $typeFilter = "";
+                    if (isset($_GET["type"])) {
+                        $type = $_GET["type"];
+                        for ($i = 0; $i < count($type); $i++) {
+                            $typeFilter = $typeFilter . "'$type[$i]'";
+                            if ($i < count($type) - 1) {
+                                $typeFilter = $typeFilter . ",";
+                            }
+                        }
+                        $typeFilter = "usuario.tipo in ($typeFilter)";
+                        $typeFilter = " and ".$typeFilter;
+                    }
+                    $genFilter = "";
+                    if (isset($_GET["genre"])) {
+                        $gen = $_GET["genre"];
+                        for ($i = 0; $i < count($gen); $i++) {
+                            $genFilter = $genFilter . "$gen[$i]";
+                            if ($i < count($gen) - 1) {
+                                $genFilter = $genFilter . ",";
+                            }
+                        }
+                        $genFilter = "genero.id_genero in ($genFilter)";
+                        if (!empty($typeFilter)) {
+                            $genFilter = " and " . $genFilter;
+                        }
+                    }
+                    $provFilter = "";
+                    if (isset($_GET["prov"])) {
+                        $prov = $_GET["prov"];
+                        for ($i = 0; $i < count($prov); $i++) {
+                            $provFilter = $provFilter . "$prov[$i]";
+                            if ($i < count($prov) - 1) {
+                                $provFilter = $provFilter . ",";
+                            }
+                        }
+                        $provFilter = "municipios.provincia_id in ($provFilter)";
+                        if (!empty($typeFilter)) {
+                            $provFilter = " and " . $provFilter;
+                        }
+                    }
+                    if (isset($_GET["filtrar"])) {
+                        $musics = getFilteredMusic($_GET["search"], $typeFilter, $genFilter);
+                        $locals = getFilteredLocal($_GET["search"], $typeFilter, $provFilter);
+                    } else {
+                        $musics = getQueryMusic($_GET["search"]);
+                        $locals = getQueryLocal($_GET["search"]);
+                    }
+                    
                     if (mysqli_num_rows($musics) > 0) {
                         echo '
                     <div class="res-title">
@@ -187,8 +280,7 @@
                             </div>
                             <?php
                         }
-                    }
-                    $locals = getQueryLocal($_GET["search"]);
+                    } 
                     if (mysqli_num_rows($locals) > 0) {
                         echo '
                     <div class="res-title">
@@ -245,9 +337,9 @@
                     ?>
                 </div>
                 <footer class="footer">
-    <?php require_once 'includes/footer.php'; ?>
+                    <?php require_once 'includes/footer.php'; ?>
                 </footer>
             </div>
-<?php } ?>
+        <?php } ?>
     </body>
 </html>
