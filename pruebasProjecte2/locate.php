@@ -14,19 +14,18 @@
     <body>
         <?php
         require_once 'bbdd.php';
-       // $concertID = $_GET["paso"]; //id concierto
-       // $city = $_GET["paso2"]; //ciudad 
-
-        //$idLocal = idLocal($concertID);
-        //$direccion = address($idLocal) . ", " . $city;
-        $direccion = "Barcelona";
+        $concertID = $_GET["paso"]; //id concierto
+        $city = $_GET["paso2"]; //ciudad 
+        $idLocal = idLocal($concertID);
+        $direccion = address($idLocal) . ", " . $city;
+        //$direccion = "Barcelona";
         echo $direccion;
         ?>
         <div id="map"></div>
         <script>
             $(document).ready(function () {
                 $('#map').gmap3({
-                    zoom: 6
+                    zoom: 10
                 })
                         .infowindow({})
                         .marker([
@@ -42,6 +41,5 @@
                         .fit();
             });
         </script>
-
     </body>
 </html>

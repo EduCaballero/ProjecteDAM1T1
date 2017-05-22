@@ -57,7 +57,7 @@ if (isset($_SESSION["id"])) {
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>
                                                 <td>" . $row["ciudad"] . '</td>
-                                                <td><a href="locate.php/?paso=' . $row["id_concierto"] . '&paso2=' . $row["ciudad"] . '">' . $row["local"] . "</a></td>
+                                                <td><a href="locate.php?paso=' . $row["id_concierto"] . '&paso2=' . $row["ciudad"] . '">' . $row["local"] . "</a></td>
                                                 <td>" . $row["genero"] . "</td>
                                                 <td>" . $row["pago"] . "</td>
                                                 <td>" . $row["inscritos"] . "</td>";
