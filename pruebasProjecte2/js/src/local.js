@@ -45,32 +45,31 @@ function verInscritos(elem) {
     });
 }
 
-function assignConcert(elem, assigned) {
-    // .eq() Reduce the set of matched elements to the one at the specified index.
-    var concert = $(elem).closest('tr').children('input').eq(0).val();
-    var music = $(elem).closest('tr').children('input').eq(1).val();
+function verInscritos(elem) {
+    // Recojo la id del concierto que esta en un input hidden en la misma fila
+    var id = $(elem).closest('tr').children('input').val();
     $.ajax({
         type: "post",
         dataType: 'json',
-        url: 'assign-concert.php',
-        data: {concert: concert, music: music, assign: assigned},
+        url: 'inscritos-concierto.php',
+        data: {concert: id},
         success: function (resp) {
-            $('#pending-conc tbody').html(resp.pending);
-            $('#assigned-conc tbody').html(resp.assigned);
-            $('.act-del').click(deleteConcert);
-            $('#pending-conc .act-upd-pending').click(updatePendingConcert);
-            $('#pending-conc .act-ins').click(function () {
-                verInscritos($(this));
+            $('#inscritos-modal .modal-body').html(resp);
+            enableModal("#inscritos-modal");
+            $('.act-accept').click(function () {
+                assignConcert($(this), 1);
             });
-            $('.act-drop').click(function () {
-                assignConcert($(this), 0);
-            });
-            disableModal("#inscritos-modal");
-        },
-        error: function () {
-            console.log('Algo ha hecho kaput');
         }
     });
+}
+
+
+function ooo(elem, assigned) {
+    // .eq() Reduce the set of matched elements to the one at the specified index.
+    var concert = $(elem).closest('tr').children('input').eq(0).val();
+    var music = $(elem).closest('tr').children('input').eq(1).val();
+    enableModal("#gmap-modal");
+    
 }
 
 function deleteConcert() {

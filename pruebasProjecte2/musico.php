@@ -56,11 +56,15 @@ if (isset($_SESSION["id"])) {
                                             echo "
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>
-                                                <td>" . $row["ciudad"] . '</td>
-                                                <td><a href="locate.php?paso=' . $row["id_concierto"] . '&paso2=' . $row["ciudad"] . '">' . $row["local"] . "</a></td>
-                                                <td>" . $row["genero"] . "</td>
+                                                <td>" . $row["ciudad"] . "</td>";
+                                                
+                                                
+                                                //<td><a href="locate.php?paso=' . $row["id_concierto"] . '&paso2=' . $row["ciudad"] . '">' . $row["local"] . "</a></td>
+                                                    
+                                                "<td>" . $row["genero"] . "</td>
                                                 <td>" . $row["pago"] . "</td>
-                                                <td>" . $row["inscritos"] . "</td>";
+                                                <td>" . $row["inscritos"] . "</td>
+                                                <td><span class='act-ins'>." . $row["local"] . "</span></td>";
                                             if (musicSignedUp($_SESSION["id"], $row["id_concierto"])) {
                                                 echo "
                                                     <td><span class='disabled'>Inscribirse</span></td>
