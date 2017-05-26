@@ -18,8 +18,36 @@ if (isset($_SESSION["id"])) {
                 <script src="js/src/jquery-3.1.1.min.js"></script>
                 <script src="js/src/mobile.js"></script>
                 <script src="js/src/musico.js"></script>
-                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfITkskFnkQFXkgSbMT-AoPXCx9_yHoXw&region=GB"></script>
+                 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfITkskFnkQFXkgSbMT-AoPXCx9_yHoXw&region=GB"></script>
+        <script src="js/src/gmap3.min.js" type="text/javascript"></script>
+                <script>
+                    $(document).ready( function(){
+                    $(".showMap").click(function () {
+                        var idLocal= $(this).attr("idLocal");
+                        //var direccion=$(this).attr("direccion");
+                        var direccion= "stucom, barcelona";
+                        $('#map').gmap3({
+                            zoom: 10
+                        })
+                                .infowindow({})
+                                .marker([
+                                    {address: direccion, data: "<h3>"+direccion+"</h3><div>"}
+                                ])
+                                .on('click', function (marker) {  //Al clicar obrim una finestra sobre la marca i hi insertem el data de la marca
+                                    marker.setIcon('http://maps.google.com/mapfiles/marker_green.png');
+                                    var map = this.get(0); //this.get(0) retorna la primera propietat vinculada-> gmap3
+                                    var infowindow = this.get(1); //this.get(1) retorna la segona propietat vinculada -> infowindow
+                                    infowindow.setContent(marker.data);     //dins la finestra mostrem el atribut data de la marca
+                                    infowindow.open(map, marker);
+                                })
+                                .fit();
+                    });
+                });
+                </script>
+
+
             </head>
+
             <body>
                 <header>
                     <?php require_once 'includes/header-intranet.php'; ?>
@@ -53,18 +81,17 @@ if (isset($_SESSION["id"])) {
                                             <tr>
                                                 <input type='hidden' value='" . $row["id_concierto"] . "'>";
                                             //idLocal($row["id_concierto"]);
+                                            $idLocal = idLocal($row["id_concierto"]);
+                                            $direccion = address($idLocal) . ", " . $row["ciudad"];
+                                            
                                             echo "
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>
-                                                <td>" . $row["ciudad"] . "</td>";
-                                                
-                                                
-                                                //<td><a href="locate.php?paso=' . $row["id_concierto"] . '&paso2=' . $row["ciudad"] . '">' . $row["local"] . "</a></td>
-                                                    
-                                                "<td>" . $row["genero"] . "</td>
+                                                <td>" . $row["ciudad"] . "</td>" .
+                                            '<td class="showMap" idLocal="'.$idLocal.'" direccion="'.$direccion.'" >' . $row["local"] . "</td>"
+                                            . "<td>" . $row["genero"] . "</td>
                                                 <td>" . $row["pago"] . "</td>
-                                                <td>" . $row["inscritos"] . "</td>
-                                                <td><span class='act-ins'>." . $row["local"] . "</span></td>";
+                                                <td>" . $row["inscritos"] . "</td>";
                                             if (musicSignedUp($_SESSION["id"], $row["id_concierto"])) {
                                                 echo "
                                                     <td><span class='disabled'>Inscribirse</span></td>
@@ -122,6 +149,26 @@ if (isset($_SESSION["id"])) {
                             <?php require_once 'includes/footer.php'; ?>
                         </footer>
                     </div>
+                </div>
+                
+<div id="gmap-modal" class="modal">
+    <div class="modal-container" tabindex="-1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Dirección:</h3>
+                <button type="button" class="fa fa-lg fa-close btn-close close-modal"></button>	
+            </div>
+            <div class="modal-body">
+                <div id="map" style="height: 200px; width: 200px;background-color: black;">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-reset close-modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+                <div id="map" style="height: 200px; width: 200px;background-color: black;">
+                    
                 </div>
             </body>
         </html>

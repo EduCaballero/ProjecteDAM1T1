@@ -32,3 +32,4 @@ function resetErrors() {
     $('input, select').removeClass('inputError');
     $('span.error').remove();
 }
+
