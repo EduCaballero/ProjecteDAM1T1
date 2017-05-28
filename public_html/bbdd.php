@@ -169,9 +169,7 @@ function validateUser($email, $pass) {
 
 function altaUsuario($email, $pass, $user, $ciudad, $telefono, $web, $nombre) {
     $con = connect("proyecto");
-    $telefono = ($telefono == '' ? "NULL" : $telefono);
-    $web = ($web == '' ? "NULL" : "'" . $web . "'");
-    $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,web,imagen) values('$nombre','$email','$pass','$user','$ciudad',$telefono, $web, 'default_profile.jpg')";
+    $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,imagen) values('$nombre','$email','$pass','$user','$ciudad','$telefono', 'img/default_profile.jpg')";
     if (mysqli_query($con, $insert)) {
         echo '
         <div id="done">
@@ -419,17 +417,20 @@ function musicSignedUp($musicId, $conId) {
 function MusicoPendienteAsignar() {
     $con = connect("proyecto");
     $select = "select concierto.id_concierto, date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio as ciudad, usuario.nombre as local, 
-    genero.nombre as genero, concierto.pago, count(propuesta.musico) as inscritos
+    genero.nombre as genero, concierto.pago, local.direccion direccion, usuario.imagen img, count(propuesta.musico) inscritos
     from concierto
 	join usuario on concierto.local=usuario.id_usuario
     join municipios on usuario.ciudad=municipios.id
     join genero on concierto.genero=genero.id_genero
+    join local on local.id_local = usuario.id_usuario
     left join propuesta on propuesta.concierto = concierto.id_concierto
     where concierto.asignado = 0
-    group by concierto.dia, concierto.hora, municipios.municipio, usuario.nombre, genero.nombre, concierto.pago, propuesta.concierto
+    group by concierto.dia, concierto.hora, municipios.municipio, usuario.nombre, genero.nombre, concierto.pago, local.direccion, usuario.imagen, propuesta.concierto
 	order by concierto.dia asc limit 10";
+    // Ejecutamos la consulta y recogemos el resultado
     $resultado = mysqli_query($con, $select);
     disconnect($con);
+    // devolvemos el resultado
     return $resultado;
 }
 

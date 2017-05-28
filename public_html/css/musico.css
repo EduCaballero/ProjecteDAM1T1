@@ -16,6 +16,15 @@
     color: #9c9c9c;
 }
 
+#gmap-modal {
+    display: none;
+}
+
+#map {
+    display: block;
+    height: 300px;
+}
+
 @media screen and (max-width: 1080px) {
     #assigned {
         border-bottom: 1px solid rgba(0,0,0,0.2);

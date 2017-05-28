@@ -15,7 +15,10 @@ if (isset($_SESSION["id"])) {
                 <link rel="stylesheet" href="css/musico.css">
                 <link rel="stylesheet" href="css/intranet.css">
                 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfITkskFnkQFXkgSbMT-AoPXCx9_yHoXw&region=GB"></script>
                 <script src="js/src/jquery-3.1.1.min.js"></script>
+                <script src="js/src/gmap3.min.js"></script>
+                <script src="js/src/modal.js"></script>
                 <script src="js/src/mobile.js"></script>
                 <script src="js/src/musico.js"></script>
             </head>
@@ -28,6 +31,7 @@ if (isset($_SESSION["id"])) {
                         <?php require_once 'includes/music-profile.php'; ?>
                     </div>
                     <div id="main">
+                    <?php require_once 'includes/modal-gmap.php'; ?>
                         <div id="pending" class="content">
                             <div class="content-container">
                                 <h2><span class="fa fa-calendar"></span>Conciertos pendientes de asignar</h2>
@@ -54,7 +58,7 @@ if (isset($_SESSION["id"])) {
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>
                                                 <td>" . $row["ciudad"] . "</td>
-                                                <td>" . $row["local"] . "</td>
+                                                <td class='showMap' img='" . $row["img"] . "' local='" . $row["local"] . "' direccion='" . $row["direccion"] . ", " . $row["ciudad"] . "' >" . $row["local"] . "</td>
                                                 <td>" . $row["genero"] . "</td>
                                                 <td>" . $row["pago"] . "</td>
                                                 <td>" . $row["inscritos"] . "</td>";
