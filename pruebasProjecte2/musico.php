@@ -22,36 +22,8 @@ if (isset($_SESSION["id"])) {
                 <script src="js/src/gmap3.min.js" type="text/javascript"></script>
                 <script src="js/src/modal.js" type="text/javascript"></script>
                 <link href="css/modalGmap.css" rel="stylesheet" type="text/css"/>
-                <script>
-                    $(document).ready(function () {
-                        $(".showMap").click(function () {
-                            //var idLocal= $(this).attr("idLocal");
-                            var direccion=$(this).attr("direccion");
-                            //var direccion = "stucom, barcelona";
-                            $('#map').gmap3({
-                                zoom: 10
-                            })
-                                    .infowindow({})
-                                    .marker([
-                                        {address: direccion, data: "<h3>" + direccion + "</h3><div>"}
-                                    ])
-                                    .on('click', function (marker) {  //Al clicar obrim una finestra sobre la marca i hi insertem el data de la marca
-                                        marker.setIcon('http://maps.google.com/mapfiles/marker_green.png');
-                                        var map = this.get(0); //this.get(0) retorna la primera propietat vinculada-> gmap3
-                                        var infowindow = this.get(1); //this.get(1) retorna la segona propietat vinculada -> infowindow
-                                        infowindow.setContent(marker.data);     //dins la finestra mostrem el atribut data de la marca
-                                        infowindow.open(map, marker);
-                                    })
-                                    .fit();
-                        });
-                    });
-
-
-                </script>
-
-
+                <script src="js/src/gmap.js" type="text/javascript"></script>        
             </head>
-
             <body>
                 <header>
                     <?php require_once 'includes/header-intranet.php'; ?>
@@ -92,7 +64,7 @@ if (isset($_SESSION["id"])) {
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>
                                                 <td>" . $row["ciudad"] . "</td>" .
-                                            '<td class="showMap" idLocal="' . $idLocal . '" direccion="' . $direccion . '" ><a href="#gmodal" title="">' . $row["local"] . '</a></td>'
+                                            '<td class="showMap" img="' .$userData["imagen"]. '" local="' . $row["local"] . '" direccion="' . $direccion . '" ><a href="#gmodal" title="">' . $row["local"] . '</a></td>'
                                             . "<td>" . $row["genero"] . "</td>
                                                 <td>" . $row["pago"] . "</td>
                                                 <td>" . $row["inscritos"] . "</td>";
@@ -135,12 +107,15 @@ if (isset($_SESSION["id"])) {
                                         //Extraccion de datos
                                         while ($row = mysqli_fetch_array($assigned)) {
                                             echo "
-                                            <tr>
+                                            <tr>";
+                                            $idLocal = idLocal($row["id_concierto"]);
+                                            $direccion = address($idLocal) . ", " . $row["ciudad"];
+                                                echo "
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>
-                                                <td>" . $row["ciudad"] . "</td>
-                                                <td>" . $row["loc"] . "</td>
-                                                <td>" . $row["direccion"] . "</td>
+                                                <td>" . $row["ciudad"] . "</td>".
+                                                '<td class="showMap" img="' .$userData["imagen"]. '" local="' . $row["loc"] . '" direccion="' . $direccion . '" ><a href="#gmodal" title="">' . $row["loc"] . '</a></td>'.
+                                                "<td>" . $row["direccion"] . "</td>
                                                 <td>" . $row["pago"] . "</td>
                                             </tr>";
                                         }
@@ -154,42 +129,11 @@ if (isset($_SESSION["id"])) {
                         </footer>
                     </div>
                 </div>
-
-                <!--<div id="modal-map" class="modal">
-                    <div class="modal-container" tabindex="-1">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3>Dirección: <?php $row["local"]; ?></h3>
-                                <button type="button" class="fa fa-lg fa-close btn-close close-modal"></button>	
-                            </div>
-                            <div class="modal-body">
-                                <div id="map" style="height: 200px; width: 100%;background-color: black;">
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-reset close-modal">Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                <!--<div id="map" style="height: 200px; width: 200px;background-color: black; display: none; position: fixed;">-->
-
-
-                <!--<a href="#miModal">Abrir Modal</a>
-                
-                <div id="miModal" class="modal">
-                  <div class="modal-contenido">
-                    <a href="#">X</a>
-                    <div id="map" style="height: 200px; width: 200px;"></div>
-                  </div>  
-                </div>-->
-
-                <!--<a href="#modal" title="" class="BTN">Pincha aquí</a>-->
-
                 <div id="gmodal">
                     <a href=""></a>
                     <div id="modalContent">
-                        <div id="map" style="height: 200px; width: 200px;"></div>
-                        <a href="" class="btn btn-reset close-modal">X</a>
+                        <div id="map" style="height: 95%; width: 95%;"></div>
+                        <a href="">Cerrar</a>
                     </div>
                 </div>
 
