@@ -418,14 +418,14 @@ function MusicoPendienteAsignar() {
     $con = connect("proyecto");
     $select = "select concierto.id_concierto, date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio as ciudad, usuario.nombre as local, 
     genero.nombre as genero, concierto.pago, count(propuesta.musico) as inscritos
-    from propuesta
-    join concierto on propuesta.concierto=concierto.id_concierto
-    join usuario on concierto.local=usuario.id_usuario
+    from concierto
+	join usuario on concierto.local=usuario.id_usuario
     join municipios on usuario.ciudad=municipios.id
     join genero on concierto.genero=genero.id_genero
+    left join propuesta on propuesta.concierto = concierto.id_concierto
     where concierto.asignado = 0
-    group by concierto.dia, concierto.hora, municipios.municipio, propuesta.concierto, usuario.nombre, genero.nombre, concierto.pago
-    order by concierto.dia asc limit 7";
+    group by concierto.dia, concierto.hora, municipios.municipio, usuario.nombre, genero.nombre, concierto.pago, propuesta.concierto
+	order by concierto.dia asc limit 7";
     // Ejecutamos la consulta y recogemos el resultado
     $resultado = mysqli_query($con, $select);
     disconnect($con);
