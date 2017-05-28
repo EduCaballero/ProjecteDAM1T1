@@ -169,7 +169,9 @@ function validateUser($email, $pass) {
 
 function altaUsuario($email, $pass, $user, $ciudad, $telefono, $web, $nombre) {
     $con = connect("proyecto");
-    $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,imagen) values('$nombre','$email','$pass','$user','$ciudad','$telefono', 'img/default_profile.jpg')";
+    $telefono = ($telefono == '' ? "NULL" : $telefono);
+    $web = ($web == '' ? "NULL" : "'" . $web . "'");
+    $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,web,imagen) values('$nombre','$email','$pass','$user','$ciudad',$telefono, $web, 'default_profile.jpg')";
     if (mysqli_query($con, $insert)) {
         echo '
         <div id="done">
@@ -425,11 +427,9 @@ function MusicoPendienteAsignar() {
     left join propuesta on propuesta.concierto = concierto.id_concierto
     where concierto.asignado = 0
     group by concierto.dia, concierto.hora, municipios.municipio, usuario.nombre, genero.nombre, concierto.pago, propuesta.concierto
-	order by concierto.dia asc limit 7";
-    // Ejecutamos la consulta y recogemos el resultado
+	order by concierto.dia asc limit 10";
     $resultado = mysqli_query($con, $select);
     disconnect($con);
-    // devolvemos el resultado
     return $resultado;
 }
 
