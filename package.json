@@ -1,8 +1,14 @@
 {
-    "name": "ProyectoDAM",
-    "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
-    "author": "47883089x",
-    "contributors": [],
-    "dependencies": {}
+  "name": "ProyectoDAM",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "47883089x",
+  "contributors": [],
+  "dependencies": {}
 }
