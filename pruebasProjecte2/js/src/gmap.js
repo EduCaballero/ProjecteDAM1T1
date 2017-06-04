@@ -4,6 +4,8 @@ $(document).ready(function () {
         var direccion = $(this).attr("direccion");
         var img = $(this).attr("img");
         //var direccion = "stucom, barcelona";
+        //var local = "local prueba";
+        //var img = "http://lorempixel.com/output/sports-q-c-120-120-3.jpg";
         $('#map').gmap3({
             options: {
                 zoom: 10
@@ -13,7 +15,7 @@ $(document).ready(function () {
                 .marker([
                     {address: direccion, data: "<h4>" + local + "</h4>\n\
                                                         <p>" + direccion + '</p>\n\
-                                        <img src="img/' + img + '" alt="" width="100" height="120">'}
+                                        <img src="img/' + img + '" alt="" width="120" height="120">'}
                 ])
                 .on('click', function (marker) {  //Al clicar obrim una finestra sobre la marca i hi insertem el data de la marca
                     marker.setIcon('http://maps.google.com/mapfiles/marker_green.png');

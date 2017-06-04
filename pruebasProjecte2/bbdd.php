@@ -189,6 +189,8 @@ function validateUser($email, $pass) {
 function altaUsuario($email, $pass, $user, $ciudad, $telefono, $web, $nombre) {
     $con = connect("proyecto");
     $passCif = password_hash($pass, PASSWORD_DEFAULT);
+    $telefono = ($telefono == '' ? "NULL" : $telefono);
+    $web = ($web == '' ? "NULL" : "'" . $web . "'");
     $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,imagen) values('$nombre','$email','$passCif','$user','$ciudad','$telefono', 'default_profile.jpg')";
     if (mysqli_query($con, $insert)) {
         echo '
@@ -453,6 +455,27 @@ function MusicoPendienteAsignar() {
     return $resultado;
 }
 
+//-----------------MOD
+
+/*function MusicoPendienteAsignar() {
+    $con = connect("proyecto");
+    $select = "select concierto.id_concierto, date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio as ciudad, usuario.nombre as local, 
+    genero.nombre as genero, concierto.pago, count(propuesta.musico) as inscritos
+    from concierto
+	join usuario on concierto.local=usuario.id_usuario
+    join municipios on usuario.ciudad=municipios.id
+    join genero on concierto.genero=genero.id_genero
+    left join propuesta on propuesta.concierto = concierto.id_concierto
+    where concierto.asignado = 0
+    group by concierto.dia, concierto.hora, municipios.municipio, usuario.nombre, genero.nombre, concierto.pago, propuesta.concierto
+	order by concierto.dia asc limit 10";
+    $resultado = mysqli_query($con, $select);
+    disconnect($con);
+    return $resultado;
+}
+*/
+//-----------
+
 function MusicoAsignado($id) {
     $con = connect("proyecto");
     $select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio as ciudad, usuario.nombre as loc, local.direccion, concierto.pago
@@ -474,6 +497,25 @@ function MusicoAsignado($id) {
 //   FAN   //
 /////////////
 
+/*---------
+function FanVotaConciertos() {
+    $con = connect("proyecto");
+    $select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio, local.nombre as local, musico.nombre as musico, count(voto_concierto.fan) as votos, concierto.id_concierto
+    from concierto
+    inner join propuesta on propuesta.concierto=concierto.id_concierto
+    inner join usuario as local on concierto.local=local.id_usuario
+    inner join usuario as musico on propuesta.musico = musico.id_usuario
+    inner join municipios on local.ciudad=municipios.id
+    left join voto_concierto on voto_concierto.concierto=concierto.id_concierto
+    where propuesta.aceptado = 1
+    group by concierto.id_concierto, concierto.dia, concierto.hora, municipios.municipio, local.nombre, musico.nombre
+    ORDER BY dia ASC LIMIT 5";
+    // Ejecutamos la consulta y recogemos el resultado
+    $resultado = mysqli_query($con, $select);
+    disconnect($con);
+    // devolvemos el resultado
+    return $resultado;
+}-------*/
 
 function FanVotaConciertos() {
     $con = connect("proyecto");
@@ -699,7 +741,7 @@ function disconnect($con) {
     mysqli_close($con);
 }
 
-////////////////////////////////////////////
+////////////////////////////////////////////---Para sacar el Gmap
 
 
 function idLocal($idConcierto) {

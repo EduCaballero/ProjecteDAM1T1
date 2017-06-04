@@ -22,7 +22,7 @@ if (isset($_SESSION["id"])) {
                 <script src="js/src/gmap3.min.js" type="text/javascript"></script>
                 <script src="js/src/modal.js" type="text/javascript"></script>
                 <link href="css/modalGmap.css" rel="stylesheet" type="text/css"/>
-                <script src="js/src/gmap.js" type="text/javascript"></script>        
+                <script src="js/src/gmap.js" type="text/javascript"></script>
             </head>
             <body>
                 <header>

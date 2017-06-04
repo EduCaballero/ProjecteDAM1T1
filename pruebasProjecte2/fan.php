@@ -18,6 +18,11 @@ if (isset($_SESSION["id"])) {
                 <script src="js/src/jquery-3.1.1.min.js"></script>	
                 <script src="js/src/mobile.js"></script>
                 <script src="js/src/fan.js"></script>
+                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfITkskFnkQFXkgSbMT-AoPXCx9_yHoXw&region=GB"></script>
+                <script src="js/src/gmap3.min.js" type="text/javascript"></script>
+                <script src="js/src/modal.js" type="text/javascript"></script>
+                <link href="css/modalGmap.css" rel="stylesheet" type="text/css"/>
+                <script src="js/src/gmap.js" type="text/javascript"></script>
             </head>
             <body>
                 <header>
@@ -49,14 +54,19 @@ if (isset($_SESSION["id"])) {
                                         $concerts = FanVotaConciertos();
                                         //Extraccion de datos
                                         while ($row = mysqli_fetch_array($concerts)) {
+                                            //'<td class="showMap" img="' .$userData["imagen"]. '" local="' . $row["local"] . '" direccion="' . $direccion . '" ><a href="#gmodal" title="">' . $row["local"] . '</a></td>'
                                             echo "
                                             <tr>
-                                                <input type='hidden' value='" . $row["id_concierto"] . "'>
+                                                <input type='hidden' value='" . $row["id_concierto"] . "'>";
+                                            //idLocal($row["id_concierto"]);
+                                            $idLocal = idLocal($row["id_concierto"]);
+                                            $direccion = address($idLocal) . ", " . $row["municipio"];
+                                            echo "
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>
-                                                <td>" . $row["municipio"] . "</td>
-                                                <td>" . $row["local"] . "</td>
-                                                <td>" . $row["musico"] . "</td>
+                                                <td>" . $row["municipio"] . "</td>".
+                                                '<td class="showMap" img="' .$userData["imagen"]. '" local="' . $row["local"] . '" direccion="' . $direccion . '" ><a href="#gmodal" title="">' . $row["local"] . '</a></td>'
+                                                ."<td>" . $row["musico"] . "</td>
                                                 <td>" . $row["votos"] . "</td>";
                                             // Comprobamos si el fan ha votado a este concierto
                                             // Si ha votado puede retirar el voto, si no ha votado puede votar.
@@ -124,6 +134,13 @@ if (isset($_SESSION["id"])) {
                         <footer class="footer">
                             <?php require_once 'includes/footer.php'; ?>
                         </footer>
+                    </div>
+                </div>
+                <div id="gmodal">
+                    <a href=""></a>
+                    <div id="modalContent">
+                        <div id="map" style="height: 95%; width: 95%;"></div>
+                        <a href="">Cerrar</a>
                     </div>
                 </div>
             </body>
