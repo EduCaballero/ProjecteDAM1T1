@@ -17,12 +17,14 @@ session_start();
         <script src="js/src/index.js"></script>
     </head>
     <body>
+     <header>
         <?php
         if (isset($_SESSION["id"])) {
             $userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
+            require_once 'includes/header-intranet.php';
+        } else {
         ?>
-        <header>
-            <nav id="mobile-menu" class="mobile-menu">
+       <nav id="mobile-menu" class="mobile-menu">
                 <div class="mobile-menu-top">ConcertPush</div>
                 <ul>
                     <li class="mobile-menu-item"><a class="mobile-menu-link" href="signin.php"><span class="fa fa-user"></span>Iniciar sesión</a></li>
@@ -60,12 +62,9 @@ session_start();
                     </div>
                 </nav>
             </div>
-        </header>
-        <?php
-        } else { 
-            require_once 'includes/header-intranet.php';
-        }
+        <?php } 
         require_once 'includes/modal-login.php'; ?>
+         </header>
         <div id="slider">
             <div id="slider-content">
                 <h1>ConcertPush</h1>
@@ -80,10 +79,11 @@ session_start();
                 <p>Sed gravida eros odio, sed placerat nunc condimentum et. Praesent pretium, tellus ac fringilla pulvinar, dui est egestas est, vitae rhoncus lacus tellus lobortis magna. Nunc convallis, enim a auctor maximus, tellus dui efficitur metus, at aliquet tortor diam non nibh. Nunc rhoncus ex vel sodales lacinia. Nunc a eleifend leo, a ullamcorper justo. Morbi libero nisi, sodales id urna eu, aliquet sagittis ex. Ut vel nibh scelerisque, cursus orci sed, rutrum tortor. Aenean luctus accumsan enim, eu blandit est sagittis id. Integer posuere tortor in tellus placerat, eget accumsan arcu blandit.</p>
                 <p>Phasellus auctor suscipit erat, vel commodo orci hendrerit nec. Morbi dapibus tellus ut mi sodales convallis. Proin volutpat at lorem sed congue. Vestibulum sit amet ornare purus, eget pulvinar mi. Suspendisse fermentum ex vulputate, mattis nisl mattis, posuere enim. Etiam tempus turpis eu nisl congue, sit amet consequat libero vulputate. Integer non est a turpis convallis dapibus. Nulla sagittis facilisis felis. Nullam vel fringilla lorem.</p>
             </div>
+            <footer class="footer">
+                 <?php require_once 'includes/footer.php'; ?>
+            </footer>
         </div>
-        <footer class="footer">
-            <?php require_once 'includes/footer.php'; ?>
-        </footer>
+        
     </div>
 </body>
 </html>
