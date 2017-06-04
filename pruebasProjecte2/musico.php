@@ -108,8 +108,10 @@ if (isset($_SESSION["id"])) {
                                         while ($row = mysqli_fetch_array($assigned)) {
                                             echo "
                                             <tr>";
-                                            $idLocal = idLocal($row["id_concierto"]);
-                                            $direccion = address($idLocal) . ", " . $row["ciudad"];
+                                            //$idLocal = idLocal($row["id_concierto"]);
+                                            //$direccion = address($idLocal) . ", " . $row["ciudad"];
+                                            $direccion = concertAddr($row["id_concierto"]) . ", " . $row["ciudad"];  
+
                                                 echo "
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>

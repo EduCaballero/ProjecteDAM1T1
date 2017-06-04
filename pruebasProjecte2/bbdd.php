@@ -171,9 +171,10 @@ function validateUser($email, $pass) {
     $filas = mysqli_num_rows($resultado);
     disconnect($con);
     if ($filas > 0) {
-        $fila = mysqli_fetch_array($resultado);
-        extract($fila);
-        return password_verify($pass, $password);
+        return true;
+        //$fila = mysqli_fetch_array($resultado);
+        //extract($fila);
+       // return password_verify($pass, $password);
     } else {
         return false;
     }
@@ -335,7 +336,7 @@ function inscritosConcert($id) {
     from musico
     join genero on genero.id_genero=musico.genero
     join usuario on usuario.id_usuario=musico.id_musico
-    join voto_musico on voto_musico.musico = usuario.id_usuario
+    left join voto_musico on voto_musico.musico = usuario.id_usuario
     join propuesta on propuesta.musico = usuario.id_usuario
     join concierto on propuesta.concierto = concierto.id_concierto
     where id_concierto='$id' and propuesta.aceptado = 0
@@ -496,14 +497,14 @@ function MusicoPendienteAsignar() {
 
 function MusicoAsignado($id) {
     $con = connect("proyecto");
-    $select = "select date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio as ciudad, usuario.nombre as loc, local.direccion, concierto.pago
+    $select = "select concierto.id_concierto, date_format(concierto.dia, '%d-%m-%Y') as dia, time_format(concierto.hora, '%H:%i') as hora, municipios.municipio as ciudad, usuario.nombre as loc, local.direccion, concierto.pago
     from concierto
     join usuario on usuario.id_usuario = concierto.local
     join municipios on usuario.ciudad=municipios.id
     join local on local.id_local = usuario.id_usuario
     join propuesta on propuesta.concierto=concierto.id_concierto
     where propuesta.aceptado = 1 and propuesta.musico = '$id' 
-    order by concierto.dia asc limit 7";
+    order by concierto.dia asc limit 10";
     // Ejecutamos la consulta y recogemos el resultado
     $resultado = mysqli_query($con, $select);
     disconnect($con);

@@ -341,7 +341,7 @@ function inscritosConcert($id) {
     from musico
     join genero on genero.id_genero=musico.genero
     join usuario on usuario.id_usuario=musico.id_musico
-    join voto_musico on voto_musico.musico = usuario.id_usuario
+    left join voto_musico on voto_musico.musico = usuario.id_usuario
     join propuesta on propuesta.musico = usuario.id_usuario
     join concierto on propuesta.concierto = concierto.id_concierto
     where id_concierto='$id' and propuesta.aceptado = 0

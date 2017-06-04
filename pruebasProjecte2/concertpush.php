@@ -19,8 +19,7 @@ session_start();
     <body>
         <?php
         if (isset($_SESSION["id"])) {
-    if ($_SESSION["tipo"] == "M" || $_SESSION["tipo"] == "F" || $_SESSION["tipo"] == "L" || $_SESSION["tipo"] == "A") {
-        $userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
+            $userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
         ?>
         <header>
             <nav id="mobile-menu" class="mobile-menu">
@@ -62,7 +61,10 @@ session_start();
                 </nav>
             </div>
         </header>
-        <?php}else{require_once 'includes/header-intranet.php';}
+        <?php
+        } else { 
+            require_once 'includes/header-intranet.php';
+        }
         require_once 'includes/modal-login.php'; ?>
         <div id="slider">
             <div id="slider-content">
