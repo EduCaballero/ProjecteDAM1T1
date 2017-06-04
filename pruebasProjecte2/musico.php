@@ -57,9 +57,9 @@ if (isset($_SESSION["id"])) {
                                             <tr>
                                                 <input type='hidden' value='" . $row["id_concierto"] . "'>";
                                             //idLocal($row["id_concierto"]);
-                                            $idLocal = idLocal($row["id_concierto"]);
-                                            $direccion = address($idLocal) . ", " . $row["ciudad"];
-
+                                            //$idLocal = idLocal($row["id_concierto"]);
+                                            //$direccion = address($idLocal) . ", " . $row["ciudad"];
+                                            $direccion = concertAddr($row["id_concierto"]) . ", " . $row["ciudad"];        
                                             echo "
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>
