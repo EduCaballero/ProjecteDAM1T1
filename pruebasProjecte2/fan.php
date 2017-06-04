@@ -59,8 +59,9 @@ if (isset($_SESSION["id"])) {
                                             <tr>
                                                 <input type='hidden' value='" . $row["id_concierto"] . "'>";
                                             //idLocal($row["id_concierto"]);
-                                            $idLocal = idLocal($row["id_concierto"]);
-                                            $direccion = address($idLocal) . ", " . $row["municipio"];
+                                            //$idLocal = idLocal($row["id_concierto"]);
+                                            //$direccion = address($idLocal) . ", " . $row["municipio"];
+                                            $direccion =  concertAddr($row["id_concierto"]) . ", " . $row["municipio"];
                                             echo "
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>
@@ -79,7 +80,7 @@ if (isset($_SESSION["id"])) {
                                                 echo "
                                                     <td><button class='fa fa-lg fa-thumbs-o-up enabled' title='+1'></td>
                                                     <td><i class='fa fa-lg fa-thumbs-o-down disabled'/></td>
-						</tr>";
+						                            </tr>";
                                             }
                                         }
                                         ?>
@@ -118,12 +119,12 @@ if (isset($_SESSION["id"])) {
                                                 echo "
                                                     <td><i class='fa fa-lg fa-thumbs-o-up disabled'/></td>
                                                     <td><button class='fa fa-lg fa-thumbs-o-down enabled' title='-1'></td>
-						</tr>";
+						                            </tr>";
                                             } else {
                                                 echo "
                                                     <td><button class='fa fa-lg fa-thumbs-o-up enabled' title='+1'></td>
                                                     <td><i class='fa fa-lg fa-thumbs-o-down disabled'/></td>
-						</tr>";
+						                            </tr>";
                                             }
                                         }
                                         ?>
