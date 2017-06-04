@@ -485,13 +485,13 @@ function MusicoPendienteAsignar() {
     join genero on concierto.genero=genero.id_genero
     left join propuesta on propuesta.concierto = concierto.id_concierto
     where concierto.asignado = 0
-    group by concierto.dia, concierto.hora, municipios.municipio, usuario.nombre, genero.nombre, concierto.pago, propuesta.concierto
+    group by concierto.dia, concierto.hora, municipios.municipio, usuario.nombre, genero.nombre, concierto.pago, propuesta.concierto, concierto.id_concierto
 	order by concierto.dia asc limit 10";
     $resultado = mysqli_query($con, $select);
     disconnect($con);
     return $resultado;
-}
-*/
+}*/
+
 //-----------
 
 function MusicoAsignado($id) {
