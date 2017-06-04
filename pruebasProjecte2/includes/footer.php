@@ -2,10 +2,10 @@
     <div id="info">
         <h4>INFORMACIÓN</h4>
         <ul>
-            <li><a href="">¿Qué es ConcertPush?</a></li>
-            <li><a href="">¿Tienes un local?</a></li>
-            <li><a href="">¿Eres músico?</a></li>
-            <li><a href="">¿Te gusta la música en directo?</a></li>
+            <li><a href="concertpush.php">¿Qué es ConcertPush?</a></li>
+            <li><a href="ulocal.php">¿Tienes un local?</a></li>
+            <li><a href="umusician.php">¿Eres músico?</a></li>
+            <li><a href="uuser.php">¿Te gusta la música en directo?</a></li>
         </ul>
     </div><div id="contact">
         <h4>CONTACTAR</h4>
@@ -17,7 +17,7 @@
     </div><div id="etc">
         <h4>OTROS</h4>
         <ul>
-            <li><a href="">Aviso legal</a></li>
+            <li><a href="legal.php">Aviso legal</a></li>
             <li>Copyright © 2017 Barcelona</li>
         </ul>
     </div>
