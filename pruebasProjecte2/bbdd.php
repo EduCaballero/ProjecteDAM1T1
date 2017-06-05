@@ -188,14 +188,17 @@ function validateUser($email, $pass) {
 
 function altaUsuario($email, $pass, $user, $ciudad, $telefono, $web, $nombre) {
     $con = connect("proyecto");
-    $passCif = password_hash($pass, PASSWORD_DEFAULT);
-    $telefono = ($telefono == '' ? "NULL" : $telefono);
-    $web = ($web == '' ? "NULL" : "'" . $web . "'");
-    $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,web,imagen) values('$nombre','$email','$passCif','$user','$ciudad',$telefono,$web, 'default_profile.jpg')";
+    $confirmcode = rand();
+    $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,imagen,verificado,codigo_veri) values('$nombre','$email','$pass','$user','$ciudad','$telefono', 'img/default_profile.jpg',0,'$confirmcode')";
+    //mail($email, "Confirma tu cuenta de concertpush.com", $mensaje, "From: noreply@concertpush.com");
+   
+    enviarMail($email,$confirmcode);
+
     if (mysqli_query($con, $insert)) {
         echo '
         <div id="done">
             <p><b>Gracias por registrarte.</b></p>
+            <p>Confirma tu cuenta, desde el email</p>
             <p><a href="signin.php">Entrar a Concertpush con tu cuenta.</a></p>
             <p><a href="index.php">Ir a la pagina principal.</a></p>
         </div>';
@@ -739,6 +742,30 @@ function updateLocalProfile($id, $nombre, $aforo, $ciudad, $dir, $tlf, $web) {
 
 //////////////////////////////////////////////
 
+//
+//MAIL
+//
+
+function verificarCodigo($mail) {
+    $con = connect("proyecto");
+    $query = "select * from usuario where mail='$mail'";
+    // Ejecutamos la consulta
+    $resultado = mysqli_query($con, $query);
+    // Extraemos el resultado
+    $fila = mysqli_fetch_array($resultado);
+    extract($fila);
+    disconnect($con);
+    return $codigo_veri;
+}
+
+function cuentaVerificada($mail) {
+    $con = connect("proyecto");
+    $update = "update usuario set verificado='1', codigo_veri='1' where mail='$mail'";
+    mysqli_query($con, $update);
+    disconnect($con);
+}
+
+//////////////////////////////////////////
 
 function selectEmail($email) {
     $con = connect("proyecto");
@@ -757,6 +784,32 @@ function connect($database) {
 
 function disconnect($con) {
     mysqli_close($con);
+}
+
+function enviarMail($email,$confirmcode){
+     
+   error_reporting( E_ALL & ~( E_NOTICE | E_STRICT | E_DEPRECATED ) ); //Aquí se genera un control de errores "NO BORRAR NI SUSTITUIR"
+    require_once "Mail.php"; //Aquí se llama a la función mail "NO BORRAR NI SUSTITUIR"
+
+    $to = $email; //Aquí definimos quien recibirá el formulario
+    $from = 'noreplay@concertpush.com'; //Aquí definimos que cuenta mandará el correo, generalmente perteneciente al mismo dominio
+    $host = 'smtp.concertpush.com'; //Aquí definimos cual es el servidor de correo saliente desde el que se enviaran los correos
+    $username = 'noreplay@concertpush.com'; //Aqui se define el usuario de la cuenta de correo
+    $password = 'Alexangeledu12'; //Aquí se define la contraseña de la cuenta de correo que enviará el mensaje
+    $subject = 'Confirma tu cuenta de concertpush.com'; //Aquí se define el asunto del correo
+    $body = "Confirma tu cuenta de concertpush: http://www.concertpush.com/emailconfirm.php?mail=$email&code=$confirmcode"; //Aquí se define el cuerpo de correo
+
+    //A partir de aquí empleamos la función mail para enviar el formulario
+
+    $headers = array ('From' => $from,
+    'To' => $to,
+    'Subject' => $subject);
+    $smtp = Mail::factory('smtp',
+    array ('host' => $host,
+    'auth' => true,
+    'username' => $username,
+    'password' => $password));
+    $mail = $smtp->send($to, $headers, $body);
 }
 
 ////////////////////////////////////////////---Para sacar el Gmap
