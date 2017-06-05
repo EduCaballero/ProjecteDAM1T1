@@ -765,6 +765,24 @@ function cuentaVerificada($mail) {
     disconnect($con);
 }
 
+function verificacion($email) {
+    $con = connect("proyecto");
+    $select = "select verificado from usuario where mail = '$email'";
+    $res = mysqli_query($con, $select);
+    $row = mysqli_fetch_array($res);
+    disconnect($con);
+    return $row["verificado"];
+}
+
+function selectCode($email) {
+    $con = connect("proyecto");
+    $select = "select codigo_veri from usuario where mail = '$email'";
+    $res = mysqli_query($con, $select);
+    $row = mysqli_fetch_array($res);
+    disconnect($con);
+    return $row["codigo_veri"];
+}
+
 //////////////////////////////////////////
 
 function selectEmail($email) {
@@ -775,16 +793,6 @@ function selectEmail($email) {
     return $res;
 }
 
-function connect($database) {
-    $con = mysqli_connect("localhost", "root", "", $database)
-            or die("No se ha podido conectar a la BBDD");
-    mysqli_set_charset($con, "utf8");
-    return $con;
-}
-
-function disconnect($con) {
-    mysqli_close($con);
-}
 
 function enviarMail($email,$confirmcode){
      
@@ -845,6 +853,19 @@ function concertAddr($id){
     $row = mysqli_fetch_array($resultado);
     disconnect($con);
     return $row["direccion"];
+}
+
+//////////////////////////////////////////////////////////////////////
+
+function connect($database) {
+    $con = mysqli_connect("localhost", "root", "", $database)
+            or die("No se ha podido conectar a la BBDD");
+    mysqli_set_charset($con, "utf8");
+    return $con;
+}
+
+function disconnect($con) {
+    mysqli_close($con);
 }
 
 ?>
