@@ -13,7 +13,12 @@ if (isset($_POST["validation"])) {
     } else if (!validateUser($_POST["email"], $_POST["password"])) {
         $errors["password"] = 'La contraseña es incorrecta';
     }
-
+    
+    $verificado = verificacion($_POST["email"]);
+    
+    if($verificado == 0) $errors["password"] = "Has de verificar la cuenta <br> <a href='enviarCode.php?mail=".$_POST["email"]."'>Reenviar Codigo</a> ";
+    if($verificado == -1) $errors["password"] = 'La cuenta ha sido eliminada';
+    
     if (count($errors) > 0) {
         echo json_encode($errors);
         exit;
