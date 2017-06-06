@@ -21,7 +21,7 @@ session_start();
         <?php
         if (isset($_SESSION["id"])) {
             $userData = mysqli_fetch_array(getUserDataById($_SESSION["id"]));
-            require_once 'includes/header-intranet.php';
+            require_once 'includes/header-intranetFooter.php';
         } else {
         ?>
        <nav id="mobile-menu" class="mobile-menu">

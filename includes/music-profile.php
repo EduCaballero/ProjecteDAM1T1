@@ -1,4 +1,5 @@
 <?php
+require_once 'bbdd.php';
 if (basename($_SERVER['PHP_SELF']) == "musico.php") {
     $imgsrc = "img/";
 } else {
@@ -33,6 +34,9 @@ if (basename($_SERVER['PHP_SELF']) == "musico.php") {
                     <span class="fa fa-link icon-profile"></span><a href="<?php echo $userData["web"] ?>"><span><?php echo $url[1] ?></span></a>
                 </li>
             <?php } ?>
+            <li>
+                <span class="fa fa-thumbs-up icon-profile"></span><span><?php echo votosMusico($_SESSION["id"]) ?></span>
+            </li>
 
         </ul>
     </div>
