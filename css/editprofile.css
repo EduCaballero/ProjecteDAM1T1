@@ -67,6 +67,10 @@ select:focus {
     display: none;
 }
 
+#delete-user-modal {
+    display: none;
+}
+
 
 span.error {
     position: absolute;

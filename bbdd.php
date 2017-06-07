@@ -656,6 +656,17 @@ function getMunicipioById($id) {
 //   EDITAR PERFIL   //
 ///////////////////////
 
+function darDeBaja($id){
+    $con = connect("db4959381_proyecto");
+    $update = "update usuario set verificado = -1 where id_usuario='$id'";
+    if (!mysqli_query($con, $update)) {
+        echo mysqli_error($con);
+    }else{
+        header('Location:index.php');
+    }
+    disconnect($con);
+}
+
 function updateUserEmail($id, $email) {
     $con = connect("db4959381_proyecto");
     $update = "update usuario set mail = '$email' where id_usuario='$id'";
@@ -741,6 +752,61 @@ function updateLocalProfile($id, $nombre, $aforo, $ciudad, $dir, $tlf, $web) {
         echo mysqli_error($con);
     }
     $update = "update local set aforo = '$aforo', direccion = '$dir' where id_local = '$id'";
+    mysqli_query($con, $update);
+    disconnect($con);
+}
+
+//////////////////////////////////////////////
+
+
+//
+// Musico
+//
+
+function getMusicDataById($id) {
+    $con = connect("db4959381_proyecto");
+    $query = "select n_componentes, genero from musico where id_musico = '$id'";
+    $res = mysqli_query($con, $query);
+    disconnect($con);
+    return $res;
+}
+
+function updateMusicProfile($id, $nombre, $miembros, $genero, $ciudad, $tlf, $web) {
+    $con = connect("db4959381_proyecto");
+    $tlf = ($tlf == '' ? "NULL" : $tlf);
+    $web = ($web == '' ? "NULL" : "'" . $web . "'");
+    $update = "update usuario set nombre = '$nombre', ciudad = $ciudad, telefono = $tlf, web = $web where id_usuario='$id'";
+    if (!mysqli_query($con, $update)) {
+        echo mysqli_error($con);
+    }
+    $update = "update musico set n_componentes = '$miembros', genero = '$genero' where id_musico = '$id'";
+    mysqli_query($con, $update);
+    disconnect($con);
+}
+
+//////////////////////////////////////////////
+
+//
+// Fan
+//
+
+function getFanDataById($id) {
+    $con = connect("db4959381_proyecto");
+    $query = "select apellidos from fan where id_fan = '$id'";
+    $res = mysqli_query($con, $query);
+    disconnect($con);
+    return $res;
+}
+
+function updateFanProfile($id, $nombre, $apellidos, $ciudad, $tlf, $web) {
+    $con = connect("db4959381_proyecto");
+    $tlf = ($tlf == '' ? "NULL" : $tlf);
+    $web = ($web == '' ? "NULL" : "'" . $web . "'");
+    $update = "update usuario set nombre = '$nombre', ciudad = $ciudad, telefono = $tlf, web = $web where id_usuario='$id'";
+    if (!mysqli_query($con, $update)) {
+        echo mysqli_error($con);
+    }
+    $update = "update fan set apellidos = '$apellidos' where id_fan = '$id'";
     mysqli_query($con, $update);
     disconnect($con);
 }
