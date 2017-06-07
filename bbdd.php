@@ -189,13 +189,18 @@ function validateUser($email, $pass) {
 function altaUsuario($email, $pass, $user, $ciudad, $telefono, $web, $nombre) {
     $con = connect("db4959381_proyecto");
     $passCif = password_hash($pass, PASSWORD_DEFAULT);
+    $confirmcode = rand();
     $telefono = ($telefono == '' ? "NULL" : $telefono);
     $web = ($web == '' ? "NULL" : "'" . $web . "'");
-    $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,web,imagen) values('$nombre','$email','$passCif','$user','$ciudad',$telefono,$web, 'default_profile.jpg')";
+    $insert = "insert into usuario(nombre,mail,password,tipo,ciudad,telefono,web,imagen,verificado,codigo_veri) values('$nombre','$email','$passCif','$user','$ciudad',$telefono,$web, 'default_profile.jpg',0,'$confirmcode')";
+    
+    enviarMail($email,$confirmcode);
+    
     if (mysqli_query($con, $insert)) {
         echo '
         <div id="done">
             <p><b>Gracias por registrarte.</b></p>
+            <p>Revisa tu email para verificar la cuenta</p>
             <p><a href="signin.php">Entrar a Concertpush con tu cuenta.</a></p>
             <p><a href="index.php">Ir a la pagina principal.</a></p>
         </div>';
@@ -808,5 +813,76 @@ function votosMusico ($id){
 }
 
 //------imagenes para administración
+
+
+
+//
+//MAIL
+//
+
+function enviarMail($email,$confirmcode){
+     
+   error_reporting( E_ALL & ~( E_NOTICE | E_STRICT | E_DEPRECATED ) ); //Aquí se genera un control de errores "NO BORRAR NI SUSTITUIR"
+    require_once "Mail.php"; //Aquí se llama a la función mail "NO BORRAR NI SUSTITUIR"
+
+    $to = $email; //Aquí definimos quien recibirá el formulario
+    $from = 'noreplay@concertpush.com'; //Aquí definimos que cuenta mandará el correo, generalmente perteneciente al mismo dominio
+    $host = 'smtp.concertpush.com'; //Aquí definimos cual es el servidor de correo saliente desde el que se enviaran los correos
+    $username = 'noreplay@concertpush.com'; //Aqui se define el usuario de la cuenta de correo
+    $password = 'Alexangeledu12'; //Aquí se define la contraseña de la cuenta de correo que enviará el mensaje
+    $subject = 'Confirma tu cuenta de concertpush.com'; //Aquí se define el asunto del correo
+    $body = "Confirma tu cuenta de concertpush: http://www.concertpush.com/emailconfirm.php?mail=$email&code=$confirmcode"; //Aquí se define el cuerpo de correo
+
+    //A partir de aquí empleamos la función mail para enviar el formulario
+
+    $headers = array ('From' => $from,
+    'To' => $to,
+    'Subject' => $subject);
+    $smtp = Mail::factory('smtp',
+    array ('host' => $host,
+    'auth' => true,
+    'username' => $username,
+    'password' => $password));
+    $mail = $smtp->send($to, $headers, $body);
+}
+
+function verificarCodigo($mail) {
+    $con = connect("db4959381_proyecto");
+    $query = "select * from usuario where mail='$mail'";
+    // Ejecutamos la consulta
+    $resultado = mysqli_query($con, $query);
+    // Extraemos el resultado
+    $fila = mysqli_fetch_array($resultado);
+    extract($fila);
+    disconnect($con);
+    return $codigo_veri;
+}
+
+function cuentaVerificada($mail) {
+    $con = connect("db4959381_proyecto");
+    $update = "update usuario set verificado='1', codigo_veri='1' where mail='$mail'";
+    mysqli_query($con, $update);
+    disconnect($con);
+}
+
+function verificacion($email) {
+    $con = connect("db4959381_proyecto");
+    $select = "select verificado from usuario where mail = '$email'";
+    $res = mysqli_query($con, $select);
+    $row = mysqli_fetch_array($res);
+    disconnect($con);
+    return $row["verificado"];
+}
+
+function selectCode($email) {
+    $con = connect("db4959381_proyecto");
+    $select = "select codigo_veri from usuario where mail = '$email'";
+    $res = mysqli_query($con, $select);
+    $row = mysqli_fetch_array($res);
+    disconnect($con);
+    return $row["codigo_veri"];
+}
+
+//////////////////////////////////////////  
 
 ?>
