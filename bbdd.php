@@ -807,5 +807,6 @@ function votosMusico ($id){
     return $row["resultado"];
 }
 
+//------imagenes para administración
 
 ?>

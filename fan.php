@@ -66,7 +66,7 @@ if (isset($_SESSION["id"])) {
                                                 <td>" . $row["dia"] . "</td>
                                                 <td>" . $row["hora"] . "</td>
                                                 <td>" . $row["municipio"] . "</td>".
-                                                '<td class="showMap" img="' .$userData["imagen"]. '" local="' . $row["local"] . '" direccion="' . $direccion . '" ><a href="#gmodal" title="">' . $row["local"] . '</a></td>'
+                                                '<td class="showMap" img="' .$userData["imagen"]. '" local="' . $row["local"] . '" direccion="' . $direccion . '" ><a id="link" href="#gmodal" title="">' . $row["local"] . '</a></td>'
                                                 ."<td>" . $row["musico"] . "</td>
                                                 <td>" . $row["votos"] . "</td>";
                                             // Comprobamos si el fan ha votado a este concierto
